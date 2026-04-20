@@ -1,0 +1,798 @@
+{
+  "hp_filename": "HSE_017_Stop_Work_Authority_Process.pdf",
+  "blocks": [
+    {
+      "id": "block_0000",
+      "type": "hp_original",
+      "text": "# Stop Work Authority Process\n\nRig Class(s): All Land Rigs",
+      "format": "prose",
+      "section_function": "applicability",
+      "normative_mode": "informational",
+      "heading_path": "Stop Work Authority Process",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::7fe9bb71d340"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0001",
+      "type": "hp_original",
+      "text": "## 1.0. Purpose\n\nThe purpose of this process is to provide an outline of the Stop Work Authority Process (SWA) for employees, contractors, and visitors.",
+      "format": "prose",
+      "section_function": "objective",
+      "normative_mode": "informational",
+      "heading_path": "Stop Work Authority Process > 1.0. Purpose",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::e48e48ed58d1"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0002",
+      "type": "hp_original",
+      "text": "## 2.0. Introduction\n\n2.1. Each employee has the authority and responsibility any time they feel an unsafe condition exists, an unsafe work practice is occurring, or improper instructions are given by a co-worker, H&P supervisor, 3rd party Representative, or Operator Representative that may cause harm to people, impact on the environment, or property damage.",
+      "format": "prose",
+      "section_function": "roles",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.1",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::fb026d9652aa"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "has_additions"
+    },
+    {
+      "id": "block_0004",
+      "type": "kcad_addition",
+      "text": "- **Everyone** have the right and duty to refuse to perform any task that they do not completely understand or may feel is unsafe.\n- **Everyone** have the authority to stop all work being performed by other employees if they perceive the work is unsafe.",
+      "format": "prose",
+      "section_function": "roles",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.1",
+      "source_heading_path": "Policy Statement on Stop Work Authority",
+      "language": "en",
+      "source": {
+        "document": "K-KW-HS-PO-002.pdf",
+        "origin": "KCAD",
+        "region": "Kuwait",
+        "rig": null,
+        "chunk_id": "K-KW-HS-PO-002::0176dc12890e"
+      },
+      "relationship": "Variant",
+      "tier": 1,
+      "additive_detail": "KCAD explicitly makes refusal of a task not fully understood a duty and authorizes stopping work being performed by other employees if perceived unsafe; those specific trigger/authority details are not stated in this HP policy chunk.",
+      "conflict": {
+        "detected": false,
+        "description": null,
+        "severity": null
+      },
+      "ai_confidence": "high",
+      "ai_reasoning": "HP candidate 0 is the closest match because it assigns each employee authority and responsibility to intervene when unsafe conditions, practices, or instructions are perceived, which aligns with KCAD's stop-work authority policy. The match is a Variant rather than Equivalent because KCAD is Kuwait-scoped and explicitly adds refusal of work not fully understood plus authority to stop other employees' work.",
+      "dimension_matches": {
+        "document_function": true,
+        "operational_object": true,
+        "intent_type": true,
+        "applicability_context": false,
+        "decision_evidence_logic": true
+      },
+      "hp_original_text": "## 2.0. Introduction\n\n2.1. Each employee has the authority and responsibility any time they feel an unsafe condition exists, an unsafe work practice is occurring, or improper instructions are given by a co-worker, H&P supervisor, 3rd party Representative, or Operator Representative that may cause harm to people, impact on the environment, or property damage.",
+      "status": "removed",
+      "history": [
+        {
+          "version": 1,
+          "action": "removed",
+          "before": {
+            "source_heading_path": "Policy Statement on Stop Work Authority",
+            "relationship": "Variant",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "Policy Statement on Stop Work Authority",
+            "relationship": "Variant",
+            "status": "removed"
+          },
+          "user_name": "Ryan Tri",
+          "user_email": "Ryan.Tri@bizmetric.com",
+          "at": "2026-04-17T15:07:18.243447+00:00"
+        }
+      ]
+    },
+    {
+      "id": "block_0006",
+      "type": "kcad_addition",
+      "text": "# Policy Statement on Stop Work Authority\n\nKCA Deutag is committed to achieving safe, effective, trouble-free operations. We firmly believe that an incident and accident free environment is possible 365 days a year and every incident is preventable.\n\nHealth and Safety of employees is one of the Core Values of KCA DEUTAG. Our employees and contractors have the right to a safe job at a safe and secure worksite.",
+      "format": "prose",
+      "section_function": "objective",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.1",
+      "language": "en",
+      "source": {
+        "document": "K-KW-HS-PO-002.pdf",
+        "origin": "KCAD",
+        "region": "Kuwait",
+        "rig": null,
+        "chunk_id": "K-KW-HS-PO-002::ac8fcc931a26"
+      },
+      "tier": 1,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": "medium",
+      "ai_reasoning": "The KCAD text is a high-level policy/value statement about safe work and worker safety rights, while HP candidate 0 is an operational authority statement telling employees when they may and must intervene. They align on the stop-work safety domain, but differ in function and practical effect, so the best fit is Complementary rather than Variant or Equivalent.",
+      "dimension_matches": {
+        "document_function": false,
+        "operational_object": true,
+        "intent_type": false,
+        "applicability_context": false,
+        "decision_evidence_logic": false
+      },
+      "hp_original_text": "## 2.0. Introduction\n\n2.1. Each employee has the authority and responsibility any time they feel an unsafe condition exists, an unsafe work practice is occurring, or improper instructions are given by a co-worker, H&P supervisor, 3rd party Representative, or Operator Representative that may cause harm to people, impact on the environment, or property damage.",
+      "history": [
+        {
+          "version": 1,
+          "action": "moved_to",
+          "before": {
+            "source_heading_path": "Policy Statement on Stop Work Authority",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "Policy Statement on Stop Work Authority",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "from_position": 6,
+          "to_position": 4,
+          "user_name": "Ryan Tri",
+          "user_email": "Ryan.Tri@bizmetric.com",
+          "at": "2026-04-17T15:07:23.302823+00:00"
+        },
+        {
+          "version": 2,
+          "action": "edited",
+          "before": {
+            "source_heading_path": "Policy Statement on Stop Work Authority",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "Policy Statement on Stop Work Authority",
+            "relationship": "Complementary",
+            "status": "edited",
+            "edited_text": "# Policy Statement on Stop Work Authority\n\nKCA Deutag is committed to achieving safe, effective, trouble-free operations. We firmly believe that an incident and accident free environment is possible 365 days a year and every incident is preventable.\n\n"
+          },
+          "user_name": "Ryan Tri",
+          "user_email": "Ryan.Tri@bizmetric.com",
+          "at": "2026-04-17T15:32:46.914578+00:00"
+        }
+      ],
+      "source_heading_path": "Policy Statement on Stop Work Authority",
+      "relationship": "Complementary",
+      "status": "edited",
+      "edited_text": "# Policy Statement on Stop Work Authority\n\nKCA Deutag is committed to achieving safe, effective, trouble-free operations. We firmly believe that an incident and accident free environment is possible 365 days a year and every incident is preventable.\n\n"
+    },
+    {
+      "id": "block_0003",
+      "type": "kcad_addition",
+      "text": "Our employees and contractors have the right to a safe job at a safe and secure worksite. Our vision is that everyone has a responsibility and obligation to stop any work, which is not performed in a safe way.",
+      "format": "prose",
+      "section_function": "safeguards",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.1",
+      "source_heading_path": "Stop Work Authority Policy Statement",
+      "language": "en",
+      "source": {
+        "document": "K-PK-HS-PO-002.pdf",
+        "origin": "KCAD",
+        "region": "Pakistan",
+        "rig": null,
+        "chunk_id": "K-PK-HS-PO-002::55c4558c40d4"
+      },
+      "relationship": "Variant",
+      "tier": 1,
+      "additive_detail": "KCAD explicitly extends stop-work right/obligation to contractors in addition to employees and states a right to a safe and secure worksite; the HP chunk only states authority/responsibility for employees.",
+      "conflict": {
+        "detected": false,
+        "description": null,
+        "severity": null
+      },
+      "ai_confidence": "high",
+      "ai_reasoning": "HP Candidate 0 covers the same core stop-work authority concept: personnel are expected to intervene when work is unsafe. The KCAD text is best treated as a Variant because it is a regional policy statement for Pakistan and it explicitly includes contractors, while the HP chunk is a corporate-wide land-rig statement framed around employees.",
+      "dimension_matches": {
+        "document_function": true,
+        "operational_object": true,
+        "intent_type": true,
+        "applicability_context": false,
+        "decision_evidence_logic": true
+      },
+      "hp_original_text": "## 2.0. Introduction\n\n2.1. Each employee has the authority and responsibility any time they feel an unsafe condition exists, an unsafe work practice is occurring, or improper instructions are given by a co-worker, H&P supervisor, 3rd party Representative, or Operator Representative that may cause harm to people, impact on the environment, or property damage.",
+      "status": "pending",
+      "history": [
+        {
+          "version": 1,
+          "action": "moved_to",
+          "before": {
+            "source_heading_path": "Stop Work Authority Policy Statement",
+            "relationship": "Variant",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "Stop Work Authority Policy Statement",
+            "relationship": "Variant",
+            "status": "pending"
+          },
+          "from_position": 3,
+          "to_position": 4,
+          "user_name": "Ryan Tri",
+          "user_email": "Ryan.Tri@bizmetric.com",
+          "at": "2026-04-17T15:07:08.060977+00:00"
+        }
+      ]
+    },
+    {
+      "id": "block_0005",
+      "type": "kcad_addition",
+      "text": "- **Everyone** have the right and duty to refuse to perform any task that they do not completely understand or may feel is unsafe.\n- **Everyone** have the authority to stop all work being performed by other employees if they perceive the work is unsafe.\n- **No work** will resume until all stop work issues and concerns have been adequately addressed.\n- **No one** will be reprimanded for refusal to perform unsafe tasks or utilizing the right and authority to Stop Work.\n- **Any** form of retribution or intimidation directed at any individual for exercising their authority as outlined in this Policy will not be tolerated.\n\nNo job is so urgent or so important that we cannot take **Time Out For Safety** to continue safely.",
+      "format": "prose",
+      "section_function": "safeguards",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.1",
+      "source_heading_path": "Stop Work Authority Policy Statement",
+      "language": "en",
+      "source": {
+        "document": "K-PK-HS-PO-002.pdf",
+        "origin": "KCAD",
+        "region": "Pakistan",
+        "rig": null,
+        "chunk_id": "K-PK-HS-PO-002::cb6bdbdbafcd"
+      },
+      "relationship": "Variant",
+      "tier": 1,
+      "additive_detail": "KCAD adds lack of complete understanding as a stop/refusal trigger and states work cannot resume until stop-work concerns are addressed; those details are not shown in HP 2.1.",
+      "conflict": {
+        "detected": false,
+        "description": null,
+        "severity": null
+      },
+      "ai_confidence": "high",
+      "ai_reasoning": "HP Candidate 0 covers the same core stop-work authority concept: any employee may intervene when work is unsafe. The KCAD text is a regional Pakistan variant that adds a specific trigger of not fully understanding the task, plus broader no-resume and anti-reprisal protections not shown in the retrieved HP chunks.",
+      "dimension_matches": {
+        "document_function": false,
+        "operational_object": true,
+        "intent_type": true,
+        "applicability_context": false,
+        "decision_evidence_logic": true
+      },
+      "hp_original_text": "## 2.0. Introduction\n\n2.1. Each employee has the authority and responsibility any time they feel an unsafe condition exists, an unsafe work practice is occurring, or improper instructions are given by a co-worker, H&P supervisor, 3rd party Representative, or Operator Representative that may cause harm to people, impact on the environment, or property damage.",
+      "status": "pending"
+    },
+    {
+      "id": "block_0007",
+      "type": "kcad_addition",
+      "text": "# Stop Work Authority Policy Statement\n\nKCA Deutag is committed to achieving safe, effective, trouble-free operations. We firmly believe that an incident and accident-free environment is possible 365 days a year and every incident is preventable.\n\nHealth and Safety of employees is one of the Core Values of KCA DEUTAG.",
+      "format": "prose",
+      "section_function": "objective",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.1",
+      "source_heading_path": "Stop Work Authority Policy Statement",
+      "language": "en",
+      "source": {
+        "document": "K-PK-HS-PO-002.pdf",
+        "origin": "KCAD",
+        "region": "Pakistan",
+        "rig": null,
+        "chunk_id": "K-PK-HS-PO-002::45c9e54ceac2"
+      },
+      "relationship": "Complementary",
+      "tier": 1,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": "medium",
+      "ai_reasoning": "The KCAD text is a policy-level safety commitment statement for Stop Work Authority, while HP candidate 0 provides the operational authority/responsibility statement in the same control domain. That makes candidate 0 complementary rather than equivalent or variant; the other HP chunks are only broadly related because they address document purpose or a resume-work rule rather than the same policy intent.",
+      "dimension_matches": {
+        "document_function": false,
+        "operational_object": true,
+        "intent_type": false,
+        "applicability_context": false,
+        "decision_evidence_logic": false
+      },
+      "hp_original_text": "## 2.0. Introduction\n\n2.1. Each employee has the authority and responsibility any time they feel an unsafe condition exists, an unsafe work practice is occurring, or improper instructions are given by a co-worker, H&P supervisor, 3rd party Representative, or Operator Representative that may cause harm to people, impact on the environment, or property damage.",
+      "status": "removed",
+      "history": [
+        {
+          "version": 1,
+          "action": "removed",
+          "before": {
+            "source_heading_path": "Stop Work Authority Policy Statement",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "Stop Work Authority Policy Statement",
+            "relationship": "Complementary",
+            "status": "removed"
+          },
+          "user_name": "Ryan Tri",
+          "user_email": "Ryan.Tri@bizmetric.com",
+          "at": "2026-04-17T15:07:49.885751+00:00"
+        }
+      ]
+    },
+    {
+      "id": "block_0008",
+      "type": "kcad_addition",
+      "text": "No job is so urgent or so important that we cannot take **Time Out For Safety** to continue safely.",
+      "format": "prose",
+      "section_function": "objective",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.1",
+      "language": "en",
+      "source": {
+        "document": "K-KW-HS-PO-002.pdf",
+        "origin": "KCAD",
+        "region": "Kuwait",
+        "rig": null,
+        "chunk_id": "K-KW-HS-PO-002::00765398a6f9"
+      },
+      "tier": 1,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": "medium",
+      "ai_reasoning": "The KCAD text is a broad safety-first policy statement supporting stop-work behavior, while HP candidate 1 provides the operative authority and responsibility to act when unsafe conditions exist. They align on the same stop-work control domain and practical effect, but differ in function and specificity, so Complementary fits better than Variant or Equivalent.",
+      "dimension_matches": {
+        "document_function": false,
+        "operational_object": true,
+        "intent_type": false,
+        "applicability_context": false,
+        "decision_evidence_logic": true
+      },
+      "hp_original_text": "## 2.0. Introduction\n\n2.1. Each employee has the authority and responsibility any time they feel an unsafe condition exists, an unsafe work practice is occurring, or improper instructions are given by a co-worker, H&P supervisor, 3rd party Representative, or Operator Representative that may cause harm to people, impact on the environment, or property damage.",
+      "history": [
+        {
+          "version": 1,
+          "action": "removed",
+          "before": {
+            "source_heading_path": "Policy Statement on Stop Work Authority",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "Policy Statement on Stop Work Authority",
+            "relationship": "Complementary",
+            "status": "removed"
+          },
+          "user_name": "Ryan Tri",
+          "user_email": "Ryan.Tri@bizmetric.com",
+          "at": "2026-04-17T15:08:45.502953+00:00"
+        }
+      ],
+      "source_heading_path": "Policy Statement on Stop Work Authority",
+      "relationship": "Complementary",
+      "status": "removed"
+    },
+    {
+      "id": "block_0009",
+      "type": "hp_original",
+      "text": "2.2. Training for Stop Work Authority procedures will be provided to employees at H&P’s New Employee Indoctrination (NEI) prior to reporting for their first job assignment.",
+      "format": "prose",
+      "section_function": "competency",
+      "normative_mode": "standard",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.2",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::42f1ade1fc66"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0010",
+      "type": "hp_original",
+      "text": "2.3. Upon observing a health, safety, or environmental exposure the employee will immediately stop work.",
+      "format": "prose",
+      "section_function": "method",
+      "normative_mode": "procedure",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.3",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::d734694307e9"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "has_additions"
+    },
+    {
+      "id": "block_0011",
+      "type": "kcad_addition",
+      "text": "Our vision is that everyone has a responsibility and obligation to stop any work, which is not performed in a safe way.",
+      "format": "prose",
+      "section_function": "roles",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.3",
+      "source_heading_path": "Policy Statement on Stop Work Authority",
+      "language": "en",
+      "source": {
+        "document": "K-KW-HS-PO-002.pdf",
+        "origin": "KCAD",
+        "region": "Kuwait",
+        "rig": null,
+        "chunk_id": "K-KW-HS-PO-002::3a7fab678682"
+      },
+      "relationship": "Complementary",
+      "tier": 1,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": "high",
+      "ai_reasoning": "HP Candidate 1 most directly matches the KCAD statement because both are policy-level role assignments requiring personnel, including subcontractors, to initiate stop work when unsafe work is occurring. The KCAD text does not add a new threshold, role, approval, or trigger beyond what HP already states; it mainly reflects a Kuwait-specific scope, so this is a Tier 2 Variant rather than an Equivalent match.",
+      "dimension_matches": {
+        "document_function": true,
+        "operational_object": true,
+        "intent_type": true,
+        "applicability_context": false,
+        "decision_evidence_logic": true
+      },
+      "hp_original_text": "2.3. Upon observing a health, safety, or environmental exposure the employee will immediately stop work.",
+      "status": "pending"
+    },
+    {
+      "id": "block_0012",
+      "type": "hp_original",
+      "text": "2.4. Employee should approach the person who is performing the unsafe act. If there is an unsafe condition or procedure the employee should notify his supervisor.",
+      "format": "prose",
+      "section_function": "method",
+      "normative_mode": "guideline",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.4",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::6fce52920c7c"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0013",
+      "type": "hp_original",
+      "text": "2.5. The work will not resume until any unsafe acts, conditions, or procedures have been addressed and resolved.",
+      "format": "prose",
+      "section_function": "safeguards",
+      "normative_mode": "standard",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.5",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::7785527094b4"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0014",
+      "type": "hp_original",
+      "text": "2.6. Any form of retaliation or intimidation directed at any individual for exercising their authority as outlined in this program will not be tolerated.",
+      "format": "prose",
+      "section_function": "safeguards",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.6",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::6a3263af70bf"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "has_additions"
+    },
+    {
+      "id": "block_0015",
+      "type": "kcad_addition",
+      "text": "- **No one** will be reprimanded for refusal to perform unsafe tasks or utilizing the right and authority to Stop Work.\n- **Any** form of retribution or intimidation directed at any individual for exercising their authority as outlined in this Policy will not be tolerated.",
+      "format": "prose",
+      "section_function": "safeguards",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.6",
+      "source_heading_path": "Policy Statement on Stop Work Authority",
+      "language": "en",
+      "source": {
+        "document": "K-KW-HS-PO-002.pdf",
+        "origin": "KCAD",
+        "region": "Kuwait",
+        "rig": null,
+        "chunk_id": "K-KW-HS-PO-002::8292e9190de3"
+      },
+      "relationship": "Variant",
+      "tier": 1,
+      "additive_detail": "KCAD adds explicit protection against being reprimanded for refusing unsafe tasks or using Stop Work Authority; HP only states that retaliation or intimidation will not be tolerated.",
+      "conflict": {
+        "detected": false,
+        "description": null,
+        "severity": null
+      },
+      "ai_confidence": "high",
+      "ai_reasoning": "HP Candidate 0 directly overlaps the KCAD anti-retaliation safeguard for exercising Stop Work Authority, but the KCAD text goes further by explicitly barring reprimand for refusing unsafe work. That makes the best match a Tier 1 Variant rather than Equivalent, and there is no visible operational conflict in the provided HP text.",
+      "dimension_matches": {
+        "document_function": true,
+        "operational_object": true,
+        "intent_type": true,
+        "applicability_context": false,
+        "decision_evidence_logic": false
+      },
+      "hp_original_text": "2.6. Any form of retaliation or intimidation directed at any individual for exercising their authority as outlined in this program will not be tolerated.",
+      "status": "pending"
+    },
+    {
+      "id": "block_0016",
+      "type": "hp_original",
+      "text": "2.7. Employees should report their stop work interventions to their supervisor so the intervention may be reviewed for opportunities for improvement.",
+      "format": "prose",
+      "section_function": "verification",
+      "normative_mode": "guideline",
+      "heading_path": "Stop Work Authority Process > 2.0. Introduction > 2.7",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::18aa579d510b"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0017",
+      "type": "hp_original",
+      "text": "## 3.0. Roles and Responsibilities\n\n3.1. All Employees and sub-contractors are responsible to initiate a “stop work” intervention when warranted, support the intervention of others, and properly report “stop work” actions.\n\n3.2. Management is responsible for creating a culture where SWA is exercised freely, honor request for “stop work”, work to resolve issues before operations resume, recognized proactive participation and ensure that all “stop work” actions are properly reported with required follow-up completed.\n\n3.3. Supervisors must establish the clear expectation to exercise SWA, create a culture where SWA is exercised freely, follow up with employees once a “stop work” has been addressed, resolve SWA conflicts when they arise and hold those accountable that choose not to comply with established SWA policies.",
+      "format": "prose",
+      "section_function": "roles",
+      "normative_mode": "policy",
+      "heading_path": "Stop Work Authority Process > 3.0. Roles and Responsibilities",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::ec2e71448059"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0018",
+      "type": "hp_original",
+      "text": "## 4.0. Process Steps\n\n4.1. When an employee identifies a perceived unsafe condition, act, error, omission, or lack of understanding that could result in an undesirable event, a “stop work” intervention shall be immediately initiated with the person(s) potentially at risk.",
+      "format": "prose",
+      "section_function": "method",
+      "normative_mode": "procedure",
+      "heading_path": "Stop Work Authority Process > 4.0. Process Steps > 4.1",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::125a26cc0497"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0019",
+      "type": "hp_original",
+      "text": "4.2. “Stop work” interventions should be initiated in a positive manner and should involve open-ended questions to create feedback.",
+      "format": "prose",
+      "section_function": "method",
+      "normative_mode": "guideline",
+      "heading_path": "Stop Work Authority Process > 4.0. Process Steps > 4.2",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::e6898ea57ced"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0020",
+      "type": "hp_original",
+      "text": "4.3. Notify all affected personnel and supervision of the “stop work” issue. If necessary, stop associated work activities, remove person(s) from the area, stabilize the situation and make the area as safe as possible.",
+      "format": "prose",
+      "section_function": "method",
+      "normative_mode": "procedure",
+      "heading_path": "Stop Work Authority Process > 4.0. Process Steps > 4.3",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::fe30bd7ba7d1"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0021",
+      "type": "hp_original",
+      "text": "4.4. If determined and agreed that the task or operation is safe to proceed as is (i.e., the “stop work” initiator was unaware of certain facts or procedures) the affected persons should give the initiator success feedback for their concern and proceed with the work.",
+      "format": "prose",
+      "section_function": "method",
+      "normative_mode": "guideline",
+      "heading_path": "Stop Work Authority Process > 4.0. Process Steps > 4.4",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::de253e492bfb"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    },
+    {
+      "id": "block_0022",
+      "type": "hp_original",
+      "text": "4.5. If determined and agreed that the stop work issue is valid, then every attempt should be made to resolve the issue to all affected person’s satisfaction prior to the commencement of work.",
+      "format": "prose",
+      "section_function": "safeguards",
+      "normative_mode": "guideline",
+      "heading_path": "Stop Work Authority Process > 4.0. Process Steps > 4.5",
+      "source": {
+        "document": "HSE_017_Stop_Work_Authority_Process.pdf",
+        "origin": "H&P",
+        "region": "Corporate-wide",
+        "rig": null,
+        "chunk_id": "HSE 017 Stop Work Authority Process::da0295ff0d07"
+      },
+      "relationship": null,
+      "tier": null,
+      "additive_detail": null,
+      "conflict": null,
+      "ai_confidence": null,
+      "ai_reasoning": null,
+      "dimension_matches": null,
+      "hp_original_text": null,
+      "status": "unchanged"
+    }
+  ],
+  "summary": {
+    "total_hp_blocks": 15,
+    "total_additions": 8,
+    "total_conflicts": 0,
+    "total_gaps": 0,
+    "low_confidence_count": 0,
+    "kcad_source_count": 2,
+    "kcad_sources": [
+      "K-KW-HS-PO-002.pdf",
+      "K-PK-HS-PO-002.pdf"
+    ],
+    "regions": [
+      "Kuwait",
+      "Pakistan"
+    ]
+  },
+  "built_at": "2026-04-17T10:06:09-0500",
+  "review_status": "ai_consolidated",
+  "unified_overrides": {},
+  "polish_history": []
+}

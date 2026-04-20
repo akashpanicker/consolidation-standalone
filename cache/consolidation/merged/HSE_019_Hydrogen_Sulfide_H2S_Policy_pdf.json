@@ -1,0 +1,1917 @@
+{
+  "hp_filename": "HSE_019_Hydrogen_Sulfide_H2S_Policy.pdf",
+  "generated_at": "2026-04-16T16:36:28-0500",
+  "model": "gpt-5.4",
+  "prompt_hash": "411c8849140d",
+  "sections": [
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 1. Scope and Application",
+      "hp_block_ids": [
+        "block_0000",
+        "block_0001",
+        "block_0003"
+      ],
+      "kcad_block_ids": [
+        "block_0002",
+        "block_0004"
+      ],
+      "hp_original_text": "# Hydrogen Sulfide (H2S) Policy\n\n## 1. Scope and Application\n\nThis document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S).\n\nThe plan establishes guidelines for all personnel whose work activity may involve exposure to Hydrogen Sulfide Gas (H2S) with the expectation that we:\n\n1.1. Prevent all incidents associated with H2S.\n\n1.2. Provide proper evacuation procedures to cope with emergencies.\n\n1.3. Provide immediate and adequate medical attention should an injury occur.",
+      "kcad_addition_count": 2,
+      "kcad_sources": [
+        "European land drilling operations"
+      ],
+      "merge_result": {
+        "merged_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S). It establishes guidelines for all personnel whose work activity may involve exposure to Hydrogen Sulfide Gas (H2S). In European drilling operations, these gas-protection requirements apply specifically to land drilling rigs.\n\nThe plan establishes guidelines for all personnel whose work activity may involve exposure to Hydrogen Sulfide Gas (H2S) with the expectation that we:\n\n1.1. Prevent all incidents associated with H2S.\n\n1.2. Provide proper evacuation procedures to cope with emergencies.\n\n1.3. Provide immediate and adequate medical attention should an injury occur.\n\n1.4. Conduct instruction and training in accordance with Chapter 2.\n\n1.5. Submit reports to the headquarters in accordance with Chapter 4.",
+        "preserved_kcad_facts": [
+          {
+            "fact": "Gas-protection requirements apply to land drilling rigs in European drilling operations",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "In European drilling operations, these gas-protection requirements apply specifically to land drilling rigs."
+          },
+          {
+            "fact": "Instruction and training shall be conducted in accordance with Chapter 2",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "1.4. Conduct instruction and training in accordance with Chapter 2."
+          },
+          {
+            "fact": "Reports shall be submitted to the headquarters in accordance with Chapter 4",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "1.5. Submit reports to the headquarters in accordance with Chapter 4."
+          }
+        ],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [],
+        "merge_confidence": "high",
+        "merge_notes": "",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 1,
+        "error": null
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0002",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > Scope",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0004",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > Objective",
+          "language": "de"
+        }
+      ]
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 2. Definitions",
+      "hp_block_ids": [
+        "block_0005"
+      ],
+      "kcad_block_ids": [],
+      "hp_original_text": "## 2. Definitions\n\n2.1. **Air Supplying Respirator (ASR)** - a device that provides Grade D breathing air. There are two types of ASR: Supplied Air Respirator (SAR) and Self-Contained Breathing Apparatus (SCBA).\n\n2.2. **All Clear** – indication that all H2S exposures have been mitigated and that work is allowed to resume. This is typically communicated via horn blast or rig communications system. This can only be given by a qualified person in the proper operation of fixed gas detection equipment.\n\n2.3. **Contingency Plan** – a written document that contains emergency response procedures which provide an organized plan of action for alerting and protecting the public within an area of exposure, prior to an intentional or accidental release of a potentially hazardous volume of H2S. This should be provided by the operator, O&G exploration, or production company.\n\n2.4. **Escape Pack** - an emergency escape-breathing device providing 5, 10 or 15 minutes of breathing air for escape from toxic environments, even in atmospheres immediately dangerous to life and health (IDLH). This includes SCBA masks and escape hoods.\n\n2.5. **Immediately Dangerous to Life or Health (IDLH)** - exposure to airborne contaminants that is likely to cause death or may cause immediate or delayed permanent adverse health effects that might prevent escape from such an environment. For H2S this concentration is 100 ppm\n\n2.6. **Iron Sulfide** – a chemical compound consisting of iron and sulfur, commonly found inside piping, vessels and/or other equipment where H2S is or has been present, that will ignite and burn in the presence of oxygen in air.\n\n2.7. **Hydrogen Sulfide (H2S)** - a gas formed in nature by the decomposition of organic material by bacteria. H2S is found in natural gas, oil, sewers, stagnant water, volcanic gases, sulfur springs and anywhere that organic materials may be broken down.\n\n2.8. **Lower Explosive Limit** – The lowest concentration (percentage) of a gas or vapor in air capable of producing a flash of fire in presence of an ignition source (arc, flame, heat). This concentration for H2S is 4% or 40,000 ppm.\n\n2.9. **Parts Per Million (ppm)** - a concentration by volume of one part of a gas (or vapor), or by weight of a liquid or solid, per million parts of air or liquid.\n\n2.10. **Radius of Exposure (ROE)** – the distance from a release to where H2S concentration in the air will dilute to a specific concentration.\n\n2.11. **Self-contained Breathing Apparatus (SCBA)** – a respirator that has compressed air contained on the device used by rescue team (rated for a maximum of 30 minutes).\n\n2.12. **Sulfur Dioxide (SO2)** - a toxic gas created when hydrogen sulfide is burned. It is heavier than air and forms sulfuric acid when combined with moisture (including perspiration).\n\n2.13. **Supplied Air Respirator (SAR)** - a respirator that has compressed air from a stationary source is supplied through a high-pressure hose connected to a full-face respirator under positive pressure/pressure demand with an auxiliary self-contained bottle (rated for a minimum of five minutes).",
+      "kcad_addition_count": 0,
+      "kcad_sources": [],
+      "merge_result": {
+        "merged_text": "## 2. Definitions\n\n2.1. **Air Supplying Respirator (ASR)** - a device that provides Grade D breathing air. There are two types of ASR: Supplied Air Respirator (SAR) and Self-Contained Breathing Apparatus (SCBA).\n\n2.2. **All Clear** – indication that all H2S exposures have been mitigated and that work is allowed to resume. This is typically communicated via horn blast or rig communications system. This can only be given by a qualified person in the proper operation of fixed gas detection equipment.\n\n2.3. **Contingency Plan** – a written document that contains emergency response procedures which provide an organized plan of action for alerting and protecting the public within an area of exposure, prior to an intentional or accidental release of a potentially hazardous volume of H2S. This should be provided by the operator, O&G exploration, or production company.\n\n2.4. **Escape Pack** - an emergency escape-breathing device providing 5, 10 or 15 minutes of breathing air for escape from toxic environments, even in atmospheres immediately dangerous to life and health (IDLH). This includes SCBA masks and escape hoods.\n\n2.5. **Immediately Dangerous to Life or Health (IDLH)** - exposure to airborne contaminants that is likely to cause death or may cause immediate or delayed permanent adverse health effects that might prevent escape from such an environment. For H2S this concentration is 100 ppm\n\n2.6. **Iron Sulfide** – a chemical compound consisting of iron and sulfur, commonly found inside piping, vessels and/or other equipment where H2S is or has been present, that will ignite and burn in the presence of oxygen in air.\n\n2.7. **Hydrogen Sulfide (H2S)** - a gas formed in nature by the decomposition of organic material by bacteria. H2S is found in natural gas, oil, sewers, stagnant water, volcanic gases, sulfur springs and anywhere that organic materials may be broken down.\n\n2.8. **Lower Explosive Limit** – The lowest concentration (percentage) of a gas or vapor in air capable of producing a flash of fire in presence of an ignition source (arc, flame, heat). This concentration for H2S is 4% or 40,000 ppm.\n\n2.9. **Parts Per Million (ppm)** - a concentration by volume of one part of a gas (or vapor), or by weight of a liquid or solid, per million parts of air or liquid.\n\n2.10. **Radius of Exposure (ROE)** – the distance from a release to where H2S concentration in the air will dilute to a specific concentration.\n\n2.11. **Self-contained Breathing Apparatus (SCBA)** – a respirator that has compressed air contained on the device used by rescue team (rated for a maximum of 30 minutes).\n\n2.12. **Sulfur Dioxide (SO2)** - a toxic gas created when hydrogen sulfide is burned. It is heavier than air and forms sulfuric acid when combined with moisture (including perspiration).\n\n2.13. **Supplied Air Respirator (SAR)** - a respirator that has compressed air from a stationary source is supplied through a high-pressure hose connected to a full-face respirator under positive pressure/pressure demand with an auxiliary self-contained bottle (rated for a minimum of five minutes).",
+        "preserved_kcad_facts": [],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [],
+        "merge_confidence": "high",
+        "merge_notes": "",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 0,
+        "error": null
+      },
+      "kcad_contributions": []
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 3. H2S Description and Hazards",
+      "hp_block_ids": [
+        "block_0006",
+        "block_0010",
+        "block_0011"
+      ],
+      "kcad_block_ids": [
+        "block_0007",
+        "block_0008",
+        "block_0009"
+      ],
+      "hp_original_text": "## 3. H2S Description and Hazards\n\nHydrogen sulfide is a colorless, flammable, extremely hazardous gas with a “rotten egg” smell at concentrations under 100 ppm. Some common names for the gas include sewer gas, stink damp, swamp gas and manure gas. It occurs naturally in crude petroleum, natural gas, and hot springs. In addition, hydrogen sulfide is produced by bacterial breakdown of organic materials and human and animal wastes (e.g., sewage).\n\nHydrogen sulfide is heavier than air and may travel along the ground. It collects in low-lying and enclosed, poorly ventilated areas such as pits, cellars, and reserve pits.\n\nThe primary route of exposure is inhalation, and the gas is rapidly absorbed by the lungs. Absorption through the skin is minimal. People can smell the “rotten egg” odor of hydrogen sulfide at low concentrations in air. However, with continuous low-level exposure, or at high concentrations, a person loses his/her ability to smell the gas even though it is still present. This can happen very rapidly and at high concentrations (over 100 ppm), the ability to smell the gas can be lost instantaneously.\n\nTherefore, employees MUST NOT rely on their sense of smell to indicate the continuing presence of hydrogen sulfide or to warn of hazardous concentrations.\n\nIn addition, hydrogen sulfide is a highly flammable gas and gas/air mixtures can be explosive. It may travel to sources of ignition and flash back. If ignited, the gas burns to produce toxic vapors and gases, such as sulfur dioxide.\n\nHydrogen sulfide is both an irritant and a chemical asphyxiate with effects on both oxygen utilization and the central nervous system. Its health effects can vary depending on the level and duration of exposure. Repeated exposure can result in health effects occurring at levels that were previously tolerated without any effect.\n\nLow concentrations irritate the eyes, nose, throat, and respiratory system (e.g., burning/ tearing of eyes, cough, shortness of breath). Asthmatics may experience breathing difficulties. The effects can be delayed for several hours, or sometimes several days, when working in low-level concentrations. Repeated or prolonged exposures may cause eye inflammation, headache, fatigue, irritability, insomnia, digestive disturbances, and weight loss. Moderate concentrations can cause more severe eye and respiratory irritation (including coughing, difficulty breathing, and accumulation of fluid in the lungs), headache, dizziness, nausea, vomiting, staggering and excitability.",
+      "kcad_addition_count": 3,
+      "kcad_sources": [
+        "Saudi Arabia operations"
+      ],
+      "merge_result": {
+        "merged_text": "Hydrogen sulfide is a colorless, flammable, extremely hazardous, highly toxic gas with a “rotten egg” smell at concentrations under 100 ppm; it can be detected by smell at concentrations as low as 0.02 ppm. Some common names for the gas include sewer gas, stink damp, swamp gas, and manure gas. It occurs naturally in crude petroleum, natural gas, and hot springs. In addition, hydrogen sulfide is formed and released during the decay of sulfur-containing organic materials, by the reduction of sulphates through bacterial action, and by bacterial breakdown of organic materials and human and animal wastes (e.g., sewage).\n\nHydrogen sulfide is heavier than air and may travel along the ground. It collects in low-lying and enclosed, poorly ventilated areas such as pits, cellars, tanks, reserve pits, sewers, stagnant water areas, and other confined spaces. Because hydrogen sulfide is soluble in both water and hydrocarbons, it may also be encountered in oil and gas wells and water wells. Gas that has escaped can remain a poisoning or explosion hazard many days later.\n\nThe primary route of exposure is inhalation, and the gas is rapidly absorbed by the lungs. Absorption through the skin is minimal. People can smell the “rotten egg” odor of hydrogen sulfide at low concentrations in air. However, with continuous low-level exposure, or at high concentrations, a person loses his/her ability to smell the gas even though it is still present. This can happen very rapidly: at concentrations around 100 ppm, the sense of smell may be lost within 2 to 15 minutes of exposure, and at higher concentrations the ability to smell the gas can be lost instantaneously. Therefore, employees MUST NOT rely on their sense of smell to indicate the continuing presence of hydrogen sulfide or to warn of hazardous concentrations; fixed and portable H2S detection equipment is essential for alerting personnel.\n\nIn addition, hydrogen sulfide is a highly flammable gas and gas/air mixtures can be explosive. It may travel to sources of ignition and flash back. If ignited, the gas burns to produce toxic vapors and gases, such as sulfur dioxide. In the presence of water, hydrogen sulfide forms a weak acid that attacks metals in the same manner as carbon dioxide or oxygen and can embrittle steel and other materials.\n\nHydrogen sulfide is both an irritant and a chemical asphyxiate with effects on both oxygen utilization and the central nervous system. Its health effects can vary depending on the level and duration of exposure. Repeated exposure can result in health effects occurring at levels that were previously tolerated without any effect. If H2S is present in sufficient concentration, toxic effects can be very rapid, death can occur very quickly, and the major hazard is sudden death due to accidental exposure.\n\nLow concentrations irritate the eyes, nose, throat, and respiratory system (e.g., burning/ tearing of eyes, cough, shortness of breath). Asthmatics may experience breathing difficulties. The effects can be delayed for several hours, or sometimes several days, when working in low-level concentrations. Repeated or prolonged exposures may cause eye inflammation, headache, fatigue, irritability, insomnia, digestive disturbances, and weight loss. Moderate concentrations can cause more severe eye and respiratory irritation (including coughing, difficulty breathing, and accumulation of fluid in the lungs), headache, dizziness, nausea, vomiting, staggering and excitability.",
+        "preserved_kcad_facts": [
+          {
+            "fact": "Odor detection threshold of 0.02 ppm",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "detected by smell at concentrations as low as 0.02 ppm"
+          },
+          {
+            "fact": "Sense of smell may be lost within 2 to 15 minutes at around 100 ppm",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "at concentrations around 100 ppm, the sense of smell may be lost within 2 to 15 minutes"
+          },
+          {
+            "fact": "Fixed and portable H2S detection equipment is used to alert personnel",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "fixed and portable H2S detection equipment is essential for alerting personnel"
+          },
+          {
+            "fact": "At sufficient concentration, toxic effects can be very rapid",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "If H2S is present in sufficient concentration, toxic effects can be very rapid"
+          },
+          {
+            "fact": "Death can occur very quickly from H2S exposure at sufficient concentration",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "death can occur very quickly"
+          },
+          {
+            "fact": "Major hazard is sudden death due to accidental exposure",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "the major hazard is sudden death due to accidental exposure"
+          },
+          {
+            "fact": "Additional accumulation location includes tanks",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "such as pits, cellars, tanks, reserve pits"
+          },
+          {
+            "fact": "Escaped gas can remain a poisoning or explosion hazard many days later",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "can remain a poisoning or explosion hazard many days later"
+          },
+          {
+            "fact": "Hydrogen sulfide is soluble in both water and hydrocarbons",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "hydrogen sulfide is soluble in both water and hydrocarbons"
+          },
+          {
+            "fact": "H2S may be encountered in oil and gas wells and water wells",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "it may also be encountered in oil and gas wells and water wells"
+          },
+          {
+            "fact": "H2S may be encountered in sewers, stagnant water areas, and other confined spaces",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "sewers, stagnant water areas, and other confined spaces"
+          },
+          {
+            "fact": "In the presence of water, H2S forms a weak acid that attacks metals like carbon dioxide or oxygen",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "forms a weak acid that attacks metals in the same manner as carbon dioxide or oxygen"
+          },
+          {
+            "fact": "H2S can embrittle steel and other materials",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "can embrittle steel and other materials"
+          },
+          {
+            "fact": "H2S is formed and released during the decay of sulfur-containing organic materials",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "formed and released during the decay of sulfur-containing organic materials"
+          },
+          {
+            "fact": "H2S is formed by the reduction of sulphates through bacterial action",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "by the reduction of sulphates through bacterial action"
+          }
+        ],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [],
+        "merge_confidence": "high",
+        "merge_notes": "",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 1,
+        "error": null
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0007",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.3. HEALTH EFFECTS",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0008",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.2. H2S PROPERTIES",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0009",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.1. CAUSES OF H2S PRESENCE",
+          "language": "en"
+        }
+      ]
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 4. Response Procedure and Working in an H2S Environment > 4.1. H2S Personal Monitor Sounds",
+      "hp_block_ids": [
+        "block_0012"
+      ],
+      "kcad_block_ids": [
+        "block_0013",
+        "block_0014"
+      ],
+      "hp_original_text": "## 4. Response Procedure and Working in an H2S Environment\n\n### 4.1. H2S Personal Monitor Sounds\n\nWhen an H2S Personal Monitor sounds, personnel will:\n\n4.1.1. Alert other crew members and the driller who will sound the muster/evacuation alarm.\n\n4.1.2. H&P personnel will secure well, evacuate rig and monitor for H2S in accordance with the agreed upon plan between H&P and the Operator, based upon well conditions.\n\n4.1.3. Don an escape pack (if one is near)\n\n4.1.4. Move cross wind or up wind to the designated muster area and await further instructions.",
+      "kcad_addition_count": 2,
+      "kcad_sources": [
+        "European land drilling operations"
+      ],
+      "merge_result": {
+        "merged_text": "## 4. Response Procedure and Working in an H2S Environment\n\n### 4.1. H2S Personal Monitor Sounds\n\nWhen an H2S Personal Monitor sounds, personnel will:\n\n4.1.1. Immediately alert other crew members and the driller, who will sound the muster/evacuation alarm.\n\n4.1.2. Interrupt work immediately. In European land drilling operations, designated workstations — including the work platform, the pipe-handling and casing platform, and, where applicable, the tank area — are provided with Oxy K30 devices, and personnel at those stations shall don the Oxy K30 on alarm. Where Parat filter devices are issued in those operations, they are exclusively for escape.\n\n4.1.3. H&P personnel will secure the well, evacuate the rig, and monitor for H2S in accordance with the agreed upon plan between H&P and the Operator, based upon well conditions. In European land drilling operations, after donning an Oxy K30, only those tasks necessary for borehole security may continue.\n\n4.1.4. Don an escape pack (if one is near) or, where issued, the designated Parat filter device, and immediately leave the hazardous area.\n\n4.1.5. Move cross wind or up wind, depending on wind conditions, to the designated muster or assembly point and await further instructions.",
+        "preserved_kcad_facts": [
+          {
+            "fact": "Oxy K30 devices are provided at the work platform in European land drilling operations",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "including the work platform"
+          },
+          {
+            "fact": "Oxy K30 devices are provided at the pipe-handling and casing platform in European land drilling operations",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the pipe-handling and casing platform"
+          },
+          {
+            "fact": "Oxy K30 devices are provided at the tank area where applicable in European land drilling operations",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "and, where applicable, the tank area"
+          },
+          {
+            "fact": "On alarm, work must be interrupted and the Oxy K30 donned",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "Interrupt work immediately... personnel at those stations shall don the Oxy K30 on alarm."
+          },
+          {
+            "fact": "After donning an Oxy K30, only tasks necessary for borehole security may continue",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "after donning an Oxy K30, only those tasks necessary for borehole security may continue"
+          },
+          {
+            "fact": "Parat filter devices are exclusively for escape",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "they are exclusively for escape"
+          },
+          {
+            "fact": "On alarm, the Parat filter device must be donned",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "where issued, the designated Parat filter device"
+          },
+          {
+            "fact": "The hazardous area must be left immediately toward the assembly point based on wind conditions",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "immediately leave the hazardous area"
+          },
+          {
+            "fact": "Evacuation route to muster or assembly point depends on wind conditions",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "depending on wind conditions, to the designated muster or assembly point"
+          }
+        ],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [],
+        "merge_confidence": "medium",
+        "merge_notes": "German workstation terms were translated into functional English equivalents; reviewer confirmation of local rig-location nomenclature may be useful.",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 1,
+        "error": null
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0013",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 2.0 Unterweisungen > 2.2 Fluchtgeräteunterweisung",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0014",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 2.0 Unterweisungen > 2.2 Fluchtgeräteunterweisung",
+          "language": "de"
+        }
+      ]
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 4. Response Procedure and Working in an H2S Environment > 4.2. Fixed H2S Monitor detects H2S",
+      "hp_block_ids": [
+        "block_0015"
+      ],
+      "kcad_block_ids": [
+        "block_0016"
+      ],
+      "hp_original_text": "### 4.2. Fixed H2S Monitor detects H2S\n\nWhen a fixed H2S Monitor detects H2S, the light will flash and the siren will sound indicating a release of H2S. Personnel will:\n\n4.2.1. Alert other crew members and the driller who will sound the muster/evacuation alarm.\n\n4.2.2. H&P personnel will secure well, evacuate rig and monitor for H2S in accordance with the agreed upon plan between H&P and the Operator, based upon well conditions.\n\n4.2.3. Don an escape pack (if one is near).\n\n4.2.4. Move cross wind or up wind to the designated muster area and await further instructions.",
+      "kcad_addition_count": 1,
+      "kcad_sources": [
+        "European land drilling operations"
+      ],
+      "merge_result": {
+        "merged_text": "When a fixed H2S Monitor detects H2S, the light will flash and the siren will sound, indicating a release of H2S. In such cases, personnel shall respond immediately in accordance with the applicable alarm plan and the response principles in Section 3.3. Personnel will:\n\n4.2.1. Alert other crew members and the driller who will sound the muster/evacuation alarm.\n\n4.2.2. H&P personnel will secure well, evacuate rig and monitor for H2S in accordance with the agreed upon plan between H&P and the Operator, based upon well conditions.\n\n4.2.3. Don an escape pack (if one is near).\n\n4.2.4. Move cross wind or up wind to the designated muster area and await further instructions.",
+        "preserved_kcad_facts": [
+          {
+            "fact": "Response must be immediate when the fixed H2S monitor alarms",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "personnel shall respond immediately"
+          },
+          {
+            "fact": "Response must follow the applicable alarm plan",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "in accordance with the applicable alarm plan"
+          },
+          {
+            "fact": "Response must observe the response principles in Section 3.3",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the response principles in Section 3.3"
+          }
+        ],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [],
+        "merge_confidence": "high",
+        "merge_notes": "",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 1,
+        "error": null
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0016",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 3.0 Gasschutzeinsätze > 3.2 Notfalleinsätze",
+          "language": "de"
+        }
+      ]
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 4. Response Procedure and Working in an H2S Environment > 4.3. Muster Area",
+      "hp_block_ids": [
+        "block_0017",
+        "block_0018",
+        "block_0021"
+      ],
+      "kcad_block_ids": [
+        "block_0019",
+        "block_0020"
+      ],
+      "hp_original_text": "### 4.3. Muster Area\n\nUpon arriving at the Muster Area, a head count will be conducted to account for everyone on location.\n\n4.3.1. If someone is missing a 2-man designated rescue team will mask up in Self Contained Breathing Apparatus (SCBAs) to search and if possible, to retrieve the missing person. Escape packs will not be used for rescue operations.\n\n4.3.2. Only H&P employees that completed a respiratory medical history reviewed with a licensed healthcare professional, pulmonary function testing and a qualitative or quantitative respirator fit testing to the SCBA models present and received proper SCBA training may be part of a designated search and rescue team.\n\n4.3.3. Operations will cease until all personnel on site are accounted for.",
+      "kcad_addition_count": 2,
+      "kcad_sources": [
+        "European land drilling operations"
+      ],
+      "merge_result": {
+        "merged_text": "Upon arriving at the Muster Area, a head count shall be conducted to account for everyone on location.\n\n**4.3.1** If someone is missing, a 2-man designated rescue team shall don Self Contained Breathing Apparatus (SCBAs) to search for and, if possible, retrieve the missing person. Escape packs shall not be used for rescue operations. In European land drilling operations, rescue or reconnaissance entries shall be performed in teams and, as a regional requirement, each team shall consist of at least one team leader and 2 additional persons. For those regional operations, the deployment shall be aborted immediately and the team shall return together if a team member becomes incapacitated or feels unwell, if any breathing apparatus fails or shows malfunctions, if the deployed team is unexpectedly stressed or endangered, if explosive gas mixtures are detected, or when the breathing apparatus with the lowest remaining breathing-gas supply reaches the point at which only twice the amount estimated to be required for the return march remains.\n\n**4.3.2** Only H&P employees who have completed a respiratory medical history review with a licensed healthcare professional, pulmonary function testing, qualitative or quantitative respirator fit testing to the SCBA models present, and proper SCBA training may be part of a designated search and rescue team. Because the use of respiratory equipment imposes additional strain on the wearer, European land drilling operations also require apparatus wearers to be at least 18 years old, to be familiar with the operating conditions, and to have occupational-physician certification that they are fit to wear respiratory equipment. In those operations, the required initial examination and subsequent follow-up examinations shall be assessed in accordance with Berufsgenossenschaftlicher Grundsatz G 26.3, \"Atemschutzgeräte,\" and employees without documented suitability shall not be assigned as apparatus wearers.\n\n**4.3.3** Operations shall cease until all personnel on site are accounted for.",
+        "preserved_kcad_facts": [
+          {
+            "fact": "Apparatus wearers must be at least 18 years old",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "apparatus wearers to be at least 18 years old"
+          },
+          {
+            "fact": "Apparatus wearers must be familiar with the operating conditions",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "to be familiar with the operating conditions"
+          },
+          {
+            "fact": "Occupational-physician certification of fitness to wear respiratory equipment is required",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "have occupational-physician certification that they are fit to wear respiratory equipment"
+          },
+          {
+            "fact": "Initial and follow-up examinations are assessed under Berufsgenossenschaftlicher Grundsatz G 26.3 \"Atemschutzgeräte\"",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "assessed in accordance with Berufsgenossenschaftlicher Grundsatz G 26.3, \"Atemschutzgeräte,\""
+          },
+          {
+            "fact": "Employees without documented suitability may not be assigned as apparatus wearers",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "employees without documented suitability shall not be assigned as apparatus wearers"
+          },
+          {
+            "fact": "Use of respiratory equipment imposes additional strain on the wearer",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the use of respiratory equipment imposes additional strain on the wearer"
+          },
+          {
+            "fact": "Rescue or reconnaissance entries are performed in teams",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "rescue or reconnaissance entries shall be performed in teams"
+          },
+          {
+            "fact": "Regional rescue team composition is at least one team leader and 2 additional persons",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "each team shall consist of at least one team leader and 2 additional persons"
+          },
+          {
+            "fact": "Deployment is aborted immediately if a team member becomes incapacitated or feels unwell",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "aborted immediately and the team shall return together if a team member becomes incapacitated or feels unwell"
+          },
+          {
+            "fact": "Deployment is aborted immediately if any breathing apparatus fails or malfunctions",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "if any breathing apparatus fails or shows malfunctions"
+          },
+          {
+            "fact": "Deployment is aborted immediately if the team is unexpectedly stressed or endangered",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "if the deployed team is unexpectedly stressed or endangered"
+          },
+          {
+            "fact": "Deployment is aborted immediately if explosive gas mixtures are detected",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "if explosive gas mixtures are detected"
+          },
+          {
+            "fact": "Team must return together as a unit on abort",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the deployment shall be aborted immediately and the team shall return together"
+          },
+          {
+            "fact": "Deployment is aborted when the lowest remaining breathing-gas supply reaches twice the amount estimated for the return march",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "only twice the amount estimated to be required for the return march remains"
+          }
+        ],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [
+          {
+            "description": "HP requires a 2-man designated rescue team for a missing person; European land drilling operations require rescue or reconnaissance teams of at least one team leader and 2 additional persons.",
+            "severity": "critical",
+            "sources": [
+              "European land drilling operations"
+            ]
+          }
+        ],
+        "merge_confidence": "medium",
+        "merge_notes": "A material regional staffing conflict was preserved inline and flagged. German KCAD content was translated and integrated without omitting specific operational criteria.",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 1,
+        "error": null
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0019",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 1.0 Anforderungen an Personal > 1.4 Gerätträger",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0020",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 3.0 Gasschutzeinsätze > 3.3 Einsatzgrundsätze",
+          "language": "de"
+        }
+      ]
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 4. Response Procedure and Working in an H2S Environment > 4.4. Cleaning Alarms",
+      "hp_block_ids": [
+        "block_0022",
+        "block_0023",
+        "block_0024",
+        "block_0025"
+      ],
+      "kcad_block_ids": [],
+      "hp_original_text": "### 4.4. Cleaning Alarms\n\n4.4.1. H&P personnel will not resume normal operations until a trained H2S technician wearing proper supplied air equipment and carrying a functional/calibrated H2S detector has determined the cause of the alarm.\n\na. H&P personnel are allowed to return to work utilizing SARs in atmospheres with H2S levels between 10 ppm and 1,000 ppm.\n\nb. H&P personnel are allowed to return to work without utilizing SARs in atmospheres with H2S below 10 ppm.\n\n4.4.2. When the Operator’s personnel are formally trained as H2S technicians for the type of fixed gas detection system present they may enter the affected area when under mask to test for H2S and declare “all clear”.\n\n4.4.3. Normal operations will then resume.\n\n4.4.4. Operator’s personnel may determine the cause of the alarm when formally trained as a H2S technician.\n\n4.4.5. H&P personnel are not formally trained on fixed gas detection equipment and are not authorized to clear alarms.\n\n4.4.6. H&P employees that have been respirator fit tested to the SCBA model present and received proper SCBA training may accompany third party H2S and/or Operator personnel utilizing the buddy system when entering possible contaminated areas.",
+      "kcad_addition_count": 0,
+      "kcad_sources": [],
+      "merge_result": {
+        "merged_text": "### 4.4. Cleaning Alarms\n\n4.4.1. H&P personnel will not resume normal operations until a trained H2S technician wearing proper supplied air equipment and carrying a functional/calibrated H2S detector has determined the cause of the alarm.\n\na. H&P personnel are allowed to return to work utilizing SARs in atmospheres with H2S levels between 10 ppm and 1,000 ppm.\n\nb. H&P personnel are allowed to return to work without utilizing SARs in atmospheres with H2S below 10 ppm.\n\n4.4.2. When the Operator’s personnel are formally trained as H2S technicians for the type of fixed gas detection system present they may enter the affected area when under mask to test for H2S and declare “all clear”.\n\n4.4.3. Normal operations will then resume.\n\n4.4.4. Operator’s personnel may determine the cause of the alarm when formally trained as a H2S technician.\n\n4.4.5. H&P personnel are not formally trained on fixed gas detection equipment and are not authorized to clear alarms.\n\n4.4.6. H&P employees that have been respirator fit tested to the SCBA model present and received proper SCBA training may accompany third party H2S and/or Operator personnel utilizing the buddy system when entering possible contaminated areas.",
+        "preserved_kcad_facts": [],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [],
+        "merge_confidence": "high",
+        "merge_notes": "",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 0,
+        "error": null
+      },
+      "kcad_contributions": []
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 4. Response Procedure and Working in an H2S Environment > 4.5. Working in High H2S Environment (10 < 1000 PPM H2S)",
+      "hp_block_ids": [
+        "block_0026",
+        "block_0028",
+        "block_0034",
+        "block_0035"
+      ],
+      "kcad_block_ids": [
+        "block_0027",
+        "block_0029",
+        "block_0030",
+        "block_0031",
+        "block_0032",
+        "block_0033",
+        "block_0036",
+        "block_0037",
+        "block_0038"
+      ],
+      "hp_original_text": "### 4.5. Working in High H2S Environment (10 < 1000 PPM H2S)\n\n4.5.1. When the area is deemed to be an H2S environment the Operator will call out a 3rd party H2S equipment provider with a work unit trailer.\n\n4.5.2. Before allowing employees to don SCBAs or SARs, the Rig Manager will confirm that all employees are fit tested for the masks being worn.\n\n4.5.3. The Rig Manager will ensure that all personnel are properly trained on proper use of breathing air system prior to allowing them to enter the H2S area under mask.\n\n4.5.4. If the Rig Manager is unsure about the training or fit testing, he should call his HSE Specialist immediately.\n\n4.5.5. At no point, will an employee enter an atmosphere with H2S above 10 ppm without utilizing an SCBA or SAR.",
+      "kcad_addition_count": 9,
+      "kcad_sources": [
+        "European land drilling operations",
+        "Saudi Arabia operations"
+      ],
+      "merge_result": {
+        "merged_text": "### 4.5. Working in High H2S Environment (10 < 1000 PPM H2S)\n\n**4.5.1** When an area is deemed to be an H2S environment, the Operator will call out a 3rd party H2S equipment provider with a work unit trailer. During drilling in H2S zones, the rig shall conduct operations using the following H2S alert classifications; this section governs entry and work controls for the high-H2S conditions represented by Level 2, Level 3, and H2S Emergency. H2S emergency response shall be organized with reference to the Rig Emergency Response Plan specific to each rig.\n\n| Alert level | H2S concentration | Operational status / comments |\n|---|---:|---|\n| Level 0 | H2S = 0 ppm | Normal operations. |\n| Level 1 | 0 ppm < H2S < 10 ppm | Normal operations, but increasing alertness and preparing for the next level. Access to the affected area is restricted. |\n| Level 2 | 10 ppm < H2S < 100 ppm, but not on the rig floor | Restricted access; breathing apparatus is required in affected areas where H2S > 10 ppm; non-essential personnel are removed from the rig package; immediate action is taken to reduce mud H2S levels; low alarm at 10 ppm and high alarm at 20 ppm. |\n| Level 3 | 10 ppm < H2S < 100 ppm on the rig floor | Approaching an emergency situation; low alarm at 10 ppm and high alarm at 20 ppm. |\n| H2S Emergency | H2S > 100 ppm | Actions taken to reduce H2S concentrations have failed and an emergency has been reached. |\n\n**4.5.2** Operating conditions may require personnel to work for extended durations while wearing tight-fitting face-piece respiratory protective equipment to protect them from inhalation of highly toxic or poisonous substances. Before allowing employees to don SCBAs, SARs, or work/escape breathing apparatus with a full-face mask, the Rig Manager will confirm that all employees are fit tested for the masks being worn. In European land drilling operations, wearers of escape devices shall receive both theoretical and practical instruction in the use of escape devices in accordance with DGUV Rule 112-190, Use of Respiratory Protective Equipment, Chapter 3.2.4.4.\n\n**4.5.3** The Rig Manager will ensure that all personnel are properly trained in the correct use of the breathing air system before they are permitted to enter the H2S area under mask. The Safety Officer shall ensure that all persons likely to work in a possible H2S environment are fully aware of, and instructed in, the use of safety equipment, and shall verify that all safety equipment is fully maintained, inspected, and available for use as required by contractual requirements. In European land drilling operations, and specifically in Germany, gas protection shall additionally comply with the following:\n\n- the Circular Order of the Clausthal-Zellerfeld Mining Authority dated 07.08.1990, revised 13.06.1995, covering gas protection in facilities where hydrogen-sulfide-containing gases are present;\n- the requirements of BGRCI Main Office for Mine Rescue, DGUV Rule 112-190, Use of Respiratory Protective Equipment;\n- the guidelines of the German Committee for Mine Rescue Services for the organization and equipment of gas protection brigades and respiratory protection teams, last amended July 2013; and\n- the applicable professional association regulations and rules for fixed, transportable, portable, and personal gas warning devices in accordance with guidance sheets T021, \"Gas warning devices for toxic gases/vapors and oxygen,\" and T023, \"Gas warning devices for explosion protection.\"\n\n**4.5.4** If the Rig Manager is unsure about employee training or fit testing, he should call his HSE Specialist immediately. Work/escape breathing apparatus used in high H2S operations shall provide respiratory protection for a protracted period in toxic or oxygen-deficient atmospheres and shall allow the wearer to leave such atmospheres at any time without losing respiratory protection. This apparatus is a combination of a short-duration escape-type self-contained breathing apparatus rated for 10 minutes or longer and a pressure-demand air-line respirator. In normal use, the apparatus is connected to an air cascade system. The pressure-demand air-line respirator provides respiratory protection until the user disconnects from the air supply and uses the self-contained breathing apparatus to return to fresh air. Maintenance, inspection, and storage requirements for work/escape sets are the same as for SCBA.\n\n**4.5.5** At no point will an employee enter an atmosphere with H2S above 10 ppm without utilizing an SCBA or SAR. These exposure limits shall be strictly adhered to, and no person shall be exposed to higher concentrations of H2S. Where breathing apparatus is used in the presence of atmospheric H2S, a positive-pressure full-face-mask system is recommended; only positive-pressure units, and not demand-type units, should be used to prevent negative pressure being created in the mask during inhalation and the ingress of toxic gas through the face seal. Positive-pressure units incorporate a pressure reducer, a mechanically operated demand regulator, and a pre-set expiration valve to prevent negative pressure within the face mask during inhalation. For reference, the protection factor for breathing apparatus is the ratio of the exterior air contaminant concentration to the concentration inside the mask; the higher the protection factor, the greater the safety factor. SCBA units have a nominal protection factor of 2,000. Accordingly, to ensure a breathing atmosphere below 10 ppm H2S, the maximum H2S level for employment of SCBA units is 20,000 ppm (2%).",
+        "preserved_kcad_facts": [
+          {
+            "fact": "Level 0 classification is H2S = 0 ppm with normal operations",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "| Level 0 | H2S = 0 ppm | Normal operations. |"
+          },
+          {
+            "fact": "Level 1 classification is 0 ppm < H2S < 10 ppm with increasing alertness and preparation for the next level",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "| Level 1 | 0 ppm < H2S < 10 ppm | Normal operations, but increasing alertness and preparing for the next level."
+          },
+          {
+            "fact": "Level 1 requires restricted access to the affected area",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "Access to the affected area is restricted."
+          },
+          {
+            "fact": "Level 2 classification is 10 ppm < H2S < 100 ppm when not on the rig floor",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "| Level 2 | 10 ppm < H2S < 100 ppm, but not on the rig floor |"
+          },
+          {
+            "fact": "Level 2 requires breathing apparatus in affected areas where H2S exceeds 10 ppm",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "breathing apparatus is required in affected areas where H2S > 10 ppm"
+          },
+          {
+            "fact": "Level 2 requires removal of non-essential personnel from the rig package",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "non-essential personnel are removed from the rig package"
+          },
+          {
+            "fact": "Level 2 requires immediate action to reduce mud H2S levels",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "immediate action is taken to reduce mud H2S levels"
+          },
+          {
+            "fact": "Level 2 low alarm is 10 ppm and high alarm is 20 ppm",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "low alarm at 10 ppm and high alarm at 20 ppm"
+          },
+          {
+            "fact": "Level 3 classification is 10 ppm < H2S < 100 ppm on the rig floor",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "| Level 3 | 10 ppm < H2S < 100 ppm on the rig floor |"
+          },
+          {
+            "fact": "Level 3 is approaching an emergency situation",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "Approaching an emergency situation"
+          },
+          {
+            "fact": "Level 3 low alarm is 10 ppm and high alarm is 20 ppm",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "low alarm at 10 ppm and high alarm at 20 ppm"
+          },
+          {
+            "fact": "H2S Emergency classification is H2S > 100 ppm",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "| H2S Emergency | H2S > 100 ppm |"
+          },
+          {
+            "fact": "H2S emergency means actions to reduce H2S concentrations have failed",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "Actions taken to reduce H2S concentrations have failed and an emergency has been reached."
+          },
+          {
+            "fact": "Emergency response is organized with reference to the rig-specific Rig Emergency Response Plan",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "H2S emergency response shall be organized with reference to the Rig Emergency Response Plan specific to each rig."
+          },
+          {
+            "fact": "Personnel may need to work extended durations in tight-fitting face-piece respiratory protective equipment against highly toxic or poisonous substances",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "work for extended durations while wearing tight-fitting face-piece respiratory protective equipment"
+          },
+          {
+            "fact": "Safety Officer ensures persons likely to work in possible H2S environment are fully aware of and instructed in safety equipment use",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "The Safety Officer shall ensure that all persons likely to work in a possible H2S environment are fully aware of, and instructed in"
+          },
+          {
+            "fact": "Safety Officer verifies safety equipment is maintained, inspected, and available as required by contractual requirements",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "fully maintained, inspected, and available for use as required by contractual requirements"
+          },
+          {
+            "fact": "Work/escape breathing apparatus provides protection for a protracted period in toxic or oxygen-deficient atmospheres and allows exit without losing protection",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "provide respiratory protection for a protracted period in toxic or oxygen-deficient atmospheres and shall allow the wearer to leave"
+          },
+          {
+            "fact": "Work/escape apparatus combines an escape SCBA rated for 10 minutes or longer with a pressure-demand air-line respirator",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "a short-duration escape-type self-contained breathing apparatus rated for 10 minutes or longer and a pressure-demand air-line respirator"
+          },
+          {
+            "fact": "Work/escape apparatus is connected to an air cascade system in normal use",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "the apparatus is connected to an air cascade system"
+          },
+          {
+            "fact": "User can disconnect from air supply and use self-contained breathing apparatus to return to fresh air",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "disconnects from the air supply and uses the self-contained breathing apparatus to return to fresh air"
+          },
+          {
+            "fact": "Maintenance, inspection, and storage requirements for work/escape sets are the same as for SCBA",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "Maintenance, inspection, and storage requirements for work/escape sets are the same as for SCBA."
+          },
+          {
+            "fact": "Escape device wearers in European land drilling operations receive theoretical and practical instruction per DGUV Rule 112-190 Chapter 3.2.4.4",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "theoretical and practical instruction in the use of escape devices in accordance with DGUV Rule 112-190"
+          },
+          {
+            "fact": "German operations follow the Circular Order of the Clausthal-Zellerfeld Mining Authority dated 07.08.1990 revised 13.06.1995",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "dated 07.08.1990, revised 13.06.1995"
+          },
+          {
+            "fact": "German operations follow BGRCI Main Office for Mine Rescue DGUV Rule 112-190",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "BGRCI Main Office for Mine Rescue, DGUV Rule 112-190"
+          },
+          {
+            "fact": "German operations follow the German Committee for Mine Rescue Services guidelines last amended July 2013",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "last amended July 2013"
+          },
+          {
+            "fact": "Fixed, transportable, portable, and personal gas warning devices follow T021 and T023 guidance sheets",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "guidance sheets T021, \"Gas warning devices for toxic gases/vapors and oxygen,\" and T023"
+          },
+          {
+            "fact": "Exposure limits must be strictly adhered to and no person should be exposed to higher H2S concentrations",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "These exposure limits shall be strictly adhered to, and no person shall be exposed to higher concentrations of H2S."
+          },
+          {
+            "fact": "Positive-pressure full-face-mask system is recommended in atmospheric H2S",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "a positive-pressure full-face-mask system is recommended"
+          },
+          {
+            "fact": "Only positive-pressure units, not demand-type units, should be used to prevent negative pressure and toxic gas ingress through the face seal",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "only positive-pressure units, and not demand-type units, should be used"
+          },
+          {
+            "fact": "Positive-pressure units incorporate a pressure reducer, mechanically operated demand regulator, and pre-set expiration valve",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "incorporate a pressure reducer, a mechanically operated demand regulator, and a pre-set expiration valve"
+          },
+          {
+            "fact": "Protection factor is the ratio of exterior air contaminant concentration to concentration inside the mask",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "the protection factor for breathing apparatus is the ratio of the exterior air contaminant concentration to the concentration inside the mask"
+          },
+          {
+            "fact": "Higher protection factor means greater safety factor",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "the higher the protection factor, the greater the safety factor"
+          },
+          {
+            "fact": "SCBA units have a nominal protection factor of 2,000",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "SCBA units have a nominal protection factor of 2,000."
+          },
+          {
+            "fact": "Maximum H2S level for employment of SCBA units is 20,000 ppm (2%) to ensure breathing atmosphere below 10 ppm",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "the maximum H2S level for employment of SCBA units is 20,000 ppm (2%)."
+          }
+        ],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [],
+        "merge_confidence": "high",
+        "merge_notes": "",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 1,
+        "error": null
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0027",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.6. H2S ALERT LEVELS",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0029",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 6. RESPIRATORY PROTECTIVE EQUIPMENT",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0030",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 4. ROLES AND RESPONSIBILITIES > 4.4. SAFETY OFFICER",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0031",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 6. RESPIRATORY PROTECTIVE EQUIPMENT > 6.2. WORK / ESCAPE BREATHING APPARATUS WITH FULL-FACE MASK",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0032",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 2.0 Unterweisungen > 2.2 Fluchtgeräteunterweisung",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0033",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > PURPOSE",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0036",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.4. OCCUPATIONAL EXPOSURE LIMITS (OELs)",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0037",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 6. RESPIRATORY PROTECTIVE EQUIPMENT > 6.1. SELF-CONTAINED BREATHING APPARATUS (SCBA) WITH FULL-FACE MASK",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0038",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 6. RESPIRATORY PROTECTIVE EQUIPMENT > 6.1. SELF-CONTAINED BREATHING APPARATUS (SCBA) WITH FULL-FACE MASK",
+          "language": "en"
+        }
+      ]
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 4. Response Procedure and Working in an H2S Environment > 4.6. Circulating and Working Pipe in a High H2S Environment (10 < 1000 PPM H2S)",
+      "hp_block_ids": [
+        "block_0039",
+        "block_0040",
+        "block_0041",
+        "block_0042",
+        "block_0043"
+      ],
+      "kcad_block_ids": [],
+      "hp_original_text": "### 4.6. Circulating and Working Pipe in a High H2S Environment (10 < 1000 PPM H2S)\n\nCirculating and working in pipe in a high H2S environment (10 < 1000 PPM H2S) with zero H2S at the rig floor and Driller’s Cabin – required PTW with Superintendent approval.\n\n4.6.1. The Driller and Third Party H2S Technician may return to the Driller’s Cabin with SCBAs and utilizing the “Buddy System”.\n\n4.6.2. The H2S levels must be “0” at both the Rig Floor and Driller’s Cabin, confirmed by personal monitors, quad gas, and fixed monitors.\n\n4.6.3. At that time, the Driller and Third Party H2S Technician may work inside of the Driller’s Cabin without the use of an SCBA.\n\n4.6.4. Should any H2S monitors alarm at either the Rig Floor or Driller’s Cabin, the Driller and Third Party H2S Technician must immediately don an SCBA and return to the muster area.\n\n4.6.5. At this time all employees should follow the procedure identified in Section 4.5 of this document.",
+      "kcad_addition_count": 0,
+      "kcad_sources": [],
+      "merge_result": {
+        "merged_text": "### 4.6. Circulating and Working Pipe in a High H2S Environment (10 < 1000 PPM H2S)\n\nCirculating and working in pipe in a high H2S environment (10 < 1000 PPM H2S) with zero H2S at the rig floor and Driller’s Cabin – required PTW with Superintendent approval.\n\n4.6.1. The Driller and Third Party H2S Technician may return to the Driller’s Cabin with SCBAs and utilizing the “Buddy System”.\n\n4.6.2. The H2S levels must be “0” at both the Rig Floor and Driller’s Cabin, confirmed by personal monitors, quad gas, and fixed monitors.\n\n4.6.3. At that time, the Driller and Third Party H2S Technician may work inside of the Driller’s Cabin without the use of an SCBA.\n\n4.6.4. Should any H2S monitors alarm at either the Rig Floor or Driller’s Cabin, the Driller and Third Party H2S Technician must immediately don an SCBA and return to the muster area.\n\n4.6.5. At this time all employees should follow the procedure identified in Section 4.5 of this document.",
+        "preserved_kcad_facts": [],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [],
+        "merge_confidence": "high",
+        "merge_notes": "",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 0,
+        "error": null
+      },
+      "kcad_contributions": []
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 5. Respirators, Air Quality, and Use",
+      "hp_block_ids": [
+        "block_0044"
+      ],
+      "kcad_block_ids": [
+        "block_0045",
+        "block_0046"
+      ],
+      "hp_original_text": "## 5. Respirators, Air Quality, and Use\n\n5.1. Respirators using atmosphere-supplying respirators (supplied-air and SCBA) shall provide users with high purity breathing gases. Air Purifying respirators (half mask or cartridge) cannot be used in a H2S environment.\n\n5.2. Compressed air, compressed oxygen, liquid air, and liquid oxygen used for respirators will meet or exceed the following specifications:\n\n5.2.1. Compressed breathing air shall meet at least the requirements for Type 1-Grade D breathing air described in ANSI/Compressed Gas Association Commodity Specification for Air, G-7.1-1989, to include:\n\n5.2.2. Oxygen content (v/v) of 19.5-23.5%.\n\n5.2.3. Hydrocarbon (condensed) content of 5 milligrams per cubic meter of air or less.\n\n5.2.4. Carbon monoxide (CO) content of 10 or less; and\n\n5.2.5. Carbon dioxide content of 1,000 ppm or less; and\n\n5.2.6. Lack of noticeable odor.\n\n5.3. Compressed oxygen must not be used in atmosphere-supplying respirators that have previously used compressed air.\n\n5.4. Cylinders used to supply breathing air to respirators must meet the following requirements:\n\n5.4.1. Cylinders are tested and maintained as prescribed in the Shipping Container Specification Regulations of the Department of Transportation (49 CFR part 173, 178).\n\n5.4.2. Cylinders of purchased breathing air have a certificate of analysis from the supplier that the breathing air meets the requirements for Type 1-Grade D breathing air; and\n\n5.4.3. The moisture content in the cylinder does not exceed a dew point of –50 deg F (-45.6 deg C) at 1 atmosphere pressure.\n\n5.5. Compressors used to supply breathing air to respirators must be constructed and situated to:\n\n5.5.1. Prevent entry of contaminated air into the air-supply system.\n\n5.5.2. Minimize moisture content so that the dew point at 1 atmosphere pressure is 10 degrees F (5.56 deg C) below the ambient temperature.\n\n5.5.3. Have suitable in-line air-purifying sorbent beds and filters to further ensure breathing air quality.\n\n5.5.4. Sorbent bed and filters shall be maintained and replaced or refurbished periodically following the manufacturer’s instructions.\n\n5.5.5. Have a tag containing the most recent change date and the signature of the person authorized by the employer to perform the change. The tag shall be maintained at the compressor.\n\n5.6. For compressors that are not oil-lubricated, carbon monoxide levels in the breathing air must not exceed 10 ppm.\n\n5.7. For oil-lubricated compressors, a high-temperature or carbon monoxide alarm, or both, must be used to monitor carbon monoxide levels. If only high-temperature alarms are used, the air supply shall be monitored at intervals sufficient to prevent carbon monoxide in the breathing air from exceeding 10 ppm.\n\n5.8. Breathing air couplings must not be compatible with outlets for non-respirable work-site air or other gas systems. No asphyxiating substance shall be introduced into breathing airlines.\n\n5.9. Breathing gas containers must be marked in accordance with the NIOSH respirator certification standard.",
+      "kcad_addition_count": 2,
+      "kcad_sources": [
+        "Saudi Arabia operations"
+      ],
+      "merge_result": {
+        "merged_text": "5.1 Atmosphere-supplying respirators, including supplied-air respirators and self-contained breathing apparatus (SCBA), shall provide users with high-purity breathing gases. Air-purifying respirators, including half-mask or cartridge respirators, cannot be used in an H2S environment.\n\n5.2 Compressed air, compressed oxygen, liquid air, and liquid oxygen used for respirators shall meet or exceed the following specifications.\n\n5.2.1 Compressed breathing air shall meet at least the requirements for Type 1-Grade D breathing air described in ANSI/Compressed Gas Association Commodity Specification for Air, G-7.1-1989, including the following. In Saudi Arabia operations, SCBA air quality and purity shall also be in accordance with EN 12021 or equivalent. This is a regional requirement in addition to the global H&P Grade D breathing-air requirement; the standards are not identical and may apply different air-quality acceptance criteria.\n\n5.2.2 Oxygen content (v/v) of 19.5-23.5%.\n\n5.2.3 Hydrocarbon (condensed) content of 5 milligrams per cubic meter of air or less.\n\n5.2.4 Carbon monoxide (CO) content of 10 ppm or less.\n\n5.2.5 Carbon dioxide content of 1,000 ppm or less.\n\n5.2.6 Lack of noticeable odor.\n\n5.3 Compressed oxygen must not be used in atmosphere-supplying respirators that have previously used compressed air.\n\n5.4 Cylinders used to supply breathing air to respirators shall meet the following requirements:\n\n5.4.1 Cylinders shall be tested and maintained as prescribed in the Shipping Container Specification Regulations of the Department of Transportation (49 CFR parts 173 and 178).\n\n5.4.2 Cylinders of purchased breathing air shall have a certificate of analysis from the supplier confirming that the breathing air meets the requirements for Type 1-Grade D breathing air.\n\n5.4.3 The moisture content in the cylinder shall not exceed a dew point of -50 deg F (-45.6 deg C) at 1 atmosphere pressure.\n\n5.4.4 In Saudi Arabia rig-site operations, all SCBA shall be maintained in accordance with the relevant procedure, with reference to UNI 10720 - Standard Maintenance of Protective Equipment or similar regulation, and the air in SCBA cylinders shall be changed every 6 months.\n\n5.4.5 In Saudi Arabia operations, all SCBA units shall be located in safe areas where personnel involved in emergency operations can safely put on the SCBA, and each unit shall have a suitable protective cover to avoid damage.\n\n5.5 Compressors used to supply breathing air to respirators shall be constructed and situated to:\n\n5.5.1 Prevent entry of contaminated air into the air-supply system.\n\n5.5.2 Minimize moisture content so that the dew point at 1 atmosphere pressure is 10 degrees F (5.56 deg C) below the ambient temperature.\n\n5.5.3 Have suitable in-line air-purifying sorbent beds and filters to further ensure breathing air quality.\n\n5.5.4 Sorbent beds and filters shall be maintained and replaced or refurbished periodically following the manufacturer's instructions.\n\n5.5.5 Have a tag containing the most recent change date and the signature of the person authorized by the employer to perform the change. The tag shall be maintained at the compressor.\n\n5.6 For compressors that are not oil-lubricated, carbon monoxide levels in the breathing air must not exceed 10 ppm.\n\n5.7 For oil-lubricated compressors, a high-temperature alarm, a carbon monoxide alarm, or both, must be used to monitor carbon monoxide levels. If only high-temperature alarms are used, the air supply shall be monitored at intervals sufficient to prevent carbon monoxide in the breathing air from exceeding 10 ppm.\n\n5.8 Breathing air couplings must not be compatible with outlets for non-respirable work-site air or other gas systems. No asphyxiating substance shall be introduced into breathing airlines.\n\n5.9 Breathing gas containers must be marked in accordance with the NIOSH respirator certification standard.",
+        "preserved_kcad_facts": [
+          {
+            "fact": "Saudi Arabia operations require SCBA air quality and purity to comply with EN 12021 or equivalent",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "In Saudi Arabia operations, SCBA air quality and purity shall also be in accordance with EN 12021 or equivalent."
+          },
+          {
+            "fact": "Saudi Arabia rig-site SCBA cylinder air must be changed every 6 months",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "the air in SCBA cylinders shall be changed every 6 months"
+          },
+          {
+            "fact": "Saudi Arabia rig-site SCBA maintenance references UNI 10720 - Standard Maintenance of Protective Equipment or similar regulation",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "with reference to UNI 10720 - Standard Maintenance of Protective Equipment or similar regulation"
+          },
+          {
+            "fact": "Saudi Arabia operations require SCBA units to be located in safe areas for emergency personnel to safely put on the SCBA",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "all SCBA units shall be located in safe areas where personnel involved in emergency operations can safely put on the SCBA"
+          },
+          {
+            "fact": "Saudi Arabia operations require each SCBA unit to have a suitable protective cover to avoid damage",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "each unit shall have a suitable protective cover to avoid damage"
+          }
+        ],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [
+          {
+            "description": "HP requires ANSI/CGA Type 1-Grade D breathing air, while Saudi Arabia operations also require EN 12021 or equivalent for SCBA air quality; these standards are not identical and may produce different acceptance criteria.",
+            "severity": "material",
+            "sources": [
+              "Saudi Arabia operations"
+            ]
+          }
+        ],
+        "merge_confidence": "medium",
+        "merge_notes": "Saudi Arabia-specific air-quality and SCBA maintenance requirements were integrated inline. Reviewer attention is warranted for the ANSI/CGA Grade D versus EN 12021 standard divergence.",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 1,
+        "error": null
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0045",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 6. RESPIRATORY PROTECTIVE EQUIPMENT > 6.1. SELF-CONTAINED BREATHING APPARATUS (SCBA) WITH FULL-FACE MASK",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0046",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 6. RESPIRATORY PROTECTIVE EQUIPMENT > 6.1. SELF-CONTAINED BREATHING APPARATUS (SCBA) WITH FULL-FACE MASK",
+          "language": "en"
+        }
+      ]
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 6. Training",
+      "hp_block_ids": [
+        "block_0047"
+      ],
+      "kcad_block_ids": [
+        "block_0048",
+        "block_0049",
+        "block_0050",
+        "block_0051",
+        "block_0052",
+        "block_0053",
+        "block_0054",
+        "block_0055",
+        "block_0056"
+      ],
+      "hp_original_text": "## 6. Training\n\nEmployees whose job requirements may put them in atmospheric environments with potential concentrations of H2S more than 10 ppm in the work-area atmosphere shall have training before reporting to their first assignment, as well as annual training in subjects including, but not limited to, the items below. All training will be documented in each employee’s personal training record which will be maintained in the Company’s training database.\n\n6.1. The hazards, characteristics, properties, and sources of H2S (SDS)\n\n6.2. Danger in relying on sense of smell. Individuals may not be able to smell an odor after an extended period of exposure to it, because they become accustomed to the odor.\n\n6.3. Fixed, intrinsically safe, UL-listed H2S gas detection monitors will be rigged up. Recommended locations include at the rig floor, bell nipple, cellar, trip tanks, shale shakers, mud tanks and mud pump room.\n\n6.4. Proper use of H2S detection methods and monitoring equipment and availability of monitoring information\n\n6.5. Effects of H2S on equipment (metal fatigue)\n\n6.6. Symptoms of overexposure to H2S\n\n6.6.1. Emergency medical procedures as outlined in the facility contingency plan, including first aid for H2S overexposures.\n\n6.6.2. Proper use of and maintenance of respiratory and eye protection equipment.\n\n6.7. Demonstrate proficiency with three types of supplied air breathing apparatus available at the rig site, the escape pack and a 30-minute Self Contained Breathing Apparatus (SCBA). As well as proficiency with the cascade SAR system, which may be available.\n\n6.8. Safe work procedures and precautions to protect employees from H2S.\n\n6.8.1. Emergency response and rescue procedures should rescue become necessary.\n\n6.8.2. Circumstances when a standby person in supplied air or SCBA is required.\n\n6.8.3. Wind direction awareness and safe routes of egress.\n\n6.8.4. Job hazards\n\n6.8.5. Confined and enclosed space entry procedures (where applicable)\n\n6.8.6. Applicable alarm signals the right to access exposure monitoring results, SDSs, chemical inventory and medical records. Training shall be on an on-going basis and be conducted by qualified H&P personnel. Periodic drills on the use of the respirators and rescue of workers should be included as part of the training program.",
+      "kcad_addition_count": 9,
+      "kcad_sources": [
+        "European land drilling operations",
+        "Saudi Arabia operations"
+      ],
+      "merge_result": {
+        "merged_text": "Employees whose job requirements may put them in atmospheric environments with potential concentrations of H2S greater than 10 ppm in the work-area atmosphere shall receive H2S training before reporting to their first assignment and annual training thereafter. All training shall be documented in each employee’s personal training record and maintained in the Company’s training database. In Saudi Arabia operations, all personnel shall, before arrival at the rig site, complete accredited H2S training, comply with the safety precautionary measures established for that rig site, attend the Rig HSE Induction conducted by the Safety Officer upon first arrival, and be familiar with the safety information and emergency instructions displayed on site and with personal protective equipment layout, use, and storage. In European land drilling operations, appointed sour-gas supervisors shall be trained to discharge the duties of that appointment; the regional supervisory retraining cycle is 4 years, but this regional interval does not replace H&P’s global annual H2S training requirement. In the Netherlands, NOGEPA Handbook Chapter 0.8 establishes H2S instruction requirements with a validity of 4 years and a duration of 4 hours; this regional validity does not replace H&P’s annual training requirement.\n\n6.1. The hazards, characteristics, properties, and sources of H2S (SDS), including health hazards and the procedures and precautionary measures intended for employee protection.\n\n6.2. The danger in relying on the sense of smell. Individuals may not be able to smell an odor after an extended period of exposure because they become accustomed to the odor.\n\n6.3. Fixed, intrinsically safe, UL-listed H2S gas detection monitors will be rigged up. Recommended locations include the rig floor, bell nipple, cellar, trip tanks, shale shakers, mud tanks, and mud pump room.\n\n6.4. Proper use of H2S detection methods and monitoring equipment and availability of monitoring information. In European land drilling operations, drilling supervisors shall also be instructed in the function of gas detectors during recurring training for supervisors in sour-gas operations and during specialist training as a competent person for free-gas measurement under DGUV Regel 113-004.\n\n6.5. Effects of H2S on equipment (metal fatigue).\n\n6.6. Symptoms of overexposure to H2S.\n\n6.6.1. Emergency medical procedures as outlined in the facility contingency plan, including first aid for H2S overexposures. In Saudi Arabia operations, this practical training shall include application of mouth-to-mouth respiration and operation of a mechanical resuscitator.\n\n6.6.2. Proper use of and maintenance of respiratory and eye protection equipment. In European land drilling operations, wearers of compressed-air breathing apparatus shall receive theoretical and practical instruction in accordance with DGUV Regel 112-190, Benutzung von Atemschutzgeräten, Chapter 3.2.4.3, Träger von Isoliergeräten. Repeat instruction shall be conducted semiannually for wearers assigned rescue tasks and annually for wearers using the equipment for work assignments. Required instruction topics include the purpose of respiratory protection; respiratory-protection rules and the manufacturer’s information brochure (operating instructions); the structure and organization of the company respiratory-protection program and company alarm plan; the composition, effects, and consequences of the hazardous substances that may be encountered; the effects of oxygen deficiency on the human body; human respiration; physiological considerations and the burden imposed by respiratory protective equipment, especially when combined with protective suits; the classification, construction, mode of operation, and testing of respiratory protective equipment; the limits of protection and duration of use, including wear-time limitation; donning respiratory protective equipment and protective suits; behavior while under respiratory protection during training, operations, and escape; measures to safeguard equipment wearers; maintenance, including inspection, testing, servicing, repair, and cleaning; and disposal. After the theoretical instruction, practical exercises shall be conducted.\n\n6.7. Demonstrate proficiency with the three types of supplied-air breathing apparatus available at the rig site, the escape pack, and a 30-minute Self Contained Breathing Apparatus (SCBA), as well as proficiency with the cascade SAR system where available. Operating personnel shall be specifically trained in rescue techniques to enable recovery of persons who may have been overcome by H2S exposure. In Saudi Arabia operations, training shall include rapid donning of SCBA with full-face mask, and all personnel on the rig site shall be able to don the breathing apparatus within 45 seconds, as well as methods of lifting unconscious persons while wearing SCBA. In European land drilling operations, where the initial instruction for one equipment type, such as a compressed-air respirator, does not include rescue exercises, the initial instruction duration shall be at least 8 hours. For European land drilling operations, API RP 49 Chapter 5.2, “Minimum Training,” establishes content corresponding to the BGR 190 requirements, OPITO Standard Code 9014 imposes higher requirements primarily in practical exercises, and the recommended ratio between theory and practice should be 2:1.\n\n6.8. Safe work procedures and precautions to protect employees from H2S.\n\n6.8.1. Emergency response and rescue procedures should rescue become necessary.\n\n6.8.2. Circumstances when a standby person in supplied air or SCBA is required.\n\n6.8.3. Wind direction awareness and safe routes of egress.\n\n6.8.4. Job hazards.\n\n6.8.5. Confined and enclosed space entry procedures (where applicable).\n\n6.8.6. Applicable alarm signals, the right to access exposure monitoring results, SDSs, chemical inventory, and medical records. Training shall be on an ongoing basis and be conducted by qualified H&P personnel. Periodic drills on the use of respirators and rescue of workers should be included as part of the training program. In Saudi Arabia operations, a comprehensive H2S drills procedure and programme should be prepared and agreed with the Client, a certain number of H2S drills should be performed prior to commencing operations for personnel training, and once operations have started, H2S drills should be conducted at least once a week per shift, or more frequently until satisfactory crew response is achieved, with reference to Safety Drills and Exercises K-KS-HS-PR-034.",
+        "preserved_kcad_facts": [
+          {
+            "fact": "Appointed sour-gas supervisors in European land drilling operations require role-specific training",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "appointed sour-gas supervisors shall be trained to discharge the duties of that appointment"
+          },
+          {
+            "fact": "European supervisory retraining cycle is 4 years",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the regional supervisory retraining cycle is 4 years"
+          },
+          {
+            "fact": "All personnel in Saudi Arabia operations must complete accredited H2S training before arrival at the rig site",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "before arrival at the rig site, complete accredited H2S training"
+          },
+          {
+            "fact": "Saudi Arabia personnel must attend Rig HSE Induction conducted by the Safety Officer on first arrival",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "attend the Rig HSE Induction conducted by the Safety Officer upon first arrival"
+          },
+          {
+            "fact": "Saudi Arabia personnel must be familiar with displayed safety and emergency information",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "be familiar with the safety information and emergency instructions displayed on site"
+          },
+          {
+            "fact": "Saudi Arabia personnel must know PPE layout, use, and storage",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "personal protective equipment layout, use, and storage"
+          },
+          {
+            "fact": "NOGEPA Handbook Chapter 0.8 establishes H2S instruction requirements in the Netherlands",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "NOGEPA Handbook Chapter 0.8 establishes H2S instruction requirements"
+          },
+          {
+            "fact": "NOGEPA H2S instruction validity is 4 years",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "with a validity of 4 years"
+          },
+          {
+            "fact": "NOGEPA H2S instruction duration is 4 hours",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "and a duration of 4 hours"
+          },
+          {
+            "fact": "Drilling supervisors receive instruction in gas detector function during recurring sour-gas supervisor training",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "instructed in the function of gas detectors during recurring training for supervisors in sour-gas operations"
+          },
+          {
+            "fact": "Drilling supervisors receive specialist training for free-gas measurement under DGUV Regel 113-004",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "competent person for free-gas measurement under DGUV Regel 113-004"
+          },
+          {
+            "fact": "Saudi Arabia practical medical training includes mouth-to-mouth respiration",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "application of mouth-to-mouth respiration"
+          },
+          {
+            "fact": "Saudi Arabia practical medical training includes operation of a mechanical resuscitator",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "operation of a mechanical resuscitator"
+          },
+          {
+            "fact": "European respiratory training follows DGUV Regel 112-190 Chapter 3.2.4.3",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "DGUV Regel 112-190, Benutzung von Atemschutzgeräten, Chapter 3.2.4.3, Träger von Isoliergeräten"
+          },
+          {
+            "fact": "Compressed-air breathing apparatus wearers require theoretical and practical instruction",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "wearers of compressed-air breathing apparatus shall receive theoretical and practical instruction"
+          },
+          {
+            "fact": "Respiratory-protection refresher is semiannual for rescue-task wearers",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "conducted semiannually for wearers assigned rescue tasks"
+          },
+          {
+            "fact": "Respiratory-protection refresher is annual for work-use wearers",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "annually for wearers using the equipment for work assignments"
+          },
+          {
+            "fact": "Respiratory-protection topic: purpose of respiratory protection",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the purpose of respiratory protection"
+          },
+          {
+            "fact": "Respiratory-protection topic: rules and manufacturer information brochure",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "respiratory-protection rules and the manufacturer’s information brochure"
+          },
+          {
+            "fact": "Respiratory-protection topic: company respiratory-protection program and alarm plan",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the structure and organization of the company respiratory-protection program and company alarm plan"
+          },
+          {
+            "fact": "Respiratory-protection topic: composition, effects, and consequences of hazardous substances",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the composition, effects, and consequences of the hazardous substances"
+          },
+          {
+            "fact": "Respiratory-protection topic: effects of oxygen deficiency on the human body",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the effects of oxygen deficiency on the human body"
+          },
+          {
+            "fact": "Respiratory-protection topic: human respiration",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "human respiration"
+          },
+          {
+            "fact": "Respiratory-protection topic: physiological burden, especially with protective suits",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "especially when combined with protective suits"
+          },
+          {
+            "fact": "Respiratory-protection topic: classification, construction, operation, and testing of equipment",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the classification, construction, mode of operation, and testing of respiratory protective equipment"
+          },
+          {
+            "fact": "Respiratory-protection topic: limits of protection and wear-time limitation",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the limits of protection and duration of use, including wear-time limitation"
+          },
+          {
+            "fact": "Respiratory-protection topic: donning respiratory equipment and protective suits",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "donning respiratory protective equipment and protective suits"
+          },
+          {
+            "fact": "Respiratory-protection topic: behavior during training, operations, and escape",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "behavior while under respiratory protection during training, operations, and escape"
+          },
+          {
+            "fact": "Respiratory-protection topic: measures to safeguard equipment wearers",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "measures to safeguard equipment wearers"
+          },
+          {
+            "fact": "Respiratory-protection topic: maintenance including inspection, testing, servicing, repair, and cleaning",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "maintenance, including inspection, testing, servicing, repair, and cleaning"
+          },
+          {
+            "fact": "Respiratory-protection topic: disposal",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "and disposal"
+          },
+          {
+            "fact": "Practical exercises are mandatory after theoretical respiratory instruction",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "After the theoretical instruction, practical exercises shall be conducted"
+          },
+          {
+            "fact": "Saudi Arabia training includes rapid donning of SCBA with full-face mask",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "training shall include rapid donning of SCBA with full-face mask"
+          },
+          {
+            "fact": "Saudi Arabia requires all rig-site personnel to don breathing apparatus within 45 seconds",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "don the breathing apparatus within 45 seconds"
+          },
+          {
+            "fact": "Saudi Arabia training includes methods of lifting unconscious persons while wearing SCBA",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "methods of lifting unconscious persons while wearing SCBA"
+          },
+          {
+            "fact": "Initial instruction for one equipment type such as a compressed-air respirator is at least 8 hours if no rescue exercises are included",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the initial instruction duration shall be at least 8 hours"
+          },
+          {
+            "fact": "API RP 49 Chapter 5.2 Minimum Training corresponds to BGR 190 requirements",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "API RP 49 Chapter 5.2, “Minimum Training,” establishes content corresponding to the BGR 190 requirements"
+          },
+          {
+            "fact": "OPITO Standard Code 9014 has higher requirements primarily in practical exercises",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "OPITO Standard Code 9014 imposes higher requirements primarily in practical exercises"
+          },
+          {
+            "fact": "Recommended theory-to-practice ratio is 2:1",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the recommended ratio between theory and practice should be 2:1"
+          },
+          {
+            "fact": "Saudi Arabia requires a comprehensive H2S drills procedure and programme agreed with the Client",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "a comprehensive H2S drills procedure and programme should be prepared and agreed with the Client"
+          },
+          {
+            "fact": "Saudi Arabia requires a certain number of H2S drills before commencing operations",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "a certain number of H2S drills should be performed prior to commencing operations"
+          },
+          {
+            "fact": "Saudi Arabia requires H2S drills at least once a week per shift once operations start",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "H2S drills should be conducted at least once a week per shift"
+          },
+          {
+            "fact": "Saudi Arabia requires more frequent drills until satisfactory crew response is achieved",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "or more frequently until satisfactory crew response is achieved"
+          },
+          {
+            "fact": "Saudi Arabia drill program references Safety Drills and Exercises K-KS-HS-PR-034",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "with reference to Safety Drills and Exercises K-KS-HS-PR-034"
+          }
+        ],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [
+          {
+            "description": "H&P requires annual H2S training for employees who may work where H2S may exceed 10 ppm, while European land drilling operations state a 4-year retraining cycle for appointed sour-gas supervisors.",
+            "severity": "material",
+            "sources": [
+              "European land drilling operations"
+            ]
+          },
+          {
+            "description": "H&P requires annual H2S training, while NOGEPA Handbook Chapter 0.8 for Netherlands operations gives H2S instruction a validity of 4 years.",
+            "severity": "material",
+            "sources": [
+              "European land drilling operations"
+            ]
+          }
+        ],
+        "merge_confidence": "medium",
+        "merge_notes": "All KCAD operational specifics were integrated. European 4-year retraining and validity intervals were retained as regional divergences and explicitly subordinated to H&P’s global annual training requirement.",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 1,
+        "error": null
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0048",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 1.0 Anforderungen an Personal > 1.3 Aufsichtspersonen in Sauergasbetrieben",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0049",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 7. FIRST AID IN CASE OF H2S EXPOSURE > 7.2. H2S TRAINING AND DRILLS",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0050",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 4. ROLES AND RESPONSIBILITIES > 4.5. ALL PERSONNEL",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0051",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 7. FIRST AID IN CASE OF H2S EXPOSURE > 7.2. H2S TRAINING AND DRILLS",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0052",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 2.0 Unterweisungen > 2.1 Gerätträgerunterweisungen",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0053",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 5.0 Geräte und Einrichtungen",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0054",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 2.0 Unterweisungen > 2.1 Gerätträgerunterweisungen",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0055",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 2.0 Unterweisungen > 2.1 Gerätträgerunterweisungen",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0056",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 2.0 Unterweisungen > 2.1 Gerätträgerunterweisungen",
+          "language": "de"
+        }
+      ]
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 7. Equipment Location and Precautionary Measures",
+      "hp_block_ids": [
+        "block_0057",
+        "block_0062",
+        "block_0063",
+        "block_0064",
+        "block_0080",
+        "block_0083",
+        "block_0085",
+        "block_0087",
+        "block_0088"
+      ],
+      "kcad_block_ids": [
+        "block_0058",
+        "block_0059",
+        "block_0060",
+        "block_0061",
+        "block_0065",
+        "block_0066",
+        "block_0067",
+        "block_0068",
+        "block_0069",
+        "block_0070",
+        "block_0071",
+        "block_0072",
+        "block_0073",
+        "block_0074",
+        "block_0075",
+        "block_0076",
+        "block_0077",
+        "block_0078",
+        "block_0079",
+        "block_0081",
+        "block_0082",
+        "block_0084",
+        "block_0086",
+        "block_0089"
+      ],
+      "hp_original_text": "## 7. Equipment Location and Precautionary Measures\n\nA minimum of two Safe Briefing Areas will be established, not less than 150 feet, or as practical from the wellhead and in such a location that at least one area will be always up wind of the well. Upon recognition of an emergency, all personnel must assemble at the designated, up wind briefing area, for muster and instructions.\n\n7.1. A minimum of (5) H2S detectors will be installed throughout rig – One at the rig floor, one on rotary beam near bell nipple (if feasible with equipment being provided), one in the cellar, one in active pit, and one on the shale shakers – to provide continuous H2S detection monitoring.\n\n7.2. The combustion engines will be located as far from the wellbore as practical so that it may be used under conditions where it would otherwise have to be shut down.\n\n7.3. Appropriate smoking areas will be designated, and smoking will be prohibited elsewhere.\n\n7.4. All gas monitors should be calibrated per the manufacturer’s guidelines.\n\n7.5. All monitors and alarms will be bump tested per manufacturer’s guidelines.\n\n7.6. Personal H2S monitors will be always worn in front of the shoulder and 6-9” from breathing zone by all personnel when working in an H2S environment.\n\n7.7. A minimum of five wind direction indicators (flags, windsocks, and wind streamers) will be at the appropriate locations for visibility as follows:\n\n7.7.1. On top of the Driller’s Cabin / Top doghouse.\n\n7.7.2. At the two Safe Muster Areas.\n\n7.7.3. At the hopper end of mud tanks.\n\n7.7.4. At the shaker skid.\n\n7.8. Emergency breathing equipment will be placed in areas that are commonly occupied.\n\nAn adequate number of escape packs should be present for the number of persons that are commonly in that area.\n\n7.9. When working in areas that have H2S potential, an escape pack will be kept at the landing zone for the emergency descent device. The only time an escape pack may be taken to the board, as a potential dropped object exposure, is when analysis indicates that H2S is present in the drilling mud at 10ppm or greater. Any time an escape pack is taken to the board, the escape pack must be tethered to the employee while it is being transported, to eliminate a potential dropped object exposure. Once the employee reaches the board with an escape pack, the escape pack must be secured to a fixed object on the derrick board.\n\n7.10. All H&P employees in potential H2S environments (those wells classified as “H2S”) will be clean shaven (i.e. no stubble). Employees in potential H2S environments may NOT wear beards or facial hair that may prevent proper sealing of the breathing apparatus / respirator. They may wear mustaches that are trimmed clear of the sealing area but are otherwise required to be clean shaven. Employees working in environments in which H2S is not usually present, in which escape hoods are used in lieu of masks are exempted from this requirement as it pertains to the H2S standard. However, all employees that are enrolled in a Respiratory Protection Program that requires the use of respirators, will remain clean shaven.",
+      "kcad_addition_count": 24,
+      "kcad_sources": [
+        "European land drilling operations",
+        "Land drilling operations",
+        "Oman operations",
+        "Saudi Arabia operations"
+      ],
+      "merge_result": {
+        "merged_text": "A minimum of two Safe Briefing Areas will be established, not less than 150 feet, or as practical from the wellhead and in such a location that at least one area will always be up wind of the well. Upon recognition of an emergency, all personnel must assemble at the designated, up wind briefing area for muster and instructions.\n\n7.1. A minimum of five H2S detectors will be installed throughout the rig — one at the rig floor, one on the rotary beam near the bell nipple (if feasible with equipment being provided), one in the cellar, one in the active pit, and one on the shale shakers — to provide continuous H2S detection monitoring. Where specified in the contract, drilling rigs may also be equipped with a permanently installed system for detecting H2S and HC in the atmosphere. In Oman operations, the H2S monitoring system shall include visible and audible alarms that can be heard at all places on the drilling location and shall be triggered at a level of 10 ppm of H2S. Oman documents further specify a minimum of three H2S sensors — one in the shaker area, one on the drill floor, and one in the sub structure — and state that the exact number of sensors installed may depend on the Safety Equipment List (L.1.0) stipulated by the client in the relevant contract; however, these regional provisions do not reduce H&P's global minimum requirement for five installed detectors at the locations listed above.\n\n7.2. The combustion engines will be located as far from the wellbore as practical so that they may be used under conditions where they would otherwise have to be shut down.\n\n7.3. Appropriate smoking areas will be designated, and smoking will be prohibited elsewhere.\n\n7.4. All gas monitors shall be calibrated per the manufacturer's guidelines. In Oman operations, the installation, calibration and testing of environmental H2S and HC detection systems shall be completed in line with client requirements, manufacturer instructions and ISO standards requirements (7.6). Permanent atmospheric H2S and HC monitoring systems in Oman shall be calibrated and tested prior to spudding or re-entering a well, routine testing and calibration checks shall be performed on a bi-weekly (every two weeks) basis, and the system shall be serviced and calibrated by approved agencies on an annual basis in line with the manufacturer's instruction manual. Oman model-specific requirements include the following:\n\n- **General Monitors Card Model 2601, sensor without digital display, presently installed on T-51 and T-44:** initial setup of a non-calibrated system requires the calibration tool to slide the calibration door to the left to place the control module into calibration mode, and both upper and lower twenty-turn potentiometers shall be set to mid-position. For calibration, place an ampoule corresponding to the full-scale H2S concentration (20 ppm) in the field calibrator, which has been purged with clean air, and gas the sensor. Allow approximately 5 minutes for the reading to stabilise, then set the meter to read full scale using the Upper potentiometer. Remove the field calibrator and allow the sensor to be permeated with clean air until the reading stabilises at a zero value. Remove all glass fragments from the field calibrator, insert an ampoule corresponding to ±20% (5 ppm) of full-scale concentration, gas the sensor again, allow approximately 5 minutes for the reading to stabilise, then set the meter to read 5 ppm using the Low potentiometer and allow the reading to stabilise at zero. For calibration check, remove all glass fragments from the field calibrator, insert an ampoule corresponding to 50% (10 ppm) of full scale, gas the sensor, and allow approximately 5 minutes for the reading to stabilise; the reading shall be 10 ppm ± 2 ppm. If not, repeat the calibration steps. Using the calibration tool, slide the calibration door to the right; the Ready indicator shall be illuminated constantly and the Fault indicator shall be extinguished.\n- **General Monitors Card Model TA 200, Sensor ST210 with digital display, presently installed on T-51 and T-44:** place a magnet over the GM logo; the display will change to '--', indicating that the magnet is correctly positioned, and then to 'AC' (Auto Calibration). Put a 5 ppm ampoule in the field calibrator, place the calibrator over the sensor with a snug fit, and gas the sensor. The display will change to 'CP' (Calibration in Progress) when the instrument responds to the rising gas concentration; wait until the display reads 'LC' (Low Complete). Remove the field calibrator from the sensor and discard all glass fragments. Put a 20 ppm ampoule in the field calibrator, place the calibrator over the sensor with a snug fit, and gas the sensor; the display will again change to 'CP'. Wait until the display reads 'CC' (Calibration Complete). For calibration check, position the magnet over the GM logo; the symbol '--' will be displayed for three seconds and then will begin to flash. Remove the magnet so the display flashes with the gas concentration at the sensor, then insert an ampoule corresponding to 50% (10 ppm) of full scale in the field calibrator and gas the sensor. The display shall read 10 ppm ± 2 ppm; if not, repeat the calibration sequence. Remove the field calibrator from the sensor and discard all glass fragments. The display will continue to flash until the gas has been removed and the level at the sensor drops below 1 ppm.\n- **General Monitors Model 2602A:** make sure the sensor is seeing clean air. For calibration check, place an H2S ampoule corresponding to 50% (10 ppm) of full scale of the sensor into a breaker bottle; do not place the breaker bottle over the sensor until the display shows a flashing zero. Enter calibration check mode by pressing and holding the Mode/Select switch until the CAL LED begins to flash, about 10 seconds. When the CAL LED begins to flash, release the Mode/Select switch. The unit is then in calibration check mode, the display will indicate a flashing 0, and the A1 and A2 alarms are disabled during calibration check mode. If the Portable Flow Calibrator is used instead of ampoules, make sure the Portable Purge Calibrator contains a gas concentration that does not exceed full scale for the sensor, place the ON/OFF knob on the regulator in the ON position, securely fasten the regulator to the Portable Flow cylinder, and do not place the cup attached to the Portable Flow cylinder over the sensor until the display shows a flashing zero. Apply the test gas to the sensor and wait a few seconds; the display will begin to go upscale as the sensor sees the gas. If the display does not change after 12 minutes, the unit will return to normal operating mode. If the sensor continues to see the calibration check gas for 12 minutes, an F9 fault will be displayed, indicating that the calibration check period has exceeded. The reading will stabilise after a minute or two and shall read 10 ppm ± 2 ppm. If the reading is acceptable, remove the gas and allow the sensor to see clean air. If the system is to be recalibrated and the applied gas concentration is 50% of full scale, place the unit in calibration mode by pressing the Mode/Select switch. If the applied gas concentration is not 50% of full scale, remove the gas for at least 5 minutes, then follow the calibration procedure. For calibration, place an H2S ampoule equal to 50% of full scale (10 ppm) into a breaker bottle and do not place the breaker bottle over the sensor until the display shows 'AC', or prepare the Portable Flow Calibrator so that the gas concentration equals 50% of full scale for the sensor being calibrated. Enter calibration mode by pressing and holding the Mode/Select switch until the CAL LED turns on steady, release the switch, and wait for an 'AC' indication on the display. Break the ampoule or open the cylinder and ON/OFF valve and watch the display change from 'AC' to 'CP' as the sensor sees gas. If the display does not change from 'AC' to 'CP' after twelve minutes, the monitor will return to normal operation; check wiring and gas source for a problem and, if it still does not change to 'CP', change the sensor. Wait for the display to change from 'CP' to 'CC' when the calibration is complete, about 2 minutes. If the display does not change from 'CP' to 'CC' after twelve minutes, the monitor will indicate a fault condition and another calibration attempt shall be made. Remove the gas and watch the display return to normal operation, '0', when the new calibration values have been stored in the EEPROM. If the unit cannot store the new calibration values in the EEPROM, the unit will display an F7 fault code (EEPROM verification failure); if any F7 calibration fault occurs, replace the Model 2602A. If the Model 2602A fails to calibrate, the unit will use the previously stored calibrated values.\n- **General Monitors Model 4802 A (HC):** for calibration check, enter the calibration check mode by pressing and holding the Mode/Select switch until the CAL LED begins to flash, about 10 seconds, then release the switch. The display will indicate a flashing 0 and the A1 and A2 alarms are disabled during the calibration check mode. Before placing the unit in CAL check mode, make sure the Portable Purge Calibrator contains a gas concentration that does not exceed full scale, place the ON/OFF knob on the regulator in the ON position, securely fasten the regulator to the Portable Flow cylinder, and do not place the cup attached to the Portable Flow cylinder over the sensor until the display shows a flashing zero. Apply the test gas to the sensor. If the display does not change after 12 minutes, the unit will return to the normal operating mode; if the sensor continues to see the calibration check gas for 12 minutes, an F9 fault will be displayed, indicating that the calibration check period exceeded. The reading will stabilise after a minute or two and shall read 50%LEL +/-5%. If the reading is acceptable, remove the gas and allow the sensor to see clean air. If the system is to be recalibrated, make sure the gas concentration of the portable purge calibrator equals 50% of full scale for the sensor being calibrated and prepare the Portable Flow Calibrator. Enter CAL mode until the display shows 'AC', then open the cylinder valve and the ON/OFF valve and watch the display change from 'AC' to 'CP' as the sensor sees gas. If the display does not change from 'AC' to 'CP' after twelve minutes, the monitor will return to normal operation; check wiring and gas source for a problem and, if it still does not change to 'CP', change the sensor. Wait for the display to change from 'CP' to 'CC' when calibration is complete. If the display does not change from 'CP' to 'CC' after twelve minutes, the monitor will indicate a fault condition and another calibration attempt shall be made. Remove the gas and watch the display return to '0' when the new calibration values have been stored in the EEPROM. If the unit cannot store the new calibration values in the EEPROM, the unit will display an F7 fault code and the unit shall be replaced.\n\n7.5. All monitors and alarms will be bump tested per manufacturer's guidelines. In European land drilling operations, each rig normally has a gas detection device, currently the Dräger x-am 7000. That device shall be exchanged every six months for inspection, shall be tested in accordance with the manufacturer's instructions and before work use by bump test, and the required test gas with the corresponding apparatus shall be kept available. Land drilling operations may document H2S sensor testing as follows:\n\n| No. | Location | Manufacture Serial No. | Settings of low alarm | Actual reading value | Time (sec.) | Settings of high alarm | Actual reading value | Time (sec.) | Test result |\n|---|---|---|---|---|---:|---|---|---:|---|\n| 1 | Rig Floor | 693405 | 5 PPM | 5.1 PPM | 5 | 10 PPM | 10.0 PPM | 9 | Pass |\n| 2 | Substructure | 668469 | 5 PPM | 5.4 PPM | 5 | 10 PPM | 10.7 PPM | 9 | Pass |\n| 3 | Shakers | 592974 | 5 PPM | 5.0 PPM | 4 | 10 PPM | 10.1 PPM | 10 | Pass |\n\n7.6. Personal H2S monitors will always be worn in front of the shoulder and 6-9 inches from the breathing zone by all personnel when working in an H2S environment.\n\n7.7. A minimum of five wind direction indicators (flags, windsocks, and wind streamers) will be at the appropriate locations for visibility as follows:\n\n7.7.1. On top of the Driller's Cabin / Top doghouse.\n\n7.7.2. At the two Safe Muster Areas.\n\n7.7.3. At the hopper end of mud tanks.\n\n7.7.4. At the shaker skid.\n\n7.8. Emergency breathing equipment will be placed in areas that are commonly occupied.\n\nAn adequate number of escape packs should be present for the number of persons that are commonly in that area. In European land drilling operations, the escape devices predominantly used are Parat filter devices and Oxy K 30 self-rescuers. The Oxy K 30 operates on the basis of chemically bound oxygen and is therefore independent of ambient air, and it is equipped with a mouthpiece, nose clip and gas-protection goggles. In Saudi Arabia operations, contract requirements may state a suggested quantity and location of the work / escape breathing apparatus; however, that regional contract guidance does not replace the H&P requirement to place emergency breathing equipment in commonly occupied areas and to provide an adequate number of escape packs.\n\n7.9. When working in areas that have H2S potential, an escape pack will be kept at the landing zone for the emergency descent device. The only time an escape pack may be taken to the board, as a potential dropped object exposure, is when analysis indicates that H2S is present in the drilling mud at 10 ppm or greater. Any time an escape pack is taken to the board, the escape pack must be tethered to the employee while it is being transported, to eliminate a potential dropped object exposure. Once the employee reaches the board with an escape pack, the escape pack must be secured to a fixed object on the derrick board.\n\n7.10. All H&P employees in potential H2S environments (those wells classified as 'H2S') will be clean shaven (i.e. no stubble). Employees in potential H2S environments may NOT wear beards or facial hair that may prevent proper sealing of the breathing apparatus / respirator. They may wear mustaches that are trimmed clear of the sealing area but are otherwise required to be clean shaven. Employees working in environments in which H2S is not usually present, in which escape hoods are used in lieu of masks, are exempted from this requirement as it pertains to the H2S standard. However, all employees that are enrolled in a Respiratory Protection Program that requires the use of respirators will remain clean shaven. Saudi Arabia operations also use a clean-shaven guidance figure for SCBA use that presents acceptable examples on the left side and unacceptable examples on the right side.",
+        "preserved_kcad_facts": [
+          {
+            "fact": "Oman monitoring systems require visible and audible alarms audible across the drilling location",
+            "source": "Oman operations",
+            "evidence_in_merged": "visible and audible alarms that can be heard at all places on the drilling location"
+          },
+          {
+            "fact": "Oman H2S alarm trigger level is 10 ppm",
+            "source": "Oman operations",
+            "evidence_in_merged": "triggered at a level of 10 ppm of H2S"
+          },
+          {
+            "fact": "Oman specifies a minimum of three sensors in shaker area, drill floor, and sub structure",
+            "source": "Oman operations",
+            "evidence_in_merged": "a minimum of three H2S sensors — one in the shaker area, one on the drill floor, and one in the sub structure"
+          },
+          {
+            "fact": "Oman sensor count may depend on client Safety Equipment List L.1.0",
+            "source": "Oman operations",
+            "evidence_in_merged": "may depend on the Safety Equipment List (L.1.0) stipulated by the client"
+          },
+          {
+            "fact": "Contract-specified rigs may have permanent H2S and HC atmospheric monitoring systems",
+            "source": "Oman operations",
+            "evidence_in_merged": "equipped with a permanently installed system for detecting H2S and HC in the atmosphere"
+          },
+          {
+            "fact": "Oman calibration and testing shall align with client requirements, manufacturer instructions, and ISO standards requirements (7.6)",
+            "source": "Oman operations",
+            "evidence_in_merged": "in line with client requirements, manufacturer instructions and ISO standards requirements (7.6)"
+          },
+          {
+            "fact": "Oman permanent systems must be calibrated and tested before spudding or re-entering a well",
+            "source": "Oman operations",
+            "evidence_in_merged": "calibrated and tested prior to spudding or re-entering a well"
+          },
+          {
+            "fact": "Oman routine testing and calibration checks are bi-weekly",
+            "source": "Oman operations",
+            "evidence_in_merged": "performed on a bi-weekly (every two weeks) basis"
+          },
+          {
+            "fact": "Oman systems require annual servicing and calibration by approved agencies",
+            "source": "Oman operations",
+            "evidence_in_merged": "serviced and calibrated by approved agencies on an annual basis"
+          },
+          {
+            "fact": "General Monitors Card Model 2601 without digital display is presently installed on T-51 and T-44",
+            "source": "Oman operations",
+            "evidence_in_merged": "General Monitors Card Model 2601, sensor without digital display, presently installed on T-51 and T-44"
+          },
+          {
+            "fact": "Initial setup for Model 2601 requires sliding calibration door left",
+            "source": "Oman operations",
+            "evidence_in_merged": "slide the calibration door to the left to place the control module into calibration mode"
+          },
+          {
+            "fact": "Initial setup for Model 2601 sets upper and lower twenty-turn potentiometers to mid-position",
+            "source": "Oman operations",
+            "evidence_in_merged": "both upper and lower twenty-turn potentiometers shall be set to mid-position"
+          },
+          {
+            "fact": "Model 2601 calibration uses a 20 ppm full-scale ampoule with about 5 minutes stabilization",
+            "source": "Oman operations",
+            "evidence_in_merged": "full-scale H2S concentration (20 ppm)... Allow approximately 5 minutes for the reading to stabilise"
+          },
+          {
+            "fact": "Model 2601 low-point calibration uses ±20% 5 ppm and Low potentiometer",
+            "source": "Oman operations",
+            "evidence_in_merged": "insert an ampoule corresponding to ±20% (5 ppm) of full-scale concentration"
+          },
+          {
+            "fact": "Model 2601 calibration check acceptance is 10 ppm ± 2 ppm",
+            "source": "Oman operations",
+            "evidence_in_merged": "the reading shall be 10 ppm ± 2 ppm"
+          },
+          {
+            "fact": "Model 2601 completion requires Ready illuminated and Fault extinguished",
+            "source": "Oman operations",
+            "evidence_in_merged": "the Ready indicator shall be illuminated constantly and the Fault indicator shall be extinguished"
+          },
+          {
+            "fact": "General Monitors Card Model TA 200 with Sensor ST210 and digital display is presently installed on T-51 and T-44",
+            "source": "Oman operations",
+            "evidence_in_merged": "General Monitors Card Model TA 200, Sensor ST210 with digital display, presently installed on T-51 and T-44"
+          },
+          {
+            "fact": "TA 200/ST210 calibration starts with magnet over GM logo and display to '--' then 'AC'",
+            "source": "Oman operations",
+            "evidence_in_merged": "the display will change to '--'... and then to 'AC' (Auto Calibration)"
+          },
+          {
+            "fact": "TA 200/ST210 uses a 5 ppm ampoule until display reads 'LC'",
+            "source": "Oman operations",
+            "evidence_in_merged": "Put a 5 ppm ampoule... wait until the display reads 'LC' (Low Complete)"
+          },
+          {
+            "fact": "TA 200/ST210 uses a 20 ppm ampoule until display reads 'CC'",
+            "source": "Oman operations",
+            "evidence_in_merged": "Put a 20 ppm ampoule... Wait until the display reads 'CC' (Calibration Complete)"
+          },
+          {
+            "fact": "TA 200/ST210 calibration check requires 10 ppm ± 2 ppm",
+            "source": "Oman operations",
+            "evidence_in_merged": "The display shall read 10 ppm ± 2 ppm"
+          },
+          {
+            "fact": "TA 200/ST210 display flashes until gas is removed and level drops below 1 ppm",
+            "source": "Oman operations",
+            "evidence_in_merged": "the level at the sensor drops below 1 ppm"
+          },
+          {
+            "fact": "Model 2602A calibration check uses 50% full-scale 10 ppm H2S ampoule in breaker bottle",
+            "source": "Oman operations",
+            "evidence_in_merged": "H2S ampoule corresponding to 50% (10 ppm) of full scale of the sensor into a breaker bottle"
+          },
+          {
+            "fact": "Model 2602A calibration check entry uses CAL LED flashing after about 10 seconds",
+            "source": "Oman operations",
+            "evidence_in_merged": "until the CAL LED begins to flash, about 10 seconds"
+          },
+          {
+            "fact": "Model 2602A disables A1 and A2 alarms during calibration check mode",
+            "source": "Oman operations",
+            "evidence_in_merged": "the A1 and A2 alarms are disabled during calibration check mode"
+          },
+          {
+            "fact": "Portable Flow Calibrator setup requires regulator ON/OFF knob in ON position and fastened to cylinder",
+            "source": "Oman operations",
+            "evidence_in_merged": "place the ON/OFF knob on the regulator in the ON position, securely fasten the regulator"
+          },
+          {
+            "fact": "Model 2602A shows F9 fault if calibration check gas is seen for 12 minutes",
+            "source": "Oman operations",
+            "evidence_in_merged": "If the sensor continues to see the calibration check gas for 12 minutes, an F9 fault will be displayed"
+          },
+          {
+            "fact": "Model 2602A calibration check acceptance is 10 ppm ± 2 ppm",
+            "source": "Oman operations",
+            "evidence_in_merged": "shall read 10 ppm ± 2 ppm"
+          },
+          {
+            "fact": "If applied gas is not 50% full scale, Model 2602A requires gas removal for at least 5 minutes",
+            "source": "Oman operations",
+            "evidence_in_merged": "remove the gas for at least 5 minutes"
+          },
+          {
+            "fact": "Model 2602A calibration uses 'AC' to 'CP' transition and 12-minute timeout",
+            "source": "Oman operations",
+            "evidence_in_merged": "display change from 'AC' to 'CP'... after twelve minutes"
+          },
+          {
+            "fact": "Model 2602A calibration completes at 'CC' in about 2 minutes",
+            "source": "Oman operations",
+            "evidence_in_merged": "change from 'CP' to 'CC' when the calibration is complete, about 2 minutes"
+          },
+          {
+            "fact": "Model 2602A stores values in EEPROM and F7 requires replacement",
+            "source": "Oman operations",
+            "evidence_in_merged": "display an F7 fault code (EEPROM verification failure); if any F7 calibration fault occurs, replace the Model 2602A"
+          },
+          {
+            "fact": "If Model 2602A fails to calibrate it uses previously stored calibrated values",
+            "source": "Oman operations",
+            "evidence_in_merged": "the unit will use the previously stored calibrated values"
+          },
+          {
+            "fact": "General Monitors Model 4802 A applies to HC monitoring",
+            "source": "Oman operations",
+            "evidence_in_merged": "General Monitors Model 4802 A (HC)"
+          },
+          {
+            "fact": "Model 4802 A calibration check acceptance is 50%LEL +/-5%",
+            "source": "Oman operations",
+            "evidence_in_merged": "shall read 50%LEL +/-5%"
+          },
+          {
+            "fact": "Model 4802 A also uses F9 if calibration check period exceeds 12 minutes",
+            "source": "Oman operations",
+            "evidence_in_merged": "an F9 fault will be displayed, indicating that the calibration check period exceeded"
+          },
+          {
+            "fact": "European land drilling rigs normally use the Dräger x-am 7000 gas detection device",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "currently the Dräger x-am 7000"
+          },
+          {
+            "fact": "European land drilling device is exchanged every six months for inspection",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "shall be exchanged every six months for inspection"
+          },
+          {
+            "fact": "European land drilling requires bump testing before work use",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "before work use by bump test"
+          },
+          {
+            "fact": "European land drilling keeps required test gas and corresponding apparatus available",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the required test gas with the corresponding apparatus shall be kept available"
+          },
+          {
+            "fact": "Land drilling sensor test record for Rig Floor serial 693405 passed at 5.1 ppm in 5 sec and 10.0 ppm in 9 sec",
+            "source": "Land drilling operations",
+            "evidence_in_merged": "| 1 | Rig Floor | 693405 | 5 PPM | 5.1 PPM | 5 | 10 PPM | 10.0 PPM | 9 | Pass |"
+          },
+          {
+            "fact": "Land drilling sensor test record for Substructure serial 668469 passed at 5.4 ppm in 5 sec and 10.7 ppm in 9 sec",
+            "source": "Land drilling operations",
+            "evidence_in_merged": "| 2 | Substructure | 668469 | 5 PPM | 5.4 PPM | 5 | 10 PPM | 10.7 PPM | 9 | Pass |"
+          },
+          {
+            "fact": "Land drilling sensor test record for Shakers serial 592974 passed at 5.0 ppm in 4 sec and 10.1 ppm in 10 sec",
+            "source": "Land drilling operations",
+            "evidence_in_merged": "| 3 | Shakers | 592974 | 5 PPM | 5.0 PPM | 4 | 10 PPM | 10.1 PPM | 10 | Pass |"
+          },
+          {
+            "fact": "European land drilling predominantly uses Parat filter escape devices",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "the escape devices predominantly used are Parat filter devices"
+          },
+          {
+            "fact": "European land drilling predominantly uses Oxy K 30 self-rescuers",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "and Oxy K 30 self-rescuers"
+          },
+          {
+            "fact": "Oxy K 30 uses chemically bound oxygen and is independent of ambient air",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "operates on the basis of chemically bound oxygen and is therefore independent of ambient air"
+          },
+          {
+            "fact": "Oxy K 30 is equipped with mouthpiece, nose clip and gas-protection goggles",
+            "source": "European land drilling operations",
+            "evidence_in_merged": "equipped with a mouthpiece, nose clip and gas-protection goggles"
+          },
+          {
+            "fact": "Saudi contracts may specify suggested quantity and location of work/escape breathing apparatus",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "contract requirements may state a suggested quantity and location of the work / escape breathing apparatus"
+          },
+          {
+            "fact": "Saudi clean-shaven guidance figure shows acceptable examples on the left side",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "presents acceptable examples on the left side"
+          },
+          {
+            "fact": "Saudi clean-shaven guidance figure shows unacceptable examples on the right side",
+            "source": "Saudi Arabia operations",
+            "evidence_in_merged": "and unacceptable examples on the right side"
+          }
+        ],
+        "omitted_kcad_content": [
+          {
+            "source": "Oman operations",
+            "summary": "Objective statement for calibration and testing of H2S & Hydrocarbon detection system on rigs",
+            "reason": "duplicate_of_hp"
+          },
+          {
+            "source": "Oman operations",
+            "summary": "Responsibilities assigning Tool Pushers, Rig Electricians, and QA & HSE Manager to DWI performance/control",
+            "reason": "governance_boilerplate"
+          }
+        ],
+        "conflicts_flagged": [
+          {
+            "description": "HP requires a minimum of five installed H2S detectors at specified rig locations, while Oman operations specify a minimum of three sensors at shaker area, drill floor, and sub structure; following the Oman minimum alone would reduce detector coverage below H&P's global requirement.",
+            "severity": "critical",
+            "sources": [
+              "Oman operations"
+            ]
+          },
+          {
+            "description": "HP requires a fixed minimum of five installed H2S detectors, while Oman operations state that the exact number of sensors installed may depend on the client Safety Equipment List (L.1.0), which could permit a different detector count.",
+            "severity": "material",
+            "sources": [
+              "Oman operations"
+            ]
+          },
+          {
+            "description": "HP requires emergency breathing equipment to be placed in commonly occupied areas with an adequate number of escape packs, while Saudi Arabia operations state suggested quantity and location may be as per contract requirements, which could weaken the mandatory H&P placement rule.",
+            "severity": "material",
+            "sources": [
+              "Saudi Arabia operations"
+            ]
+          }
+        ],
+        "merge_confidence": "medium",
+        "merge_notes": "Oman calibration content includes detailed model-specific procedures for combined H2S and HC systems, which were integrated under the monitor calibration and testing provisions. Reviewer attention is warranted for the Oman detector-count and Saudi breathing-apparatus contract conflicts.",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 1,
+        "error": null
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0058",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.1 Permanent Gas Monitoring Systems",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0059",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.1 Permanent Gas Monitoring Systems",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0060",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.1 Permanent Gas Monitoring Systems",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0061",
+          "source_document": "K-LD-EM-FO-030.pdf",
+          "region": "unidentified",
+          "heading_path": "Gas Detection System Test > Function test as minimum zero value test and function test with test gas > H2S Sensor Test",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0065",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0066",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.1 System specifications > 1.2.1.2 System Calibration",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0067",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.2 General Monitors (Card Model: 2601, Sensor without Digital display) Presently Installed on T 51 & T 44 > 1.2.2.2 System Calibration",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0068",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.1 System specifications > 1.2.1.1 Calibration Check",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0069",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.4 System specifications > 1.2.4.2 System Calibration",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0070",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.4 System specifications",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0071",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.3 General Monitors (Card Model TA 200, Sensor ST210 with Digital Display) (Presently Installed on T-51 & T-44) > 1.2.3.1 System Calibration",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0072",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.4 System specifications > 1.2.4.1 Calibration Check",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0073",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0074",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.2 General Monitors (Card Model: 2601, Sensor without Digital display) Presently Installed on T 51 & T 44 > 1.2.2.1 Initial set up of non-calibrated systems",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0075",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > Objective",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0076",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.3 General Monitors (Card Model TA 200, Sensor ST210 with Digital Display) (Presently Installed on T-51 & T-44)",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0077",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 1.0 PROCEDURE > 1.2 Procedure for Calibration and Calibration Check > 1.2.2 General Monitors (Card Model: 2601, Sensor without Digital display) Presently Installed on T 51 & T 44",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0078",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 5.0 Geräte und Einrichtungen",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0079",
+          "source_document": "K-OM-HS-PR-001.pdf",
+          "region": "Oman",
+          "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 2.0 RESPONSIBILITIES",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0081",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 5.0 Geräte und Einrichtungen",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0082",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 5.0 Geräte und Einrichtungen",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0084",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 6. RESPIRATORY PROTECTIVE EQUIPMENT > 6.2. WORK / ESCAPE BREATHING APPARATUS WITH FULL-FACE MASK",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0086",
+          "source_document": "K-EU-HS-WI-038.pdf",
+          "region": "Europe",
+          "heading_path": "Gasschutz in Europa > 1.0 WORK INSTRUCTION > 2.0 Unterweisungen > 2.2 Fluchtgeräteunterweisung",
+          "language": "de"
+        },
+        {
+          "block_id": "block_0089",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 6. RESPIRATORY PROTECTIVE EQUIPMENT",
+          "language": "en"
+        }
+      ]
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 7. Equipment Location and Precautionary Measures > 7.10",
+      "hp_block_ids": [
+        "block_0090"
+      ],
+      "kcad_block_ids": [],
+      "hp_original_text": "[Image:p8: A poster-style instructional graphic titled “Facial Hair” shows the subject of facial hair requirements for respirator sealing in potential H2S environments. The visible text reads “All H&P employees in potential H2S environments will be clean shaven (i.e. no stubble).” followed by the bullet points “Employees in potential H2S environments may NOT wear beards or facial hair that may prevent proper sealing of the breathing apparatus/respirator.” and “They may wear mustaches that are trimmed clear of the sealing area, but are otherwise required to be clean shaven.” The emphasized statement at the bottom reads “These rules apply to all positions, regardless of rank or the amount of time spent on location. Employees that do not comply place potential rescuers at risk.” Six face icons are shown in a 2 by 3 arrangement; one face with a mustache is marked with a green check, and five faces with different beard or facial hair patterns are marked with red prohibition symbols. No numerical measurements are shown in the graphic. In Section 7.10 this image demonstrates the clean shaven requirement for “potential H2S environments” and visually clarifies which facial hair styles may prevent proper sealing of the breathing apparatus / respirator. Questions answered include: “Which facial hair styles are prohibited in potential H2S environments?” “Is a mustache allowed if it is trimmed clear of the sealing area?” “Do these rules apply to all positions?” and “Why does facial hair matter for the sealing of the breathing apparatus/respirator?”]",
+      "kcad_addition_count": 0,
+      "kcad_sources": [],
+      "merge_result": {
+        "merged_text": "[Image:p8: A poster-style instructional graphic titled “Facial Hair” shows the subject of facial hair requirements for respirator sealing in potential H2S environments. The visible text reads “All H&P employees in potential H2S environments will be clean shaven (i.e. no stubble).” followed by the bullet points “Employees in potential H2S environments may NOT wear beards or facial hair that may prevent proper sealing of the breathing apparatus/respirator.” and “They may wear mustaches that are trimmed clear of the sealing area, but are otherwise required to be clean shaven.” The emphasized statement at the bottom reads “These rules apply to all positions, regardless of rank or the amount of time spent on location. Employees that do not comply place potential rescuers at risk.” Six face icons are shown in a 2 by 3 arrangement; one face with a mustache is marked with a green check, and five faces with different beard or facial hair patterns are marked with red prohibition symbols. No numerical measurements are shown in the graphic. In Section 7.10 this image demonstrates the clean shaven requirement for “potential H2S environments” and visually clarifies which facial hair styles may prevent proper sealing of the breathing apparatus / respirator. Questions answered include: “Which facial hair styles are prohibited in potential H2S environments?” “Is a mustache allowed if it is trimmed clear of the sealing area?” “Do these rules apply to all positions?” and “Why does facial hair matter for the sealing of the breathing apparatus/respirator?”]",
+        "preserved_kcad_facts": [],
+        "omitted_kcad_content": [],
+        "conflicts_flagged": [],
+        "merge_confidence": "high",
+        "merge_notes": "",
+        "fallback_to_block_level": false,
+        "validation_ok": true,
+        "attempts": 0,
+        "error": null
+      },
+      "kcad_contributions": []
+    },
+    {
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 8. Symptoms and Effects of H2S at Different Levels",
+      "hp_block_ids": [
+        "block_0091"
+      ],
+      "kcad_block_ids": [
+        "block_0092",
+        "block_0093",
+        "block_0094"
+      ],
+      "hp_original_text": "## 8. Symptoms and Effects of H2S at Different Levels\n\n| Concentration (ppm) | Symptoms/Effects |\n|---|---|\n| 0.00011-0.00033 | Typical background concentrations |\n| 0.01-1.5 | Odor threshold (when rotten egg smell is first noticeable to some). Odor becomes more offensive at 3-5 ppm.<br>Above 30 ppm, odor described as sweet or sickeningly sweet. |\n| 10 | Highest allowable H2S atmosphere for H&P employees to perform work in without SARs.<br>Any time H2S levels exceed 10 ppm, SCBAs or Cascade Systems must be utilized. |\n| 20 | Possible fatigue, loss of appetite, headache, irritability, poor memory, dizziness. |\n| 50-100 | Slight conjunctivitis (\"gas eye\") and respiratory tract irritation after 1 hour.<br>May cause digestive upset and loss of appetite. |\n| 100 | Coughing, eye irritation, loss of smell after 2-15 minutes (olfactory fatigue). Altered breathing, drowsiness after 15-30 minutes. Throat irritation. Gradual increase in severity of symptoms over several hours. Death may occur after 48 hours. |\n| 100-150 | Loss of smell (olfactory fatigue or paralysis).<br>100 ppm Immediately Dangerous to Life and Health (IDLH) |\n| 200-300 | Marked conjunctivitis and respiratory tract irritation after 1 hour.<br>Pulmonary edema may occur from prolonged exposure. |\n| 500-700 | Staggering, collapse in 5 minutes. Nervous system effects prevail over eyes or respiratory. Death after 30-60 minutes. |\n| 700-1000 | Rapid unconsciousness, \"knockdown\" or immediate collapse within 1 to 2 breaths, breathing stops, death within minutes. |\n| 1,000 | All operations cease, even work with employees utilizing supplied air |\n| 1000-2000 | Possible instant death |\n| 43,000 - 460,000 | H2S becomes Flammable |",
+      "kcad_addition_count": 3,
+      "kcad_sources": [
+        "Saudi Arabia operations"
+      ],
+      "merge_result": {
+        "merged_text": "## 8. Symptoms and Effects of H2S at Different Levels\n\n| Concentration (ppm) | Symptoms/Effects |\n|---|---|\n| 0.00011-0.00033 | Typical background concentrations |\n| 0.01-1.5 | Odor threshold (when rotten egg smell is first noticeable to some). Odor becomes more offensive at 3-5 ppm.<br>Above 30 ppm, odor described as sweet or sickeningly sweet. |\n| 10 | Highest allowable H2S atmosphere for H&P employees to perform work in without SARs.<br>Any time H2S levels exceed 10 ppm, SCBAs or Cascade Systems must be utilized. |\n| 20 | Possible fatigue, loss of appetite, headache, irritability, poor memory, dizziness. |\n| 50-100 | Slight conjunctivitis (\"gas eye\") and respiratory tract irritation after 1 hour.<br>May cause digestive upset and loss of appetite. |\n| 100 | Coughing, eye irritation, loss of smell after 2-15 minutes (olfactory fatigue). Altered breathing, drowsiness after 15-30 minutes. Throat irritation. Gradual increase in severity of symptoms over several hours. Death may occur after 48 hours. |\n| 100-150 | Loss of smell (olfactory fatigue or paralysis).<br>100 ppm Immediately Dangerous to Life and Health (IDLH) |\n| 200-300 | Marked conjunctivitis and respiratory tract irritation after 1 hour.<br>Pulmonary edema may occur from prolonged exposure. |\n| 500-700 | Staggering, collapse in 5 minutes. Nervous system effects prevail over eyes or respiratory. Death after 30-60 minutes. |\n| 700-1000 | Rapid unconsciousness, \"knockdown\" or immediate collapse within 1 to 2 breaths, breathing stops, death within minutes. |\n| 1,000 | All operations cease, even work with employees utilizing supplied air |\n| 1000-2000 | Possible instant death |\n| 43,000 - 460,000 | H2S becomes Flammable |\n\n\n\n> **Additional content from Saudi Arabia:**\n\n\n\nThe following table provides the effects of H2S on the human beings in correspondence of different concentrations:\n\n|  |  |\n|---|---|\n| 100 ppm | Coughing, eye irritation, loss of sense of smell after 2-15 minutes. Altered respiration, pain in the eyes and drowsiness after 15-30 minutes followed by throat irritation after 1 hour. |\n| 150-200 ppm | Olfactory nerve is paralyzed after few inhalations, and the sense of smell disappears, often together with awareness of danger. Stings eyes and throat. |\n| 200-300 ppm | Marked conjunctivitis (eye inflammation) and respiratory tract irritation after 1 hour of exposure. |\n| 300-500 ppm | Pulmonary edema (the lung is full of fluid, leading to impairments of respiration). Prompt artificial resuscitation is needed. At 500 ppm, loss of sense of reason and balance; respiratory paralysis in 30-45 minutes. |\n| 700 ppm | Person becomes quickly affected (max. 15 minutes). Breathing will stop and death may result if not rescued promptly. Immediate artificial resuscitation is needed. |\n| 1000 ppm | The affected person becomes unconscious immediately. Permanent brain damage may result unless rescued promptly. |\n| Over 1000 ppm | Immediate collapse with loss of breathing, even after inhalation of a single breath; death may occur even if the person is moved to fresh air. |\n\n\n\n> **Additional content from Saudi Arabia:**\n\n\n\n### 5.2. H2S PROPERTIES\n\nHydrogen Sulphide is flammable; its explosive limits lie further apart than those of most natural gases.\n\n| Gas | Explosive Limit (Volume % gas) |\n|---|---|\n| H2S | 4.3 - 46 |\n| Methane | 5.3 - 14 |\n| Ethane | 3.3 - 12.5 |\n| Propane | 2.4 - 9.5 |\n\n\n\n> **Additional content from Saudi Arabia:**\n\n\n\n### 5.4. OCCUPATIONAL EXPOSURE LIMITS (OELs)\n\n**TLV – TWA** (Threshold Limit Value - Time Weighted Average): it represents the time weighted average concentration of a toxic substance over a normal 8-hour workday and a 40-hour working week, to which all workers may be repeatedly exposed, day after day, without adverse health effects. TLVs are only guidelines and do not represent a “fine line” between a safe and unsafe situation.\n\n**TLV – STEL** (Threshold Limit Value - Short Term Exposure Limit): that is based on avoiding the transient irritant effects. The STEL is a 15-minute time-weighted average exposure, which should not be exceeded during the workday even if the 8-hour TWA is within the TLV. Exposures at the STEL should not be repeated more than four times per day.",
+        "preserved_kcad_facts": [],
+        "omitted_kcad_content": [
+          {
+            "source": "Saudi Arabia operations",
+            "summary": "merge failed — rendered block-level in frontend",
+            "reason": "other"
+          },
+          {
+            "source": "Saudi Arabia operations",
+            "summary": "merge failed — rendered block-level in frontend",
+            "reason": "other"
+          },
+          {
+            "source": "Saudi Arabia operations",
+            "summary": "merge failed — rendered block-level in frontend",
+            "reason": "other"
+          }
+        ],
+        "conflicts_flagged": [],
+        "merge_confidence": "low",
+        "merge_notes": "Automated narrative integration was blocked by content filter on graphic safety content; raw KCAD content appended below HP so no detail is lost.",
+        "fallback_to_block_level": true,
+        "validation_ok": false,
+        "attempts": 2,
+        "error": "Merger incomplete: content_filter"
+      },
+      "kcad_contributions": [
+        {
+          "block_id": "block_0092",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.3. HEALTH EFFECTS",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0093",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.2. H2S PROPERTIES",
+          "language": "en"
+        },
+        {
+          "block_id": "block_0094",
+          "source_document": "K-KS-HS-PR-005.pdf",
+          "region": "Saudi Arabia",
+          "heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.4. OCCUPATIONAL EXPOSURE LIMITS (OELs)",
+          "language": "en"
+        }
+      ]
+    }
+  ],
+  "gap_blocks": [
+    {
+      "block_id": "block_0096",
+      "heading_path": "HYDROGEN SULPHIDE > 4. ROLES AND RESPONSIBILITIES > 4.1. COUNTRY MANAGER",
+      "text": "## 4. ROLES AND RESPONSIBILITIES\n\n### 4.1. COUNTRY MANAGER\n\nThe Country Manager shall be responsible to ensure adequate resources for the implementation of this procedure.",
+      "source": {
+        "document": "K-KS-HS-PR-005.pdf",
+        "origin": "KCAD",
+        "region": "Saudi Arabia",
+        "rig": null,
+        "chunk_id": "K-KS-HS-PR-005::d147774ff7d0"
+      },
+      "language": "en"
+    },
+    {
+      "block_id": "block_0097",
+      "heading_path": "HYDROGEN SULPHIDE > 7. FIRST AID IN CASE OF H2S EXPOSURE > 7.1. MECHANICAL RESUSCITATION",
+      "text": "Before using the mechanical resuscitator, appropriate action should be conducted to clear respiratory obstruction.",
+      "source": {
+        "document": "K-KS-HS-PR-005.pdf",
+        "origin": "KCAD",
+        "region": "Saudi Arabia",
+        "rig": null,
+        "chunk_id": "K-KS-HS-PR-005::2b0fa3447312"
+      },
+      "language": "en"
+    },
+    {
+      "block_id": "block_0098",
+      "heading_path": "Gas Detection System Test > Function test as minimum zero value test and function test with test gas > CH4 Sensor Test",
+      "text": "## Function test as minimum zero value test and function test with test gas\n\n### CH4 Sensor Test\n\n| No | Location | Manufacture Serial No | Settings of low alarm | Actual reading value | time sec. | Settings of high alarm | Actual reading value | time sec. | Test Result |  |\n|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  |  | Pass | Fail |\n| 1 | Rig Floor | 004480414 | 20% LEL | 20,5% LEL | 5 | 50% LEL | 51,2% LEL | 9 | yes |  |\n| 2 | Substructure | 004060414 | 20% LEL | 20,3% LEL | 5 | 50% LEL | 50,9% LEL | 9 | yes |  |\n| 3 | Shakers | 00164914 | 20% LEL | 20,1% LEL | 4 | 50% LEL | 50,8% LEL | 10 | yes |  |\n| 4 |  |  |  |  |  |  |  |  |  |  |\n| 5 |  |  |  |  |  |  |  |  |  |  |\n| 6 |  |  |  |  |  |  |  |  |  |  |",
+      "source": {
+        "document": "K-LD-EM-FO-030.pdf",
+        "origin": "KCAD",
+        "region": "unidentified",
+        "rig": null,
+        "chunk_id": "K-LD-EM-FO-030::4722d716f85b"
+      },
+      "language": "en"
+    },
+    {
+      "block_id": "block_0099",
+      "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 3.0 CONTROLS / LIMITS OF AUTHORITY > 3.2",
+      "text": "### 3.2\n\nIn the event of difficulty with any aspect of this document, contact the QA & HSE Manager.",
+      "source": {
+        "document": "K-OM-HS-PR-001.pdf",
+        "origin": "KCAD",
+        "region": "Oman",
+        "rig": null,
+        "chunk_id": "K-OM-HS-PR-001::e556d578bd36"
+      },
+      "language": "en"
+    },
+    {
+      "block_id": "block_0100",
+      "heading_path": "Calibration and Testing of H2S & HC Detection System on Rigs > 3.0 CONTROLS / LIMITS OF AUTHORITY > 3.2",
+      "text": "This procedure is subject to QMS Audit.",
+      "source": {
+        "document": "K-OM-HS-PR-001.pdf",
+        "origin": "KCAD",
+        "region": "Oman",
+        "rig": null,
+        "chunk_id": "K-OM-HS-PR-001::ec44b3a6f503"
+      },
+      "language": "en"
+    }
+  ],
+  "summary": {
+    "total_sections": 14,
+    "sections_with_kcad": 10,
+    "sections_fallback": 1,
+    "total_kcad_additions": 57,
+    "total_preserved_facts": 178,
+    "total_omitted": 5,
+    "total_conflicts_flagged": 7,
+    "total_gap_blocks": 5,
+    "confidence_counts": {
+      "high": 8,
+      "medium": 5,
+      "low": 1
+    },
+    "overall_confidence": "medium"
+  }
+}

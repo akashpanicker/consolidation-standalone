@@ -1,0 +1,103 @@
+paths:
+  kcad_documents: data/kcad/
+  hp_documents: data/hp/
+  cache_dir: cache/
+
+supported_extensions:
+  - .pdf
+
+models:
+  llm_extraction:
+    model: gpt-5.4
+    reasoning_effort: high
+    chunk_pages: 15
+    max_output_tokens: 65536
+    fallback_model: gpt-5.2
+  metadata_extraction:
+    model: gpt-5.4
+    reasoning_effort: high
+    max_output_tokens: 4096
+    max_input_chars: 60000
+  activities_extraction:
+    model: gpt-5.4
+    reasoning_effort: high
+    max_output_tokens: 16384
+    max_input_chars: 60000
+  labeling:
+    model: gpt-5.4
+    reasoning_effort: high
+    max_output_tokens: 4096
+  concept_classification:
+    model: gpt-5.4
+    reasoning_effort: medium
+    max_output_tokens: 16384
+    max_input_chars: 8000
+  document_details:
+    # Canonical document metadata extraction via structured LLM output.
+    # 16384 tokens: reasoning + 14-field canonical JSON + raw_fields audit array
+    # can reach ~6-8K tokens on rich HP cover pages; 4096 truncates.
+    model: gpt-5.4
+    reasoning_effort: medium
+    max_output_tokens: 16384
+  document_details_validator:
+    # Validation pass: sends extraction + page images back to LLM for per-field
+    # verdict (CORRECT/INCORRECT/NOT_APPLICABLE). Uses same budget as extraction.
+    # Override here if you want higher reasoning effort for stricter audits.
+    model: gpt-5.4
+    reasoning_effort: medium
+    max_output_tokens: 16384
+  table_of_contents:
+    # TOC extraction from pages 2-5. 16384 handles long TOCs (50+ entries).
+    model: gpt-5.4
+    reasoning_effort: medium
+    max_output_tokens: 16384
+  consolidation:
+    model: gpt-5.4
+    reasoning_effort: high
+    max_output_tokens: 4096
+  detection:
+    rig_label:
+      model: gpt-5.4
+      reasoning_effort: high
+      max_output_tokens: 4096
+      validation_model: gpt-5.4
+      validation_reasoning_effort: high
+      validation_max_output_tokens: 4096
+  docling_refinement:
+    model: gpt-5.4
+    reasoning_effort: medium
+    max_output_tokens: 65536
+    model_context_window: 200000
+    hard_page_cap: 20
+
+validation:
+  # Run full Docling validation (auto + LLM) as the final step of
+  # extract_document_docling. Matches the inline-validation behavior
+  # of the LLM-direct extraction path.
+  run_inline_docling: true
+  # When validation finds high/critical issues, call the LLM once per
+  # affected page to produce a proposed corrected extraction. Proposals
+  # are attached to findings as finding["proposed_fix"] for user review.
+  # Disabled by default to keep extraction cost predictable; flip to
+  # true when running batches where fixes are desired.
+  generate_fixes_docling: false
+  # P3.1 hard gate: when true, extractions that fail the deterministic
+  # contract (C-EX-01..06) OR have overall_quality=poor OR still carry
+  # persistent verbatim/thin-page warnings after retry land in
+  # cache/extractions_quarantine/ instead of cache/extractions/.
+  # Downstream readers only see the clean cache. Flip to false for dev
+  # iterations where you want failing extractions visible in the UI.
+  hard_gate_docling: true
+  # P3.2 hard gate for chunking: chunks failing structural gates (table
+  # atomicity, non-prose matching_text, parse coercions from C-CH-02)
+  # land in cache/chunks_quarantine/ instead of cache/chunks/.
+  # Consolidation reads only the clean cache.
+  hard_gate_chunks: true
+
+cloud_cache:
+  enabled: false
+  managed_subdirs:
+    - extractions
+    - metadata
+  extraction_key_prefixes:
+    - extract_llm_v1_
