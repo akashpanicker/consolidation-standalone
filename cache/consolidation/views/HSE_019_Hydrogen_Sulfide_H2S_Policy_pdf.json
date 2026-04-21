@@ -2891,5 +2891,36 @@
       "Saudi Arabia"
     ]
   },
-  "built_at": "2026-04-17T10:06:09-0500"
+  "built_at": "2026-04-17T10:06:09-0500",
+  "review_status": "ai_consolidated",
+  "status_history": [
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:06:32.627440+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "approved",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:06:35.114185+00:00"
+    },
+    {
+      "from": "approved",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:06:36.259079+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:06:36.872337+00:00"
+    }
+  ]
 }

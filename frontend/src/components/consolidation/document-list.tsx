@@ -151,7 +151,7 @@ function DocCard({ doc, onClick }: { doc: ConsolidationDocSummary; onClick: () =
   return (
     <button
       onClick={onClick}
-      className="text-left p-4 rounded-lg border border-border bg-card hover:border-primary/40 hover:bg-accent/50 transition-colors"
+      className="text-left p-4 rounded-lg border border-border bg-card hover:border-primary transition-colors cursor-pointer"
     >
       <div className="font-medium text-sm leading-tight mb-2 line-clamp-2">{displayName}</div>
 

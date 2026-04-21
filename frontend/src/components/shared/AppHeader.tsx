@@ -53,7 +53,7 @@ export function AppHeader({
   ];
 
   return (
-    <header className="flex items-start px-4 pr-6 relative shrink-0 bg-background border-b border-border h-[52px] z-50">
+    <header className="flex items-start px-4 pr-6 relative shrink-0 bg-card border-b border-border h-[52px] z-50">
       {/* Left content */}
       <div className="flex-1 flex gap-3 h-full items-center min-h-px min-w-px">
         {/* Logo */}

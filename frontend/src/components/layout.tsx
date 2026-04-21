@@ -16,7 +16,7 @@ export function Layout({
 }) {
   return (
     <div className="h-screen flex flex-col bg-background text-foreground">
-      <AppHeader breadcrumb={[{ label: "Home", path: "/" }, { label: "Consolidation" }]} />
+      <AppHeader breadcrumb={[{ label: "Home", path: "/" }, { label: "Consolidations", path: "/" }, { label: "Consolidation Review" }]} />
 
       <div className="flex-1 overflow-hidden">{children}</div>
     </div>
