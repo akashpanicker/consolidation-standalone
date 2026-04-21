@@ -21,7 +21,6 @@ const PROSE_CLASSES =
 
 export function DetailPanel({
   block,
-  onClose,
   onAction,
   onAssignToAppendix,
   onRevert,
@@ -35,58 +34,35 @@ export function DetailPanel({
   unifiedPolished,
   unifiedStale,
 }: {
-  block: ConsolidatedBlock;
-  onClose: () => void;
+  block: ConsolidatedBlock | null;
   onAction: (blockId: string, action: string, opts?: { note?: string; edited_text?: string; resolution?: string }) => Promise<void>;
-  /** Trigger the LLM merge for THIS block's section — re-runs polish for the
-   *  heading_path this block belongs to, reflecting the current accept/edit
-   *  state of all blocks in that section. */
   onUpdateUnified?: (headingPath: string) => void | Promise<void>;
-  /** The section containing this block currently has a polish request in flight. */
   unifiedUpdating?: boolean;
-  /** A polish already exists for this block's section. */
   unifiedPolished?: boolean;
-  /** The existing polish is stale (newer block changes). */
   unifiedStale?: boolean;
-  /** Optional: invoked when the user clicks "Add to Appendix" on a Variant block.
-   *  Parent owns the full flow (match → create → assign) to keep API+ETag logic
-   *  centralized. Step 3 calls window.prompt; Step 8 replaces with a dialog. */
   onAssignToAppendix?: (blockId: string) => Promise<void>;
-  /** Optional: invoked from the Version History entries' "Revert" buttons.
-   *  Parent calls revertBlock + invalidates the view so the refetch picks up
-   *  the new state. Omit to disable per-version revert in the panel. */
   onRevert?: (blockId: string, version: number) => Promise<void>;
-  /** Comment handlers. When omitted, the CommentsSection doesn't render. */
   onAddComment?: (blockId: string, text: string) => Promise<void>;
   onDeleteComment?: (blockId: string, commentId: string) => Promise<void>;
-  /** Used to decide which comments show a Delete button (owners only).
-   *  null when auth is still resolving — delete buttons stay hidden. */
   currentUserEmail?: string | null;
-  /** When true, the document is published and all mutations are disabled.
-   *  Backend enforces via _check_not_published; this mirrors the lock into
-   *  the UI so users see disabled controls + a banner rather than 409s. */
   readOnly?: boolean;
-  /** Manually override the AI's relationship classification. Only surfaced
-   *  on kcad_addition blocks — Gap/Conflict are driven by block.type, not
-   *  relationship, so flipping those would confuse the dispatch. */
   onReclassify?: (blockId: string, relationship: "Equivalent" | "Variant" | "Complementary" | "Related") => Promise<void>;
 }) {
   const [note, setNote] = useState("");
   const [busy, setBusy] = useState(false);
   const [aiExpanded, setAiExpanded] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  // `editDraft` seeds from the current edited_text, falling back to the raw
-  // block text. Re-seed when the selected block changes so edits don't bleed
-  // across blocks when the user clicks around.
-  const [editDraft, setEditDraft] = useState(
-    block.edited_text ?? block.text ?? "",
-  );
+  const [editDraft, setEditDraft] = useState("");
+
   useEffect(() => {
-    setEditDraft(block.edited_text ?? block.text ?? "");
-    setEditMode(false);
-  }, [block.id, block.edited_text, block.text]);
+    if (block) {
+      setEditDraft(block.edited_text ?? block.text ?? "");
+      setEditMode(false);
+    }
+  }, [block?.id, block?.edited_text, block?.text]);
 
   const handleAction = async (action: string, resolution?: string) => {
+    if (!block) return;
     setBusy(true);
     try {
       await onAction(block.id, action, {
@@ -99,6 +75,7 @@ export function DetailPanel({
   };
 
   const handleSaveEdit = async () => {
+    if (!block) return;
     setBusy(true);
     try {
       await onAction(block.id, "edited", {
@@ -112,7 +89,7 @@ export function DetailPanel({
   };
 
   const handleAssignAppendix = async () => {
-    if (!onAssignToAppendix) return;
+    if (!onAssignToAppendix || !block) return;
     setBusy(true);
     try {
       await onAssignToAppendix(block.id);
@@ -121,209 +98,185 @@ export function DetailPanel({
     }
   };
 
-
   const locked = !!readOnly;
 
   return (
-    <aside className="w-[420px] border-l border-border flex flex-col shrink-0 bg-background overflow-hidden">
-      {/* Panel header */}
-      <div className="px-4 py-3 border-b border-border shrink-0 space-y-1.5">
-        <div className="flex items-center justify-between">
-          <RelationshipBadge block={block} />
-          <button
-            onClick={onClose}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+    <aside className="w-[420px] border-l border-border flex flex-col shrink-0 bg-background overflow-hidden h-full">
+      {!block ? (
+        <div className="flex-1 flex flex-col items-center justify-center p-8 text-center space-y-4">
+          <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
+            <ArrowRight className="w-6 h-6 text-muted-foreground opacity-50" />
+          </div>
+          <div className="space-y-1">
+            <h3 className="text-sm font-medium text-foreground">No chunk selected</h3>
+            <p className="text-xs text-muted-foreground max-w-[200px]">
+              Select a suggested change or conflict to view its full details and take action.
+            </p>
+          </div>
         </div>
-        <ClassificationBadges block={block} />
-        <ConfidenceIndicator confidence={block.ai_confidence} />
-        <div className="text-xs text-muted-foreground truncate">
-          {block.source.document?.replace(/\.pdf$/i, "")}
-          {block.source.region && <> &middot; {block.source.region}</>}
-          {block.source.rig && <> &middot; {block.source.rig}</>}
-        </div>
-      </div>
+      ) : (
+        <>
+          {/* Panel header */}
+          <div className="px-4 py-3 border-b border-border shrink-0 space-y-1.5">
+            <div className="flex items-center justify-between">
+              <RelationshipBadge block={block} />
+            </div>
+            <ClassificationBadges block={block} />
+            <ConfidenceIndicator confidence={block.ai_confidence} />
+            <div className="text-xs text-muted-foreground truncate">
+              {block.source.document?.replace(/\.pdf$/i, "")}
+              {block.source.region && <> &middot; {block.source.region}</>}
+              {block.source.rig && <> &middot; {block.source.rig}</>}
+            </div>
+          </div>
 
-      {locked && (
-        <div className="px-4 py-2 text-xs border-b border-green-500/30 bg-green-500/10 text-green-400 flex items-center gap-2 shrink-0">
-          <Lock className="w-3 h-3" />
-          <span>Document is published. Unpublish to edit.</span>
-        </div>
-      )}
-
-      {/* Scrollable content */}
-      <div className="flex-1 overflow-auto">
-        <div className="px-4 py-4 space-y-4">
-          {/* HP Original intentionally omitted from the DetailPanel.
-              The reviewer can see HP's original text inline in the main
-              document flow (where it always lives); showing it again in the
-              candidate details adds noise without informing the decision. */}
-
-          {/* What's different */}
-          <DifferenceSummary block={block} />
-
-          {/* KCAD chunk — translatable. Prefer the pipeline-set block.language
-               (GPT-5.4 detection) over block.kcad_chunk.language (stale
-               langdetect value carried from enrichment).
-               In edit mode, this area becomes a Markdown textarea the reviewer
-               uses to rewrite the block before accepting. */}
-          {editMode ? (
-            <EditDraftEditor
-              value={editDraft}
-              onChange={setEditDraft}
-              onSave={handleSaveEdit}
-              onCancel={() => {
-                setEditMode(false);
-                setEditDraft(block.edited_text ?? block.text ?? "");
-              }}
-              busy={busy}
-              hasExistingEdit={!!block.edited_text}
-            />
-          ) : (
-            <ChunkView
-              label={block.edited_text ? "KCAD Content · Edited" : "KCAD Content"}
-              accentColor="amber"
-              chunk={block.kcad_chunk}
-              fallbackText={block.edited_text ?? block.text}
-              language={block.language ?? block.kcad_chunk?.language}
-              translatable
-              onEdit={locked ? undefined : () => setEditMode(true)}
-              hasEdit={!!block.edited_text}
-            />
+          {locked && (
+            <div className="px-4 py-2 text-xs border-b border-green-500/30 bg-green-500/10 text-green-400 flex items-center gap-2 shrink-0">
+              <Lock className="w-3 h-3" />
+              <span>Document is published. Unpublish to edit.</span>
+            </div>
           )}
 
-          {/* Provenance — where this block's content came from upstream.
-              Compact summary of source documents + chunk IDs; useful for
-              engineers tracing a specific statement back to its origin
-              PDFs during review. */}
-          <ProvenanceCard block={block} />
+          {/* Scrollable content */}
+          <div className="flex-1 overflow-auto">
+            <div className="px-4 py-4 space-y-4">
+              <DifferenceSummary block={block} />
 
-          {/* AI explanation (collapsible) */}
-          {block.ai_reasoning && (
-            <div className="border border-border rounded-md">
-              <button
-                onClick={() => setAiExpanded(!aiExpanded)}
-                className="w-full text-left px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
-              >
-                {aiExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
-                AI details
-              </button>
-              {aiExpanded && (
-                <div className="px-3 pb-3 space-y-2">
-                  <p className="text-xs text-foreground/80 leading-relaxed">{block.ai_reasoning}</p>
-                  {block.dimension_matches && <DimensionDots dims={block.dimension_matches} />}
+              {editMode ? (
+                <EditDraftEditor
+                  value={editDraft}
+                  onChange={setEditDraft}
+                  onSave={handleSaveEdit}
+                  onCancel={() => {
+                    setEditMode(false);
+                    setEditDraft(block.edited_text ?? block.text ?? "");
+                  }}
+                  busy={busy}
+                  hasExistingEdit={!!block.edited_text}
+                />
+              ) : (
+                <ChunkView
+                  label={block.edited_text ? "KCAD Content · Edited" : "KCAD Content"}
+                  accentColor="amber"
+                  chunk={block.kcad_chunk}
+                  fallbackText={block.edited_text ?? block.text}
+                  language={block.language ?? block.kcad_chunk?.language}
+                  translatable
+                  onEdit={locked ? undefined : () => setEditMode(true)}
+                  hasEdit={!!block.edited_text}
+                />
+              )}
+
+              <ProvenanceCard block={block} />
+
+              {block.ai_reasoning && (
+                <div className="border border-border rounded-md">
+                  <button
+                    onClick={() => setAiExpanded(!aiExpanded)}
+                    className="w-full text-left px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
+                  >
+                    {aiExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+                    AI details
+                  </button>
+                  {aiExpanded && (
+                    <div className="px-3 pb-3 space-y-2">
+                      <p className="text-xs text-foreground/80 leading-relaxed">{block.ai_reasoning}</p>
+                      {block.dimension_matches && <DimensionDots dims={block.dimension_matches} />}
+                    </div>
+                  )}
                 </div>
+              )}
+
+              {!locked && (
+                <div>
+                  <textarea
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                    placeholder={notePlaceholder(block)}
+                    rows={2}
+                    className="w-full text-xs p-2 rounded border border-border bg-muted/20 resize-none focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+              )}
+
+              {(block.history?.length ?? 0) > 0 && (
+                <VersionHistorySection
+                  history={block.history ?? []}
+                  busy={busy}
+                  canRevert={!locked && !!onRevert}
+                  onRevert={async (version) => {
+                    if (!onRevert) return;
+                    setBusy(true);
+                    try {
+                      await onRevert(block.id, version);
+                    } finally {
+                      setBusy(false);
+                    }
+                  }}
+                />
+              )}
+
+              {onAddComment && onDeleteComment && (
+                <CommentsSection
+                  comments={block.comments ?? []}
+                  currentUserEmail={currentUserEmail ?? null}
+                  busy={busy}
+                  readOnly={locked}
+                  onAdd={async (text) => {
+                    setBusy(true);
+                    try {
+                      await onAddComment(block.id, text);
+                    } finally {
+                      setBusy(false);
+                    }
+                  }}
+                  onDelete={async (commentId) => {
+                    setBusy(true);
+                    try {
+                      await onDeleteComment(block.id, commentId);
+                    } finally {
+                      setBusy(false);
+                    }
+                  }}
+                />
+              )}
+            </div>
+          </div>
+
+          {!locked && (
+            <div className="px-4 py-3 border-t border-border shrink-0 space-y-2">
+              {block.relationship === "Variant" && <VariantContextCard block={block} />}
+              {onReclassify && block.type === "kcad_addition" && (
+                <ReclassifyDropdown
+                  current={block.relationship}
+                  disabled={busy}
+                  onSelect={(newRel) => {
+                    if (newRel === block.relationship) return;
+                    setBusy(true);
+                    onReclassify(block.id, newRel).finally(() => setBusy(false));
+                  }}
+                />
+              )}
+              <ActionBar
+                block={block}
+                busy={busy}
+                note={note}
+                onAction={handleAction}
+                onAssignAppendix={onAssignToAppendix ? handleAssignAppendix : undefined}
+              />
+              {onUpdateUnified && block.heading_path && (
+                <UpdateUnifiedButton
+                  headingPath={block.heading_path}
+                  disabled={busy || !!unifiedUpdating || block.status === "pending"}
+                  isUpdating={!!unifiedUpdating}
+                  isPolished={!!unifiedPolished}
+                  isStale={!!unifiedStale}
+                  onUpdate={onUpdateUnified}
+                />
               )}
             </div>
           )}
-
-          {/* Note input. Gap dismissals require a justification (enforced by
-              the action panel); for other blocks the note is optional metadata.
-              Hidden entirely when locked — no action to annotate. */}
-          {!locked && (
-            <div>
-              <textarea
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-                placeholder={notePlaceholder(block)}
-                rows={2}
-                className="w-full text-xs p-2 rounded border border-border bg-muted/20 resize-none focus:outline-none focus:ring-1 focus:ring-primary"
-              />
-            </div>
-          )}
-
-          {/* Version history timeline. Reads block.history directly (already
-              served with the view JSON — no extra fetch). Revert bumps ETag
-              and refetches the view, so any pending local edit draft must be
-              re-opened; that's acceptable since revert is a rare action.
-              In locked mode the timeline stays visible (audit value) but
-              the Revert buttons disappear — see VersionHistorySection.canRevert. */}
-          {(block.history?.length ?? 0) > 0 && (
-            <VersionHistorySection
-              history={block.history ?? []}
-              busy={busy}
-              canRevert={!locked && !!onRevert}
-              onRevert={async (version) => {
-                if (!onRevert) return;
-                setBusy(true);
-                try {
-                  await onRevert(block.id, version);
-                } finally {
-                  setBusy(false);
-                }
-              }}
-            />
-          )}
-
-          {/* Comments — conversation separate from block version history.
-              Reviewers coordinate here ("@Alice can you confirm the H2S
-              threshold?"). Delete button is ownership-gated by email.
-              When locked, the list stays visible (audit value) but posting
-              and deleting are disabled — CommentsSection.readOnly. */}
-          {onAddComment && onDeleteComment && (
-            <CommentsSection
-              comments={block.comments ?? []}
-              currentUserEmail={currentUserEmail ?? null}
-              busy={busy}
-              readOnly={locked}
-              onAdd={async (text) => {
-                setBusy(true);
-                try {
-                  await onAddComment(block.id, text);
-                } finally {
-                  setBusy(false);
-                }
-              }}
-              onDelete={async (commentId) => {
-                setBusy(true);
-                try {
-                  await onDeleteComment(block.id, commentId);
-                } finally {
-                  setBusy(false);
-                }
-              }}
-            />
-          )}
-        </div>
-      </div>
-
-      {/* Action bar (sticky bottom). Hidden entirely when locked — no
-          decision to be made on a published block. The banner at the top
-          explains why. */}
-      {!locked && (
-        <div className="px-4 py-3 border-t border-border shrink-0 space-y-2">
-          {block.relationship === "Variant" && <VariantContextCard block={block} />}
-          {onReclassify && block.type === "kcad_addition" && (
-            <ReclassifyDropdown
-              current={block.relationship}
-              disabled={busy}
-              onSelect={(newRel) => {
-                if (newRel === block.relationship) return;
-                setBusy(true);
-                onReclassify(block.id, newRel).finally(() => setBusy(false));
-              }}
-            />
-          )}
-          <ActionBar
-            block={block}
-            busy={busy}
-            note={note}
-            onAction={handleAction}
-            onAssignAppendix={onAssignToAppendix ? handleAssignAppendix : undefined}
-          />
-          {onUpdateUnified && block.heading_path && (
-            <UpdateUnifiedButton
-              headingPath={block.heading_path}
-              disabled={busy || !!unifiedUpdating || block.status === "pending"}
-              isUpdating={!!unifiedUpdating}
-              isPolished={!!unifiedPolished}
-              isStale={!!unifiedStale}
-              onUpdate={onUpdateUnified}
-            />
-          )}
-        </div>
+        </>
       )}
     </aside>
   );
@@ -746,25 +699,21 @@ function MentionHighlighted({ text }: { text: string }) {
 // ── Sub-components ──────────────────────────────────────────────────────
 
 function RelationshipBadge({ block }: { block: ConsolidatedBlock }) {
-  const colorMap: Record<string, string> = {
-    conflict: "bg-red-500/15 text-red-400",
-    gap: "bg-violet-500/15 text-violet-400",
-    kcad_addition: "bg-amber-500/15 text-amber-500",
-  };
+  const label = block.type === "conflict" ? "Conflict" : block.type === "gap" ? "New Content" : relationshipLabel(block).split(" — ")[0];
 
   return (
-    <span className={`text-xs font-medium px-2 py-0.5 rounded ${colorMap[block.type] ?? colorMap.kcad_addition}`}>
-      {block.type === "conflict" ? "Conflict" : block.type === "gap" ? "New Content" : relationshipLabel(block).split(" — ")[0]}
-    </span>
+    <div className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">
+      {label}
+    </div>
   );
 }
 
 function ConfidenceIndicator({ confidence }: { confidence: string | null }) {
   if (!confidence) return null;
   const levels: Record<string, { dots: number; color: string; label: string }> = {
-    high: { dots: 3, color: "text-green-400", label: "High confidence" },
-    medium: { dots: 2, color: "text-yellow-400", label: "Medium confidence" },
-    low: { dots: 1, color: "text-red-400", label: "Low — verify carefully" },
+    high: { dots: 3, color: "text-success", label: "High confidence" },
+    medium: { dots: 2, color: "text-warning", label: "Medium confidence" },
+    low: { dots: 1, color: "text-error", label: "Low — verify carefully" },
   };
   const l = levels[confidence] ?? levels.high;
 
@@ -1109,15 +1058,17 @@ function ReclassifyDropdown({
   onSelect: (next: "Equivalent" | "Variant" | "Complementary" | "Related") => void;
 }) {
   return (
-    <div className="flex items-center gap-2 text-[11px]">
-      <label className="text-muted-foreground font-semibold">Reclassify</label>
+    <div className="space-y-1.5">
+      <div className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider px-0.5">
+        Reclassify
+      </div>
       <select
         value={current ?? ""}
         disabled={disabled}
         onChange={(e) =>
           onSelect(e.target.value as "Equivalent" | "Variant" | "Complementary" | "Related")
         }
-        className="flex-1 px-2 py-1 text-[11px] rounded border border-border bg-muted/20 text-foreground focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50"
+        className="w-full px-2 py-1.5 text-[12px] rounded border border-border bg-muted/20 text-foreground focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50"
       >
         {current && !RECLASSIFY_OPTIONS.find((o) => o.value === current) && (
           <option value={current}>{current} (current)</option>
@@ -1182,7 +1133,7 @@ function EquivalentActions({
 }) {
   return (
     <div className="space-y-1.5">
-      <div className="text-[11px] font-semibold text-muted-foreground">
+      <div className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider px-0.5">
         Already Covered — Confirm or Dismiss
       </div>
       <div className="flex gap-2">
@@ -1229,7 +1180,7 @@ function VariantActions({
 }) {
   return (
     <div className="space-y-1.5">
-      <div className="text-[11px] font-semibold text-muted-foreground">
+      <div className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider px-0.5">
         Regional Variant — Approve, Dismiss, or Route to an Appendix
       </div>
       <div className="flex gap-2">
@@ -1285,7 +1236,7 @@ function ComplementaryActions({
 }) {
   return (
     <div className="space-y-1.5">
-      <div className="text-[11px] font-semibold text-muted-foreground">
+      <div className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider px-0.5">
         Supporting Content — AI Suggests Placing Here
       </div>
       <button
@@ -1346,7 +1297,7 @@ function GapActions({
 
   return (
     <div className="space-y-1.5 rounded border border-violet-500/30 bg-violet-500/5 p-2">
-      <div className="text-[11px] font-semibold text-violet-400">
+      <div className="text-[12px] font-semibold text-violet-400 uppercase tracking-wider px-0.5">
         New Content · Not in this H&P Doc
       </div>
       <button
@@ -1436,8 +1387,8 @@ function ConflictActions({
   const isResolved = status === "resolved";
   return (
     <div className="space-y-1.5">
-      <div className="text-[11px] font-semibold text-muted-foreground">
-        Resolution {isResolved && <span className="text-green-400">· Resolved</span>}
+      <div className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider px-0.5">
+        Resolution {isResolved && <span className="text-green-500 normal-case">· Resolved</span>}
       </div>
       <div className="grid grid-cols-2 gap-1.5">
         <button

@@ -908,8 +908,8 @@ export function DocumentReview({
         (block.source.rig && /offshore/i.test(block.source.rig)
           ? "Offshore"
           : block.source.rig && /land|onshore/i.test(block.source.rig)
-          ? "Onshore"
-          : null);
+            ? "Onshore"
+            : null);
 
       const scope: AppendixScope = {
         region: block.source.region ?? null,
@@ -1085,8 +1085,7 @@ export function DocumentReview({
         {/* Center: Document body */}
         <div className="flex-1 overflow-auto">
           <div className="max-w-4xl mx-auto px-6 py-6">
-            {/* Summary banner */}
-            <DocumentBanner summary={data.summary} />
+
 
             {/* Sections */}
             {sections.map((section) => {
@@ -1119,7 +1118,7 @@ export function DocumentReview({
                     // Appendix-assigned blocks move to the dedicated appendix
                     // section at the bottom — no longer appear inline.
                     if (block.appendix_id) return null;
-                    
+
                     const isChunk = block.type === "kcad_addition" || block.type === "conflict" || block.type === "gap";
                     if (!showChunks && isChunk) return null;
 
@@ -1184,17 +1183,13 @@ export function DocumentReview({
           </div>
         </div>
 
-        {/* Right: Detail panel (conditional) */}
-        {showChunks && selectedBlock && (() => {
-          // Resolve the unified-polish state for the selected block's section.
-          // `polished` = an override exists; `stale` = a block in the same
-          // heading_path has a history entry newer than the override's
-          // generated_at. Both feed into the "Update Consolidated" CTA's label.
+        {/* Right: Detail panel (persistent when showChunks is on) */}
+        {showChunks && (() => {
           const overrides = data.unified_overrides ?? {};
-          const sectionHeading = selectedBlock.heading_path || "";
+          const sectionHeading = selectedBlock?.heading_path || "";
           const override = overrides[sectionHeading];
           let stale = false;
-          if (override) {
+          if (selectedBlock && override) {
             const cutoff = override.generated_at || "";
             for (const b of data.blocks) {
               if (b.heading_path !== sectionHeading) continue;
@@ -1208,7 +1203,6 @@ export function DocumentReview({
           return (
             <DetailPanel
               block={selectedBlock}
-              onClose={() => setSelectedBlockId(null)}
               onAction={handleAction}
               onAssignToAppendix={handleAssignToAppendix}
               onRevert={handleRevert}
@@ -1218,7 +1212,7 @@ export function DocumentReview({
               currentUserEmail={authUser?.email ?? null}
               readOnly={isLocked}
               onUpdateUnified={handleUpdateUnified}
-              unifiedUpdating={polishingSections.has(sectionHeading)}
+              unifiedUpdating={selectedBlock ? polishingSections.has(sectionHeading) : false}
               unifiedPolished={!!override}
               unifiedStale={stale}
             />
@@ -1294,11 +1288,10 @@ function ReviewHeader({
           <button
             key={f}
             onClick={() => onFilterChange(f)}
-            className={`px-2 py-0.5 text-xs rounded transition-colors ${
-              viewFilter === f
+            className={`px-2 py-0.5 text-xs rounded transition-colors ${viewFilter === f
                 ? "bg-background text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
-            }`}
+              }`}
           >
             {f.charAt(0).toUpperCase() + f.slice(1)}
           </button>
@@ -1361,9 +1354,8 @@ function ApprovalWorkflowBar({
 
   return (
     <div
-      className={`px-4 py-2 border-b border-border shrink-0 flex items-center gap-4 ${
-        isPublished ? "bg-green-500/5" : "bg-background"
-      }`}
+      className={`px-4 py-2 border-b border-border shrink-0 flex items-center gap-4 ${isPublished ? "bg-success/5" : "bg-background"
+        }`}
     >
       <div className="flex items-center gap-1 flex-wrap">
         {REVIEW_STAGES.map((stage, i) => {
@@ -1373,22 +1365,20 @@ function ApprovalWorkflowBar({
             <div key={stage.key} className="flex items-center gap-1">
               <div
                 title={stage.hint}
-                className={`flex items-center gap-1.5 text-[12px] px-2 py-0.5 rounded ${
-                  current
+                className={`flex items-center gap-1.5 text-[12px] px-2 py-0.5 rounded ${current
                     ? "bg-primary/20 text-foreground font-medium"
                     : reached
                       ? "text-foreground"
                       : "text-muted-foreground"
-                }`}
+                  }`}
               >
                 <span
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    current
+                  className={`w-1.5 h-1.5 rounded-full ${current
                       ? "bg-primary"
                       : reached
                         ? "bg-foreground/60"
                         : "bg-muted-foreground/40"
-                  }`}
+                    }`}
                 />
                 {stage.label}
               </div>
@@ -1414,18 +1404,17 @@ function ApprovalWorkflowBar({
       {forward && (
         <button
           onClick={() => onChange(forward.target)}
-          className={`text-xs px-3 py-1 rounded border transition-colors flex items-center gap-1.5 ${
-            forward.target === "published"
-              ? "bg-green-600 text-white border-green-700 hover:bg-green-700"
+          className={`text-xs px-3 py-1 rounded border transition-colors flex items-center gap-1.5 ${forward.target === "published"
+              ? "bg-success text-white border-success hover:bg-success/90"
               : "bg-primary text-primary-foreground border-primary hover:bg-primary/90"
-          }`}
+            }`}
         >
           {forward.label}
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       )}
       {isPublished && (
-        <span className="text-xs text-green-400 font-medium px-2 py-1 rounded border border-green-500/30 bg-green-500/10 flex items-center gap-1.5">
+        <span className="text-xs text-success font-medium px-2 py-1 rounded border border-success/30 bg-success/10 flex items-center gap-1.5">
           <Lock className="w-3 h-3" /> Published
         </span>
       )}
@@ -1475,21 +1464,29 @@ function FilterChipBar({
   };
 
   return (
-    <div className="px-4 py-2 border-b border-border bg-muted/20 shrink-0 flex items-center gap-3 flex-wrap text-xs">
+    <div className="px-4 py-2 border-b border-border bg-muted/20 shrink-0 flex items-center gap-3 flex-wrap text-[12px]">
       <ChipGroup
         label="Type"
         values={RELATIONSHIP_CHIPS as readonly string[]}
         active={relationshipFilter}
         onToggle={(v) => toggle(relationshipFilter, v, onRelationshipChange)}
         colorFor={relationshipChipColor}
+        checkboxMode
       />
       <div className="h-4 w-px bg-border" />
       <ChipGroup
         label="Mode"
-        values={NORMATIVE_CHIPS as readonly string[]}
-        active={normativeFilter}
-        onToggle={(v) => toggle(normativeFilter, v, onNormativeChange)}
-        colorFor={normativeChipColor}
+        values={["none", ...NORMATIVE_CHIPS] as readonly string[]}
+        active={normativeFilter.size === 0 ? new Set(["none"]) : normativeFilter}
+        onToggle={(v) => {
+          if (v === "none") {
+            onNormativeChange(new Set());
+          } else {
+            onNormativeChange(new Set([v]));
+          }
+        }}
+        colorFor={(v) => v === "none" ? { selected: "bg-muted text-foreground border-border", idle: "hover:bg-muted/50" } : normativeChipColor(v)}
+        radioMode
       />
       <span className="flex-1" />
       <span className="text-muted-foreground">
@@ -1510,11 +1507,10 @@ function FilterChipBar({
       <button
         onClick={() => onToggleSources(!showSources)}
         title="Color-code block text by provenance (HP / KCAD / Edited)"
-        className={`px-2 py-0.5 rounded border text-[11px] transition-colors flex items-center gap-1.5 ${
-          showSources
+        className={`px-2 py-0.5 rounded border text-[12px] transition-colors flex items-center gap-1.5 ${showSources
             ? "bg-primary/10 text-primary border-primary/40"
             : "border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
-        }`}
+          }`}
       >
         {showSources ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
         {showSources ? "Clean View" : "Show Sources"}
@@ -1522,11 +1518,10 @@ function FilterChipBar({
       <button
         onClick={() => onToggleChunks(!showChunks)}
         title={showChunks ? "Hide individual chunk cards" : "Show individual chunk cards"}
-        className={`px-2 py-0.5 rounded border text-[11px] transition-colors flex items-center gap-1.5 ${
-          showChunks
+        className={`px-2 py-0.5 rounded border text-[12px] transition-colors flex items-center gap-1.5 ${showChunks
             ? "bg-primary/10 text-primary border-primary/40"
             : "border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
-        }`}
+          }`}
       >
         {showChunks ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
         {showChunks ? "Hide Chunks" : "Show Chunks"}
@@ -1541,16 +1536,20 @@ function ChipGroup({
   active,
   onToggle,
   colorFor,
+  radioMode,
+  checkboxMode,
 }: {
   label: string;
   values: readonly string[];
   active: Set<string>;
   onToggle: (v: string) => void;
   colorFor: (v: string) => { selected: string; idle: string };
+  radioMode?: boolean;
+  checkboxMode?: boolean;
 }) {
   return (
     <div className="flex items-center gap-1.5">
-      <span className="text-[11px] uppercase tracking-wide text-muted-foreground">{label}</span>
+      <span className="text-[12px] uppercase tracking-wide text-muted-foreground">{label}</span>
       {values.map((v) => {
         const { selected, idle } = colorFor(v);
         const on = active.has(v);
@@ -1558,10 +1557,31 @@ function ChipGroup({
           <button
             key={v}
             onClick={() => onToggle(v)}
-            className={`px-2 py-0.5 rounded border text-[11px] transition-colors ${
-              on ? selected : `border-border text-muted-foreground hover:text-foreground ${idle}`
-            }`}
+            className={`flex items-center gap-1.5 px-2 py-0.5 rounded border text-[12px] capitalize transition-colors ${on ? selected : `border-border text-muted-foreground hover:text-foreground ${idle}`
+              }`}
           >
+            {radioMode && (
+              <div
+                className={`w-3 h-3 rounded-full border flex items-center justify-center shrink-0 ${
+                  on ? "border-current" : "border-muted-foreground"
+                }`}
+              >
+                {on && <div className="w-1.5 h-1.5 rounded-full bg-current" />}
+              </div>
+            )}
+            {checkboxMode && (
+              <div
+                className={`w-3 h-3 rounded-[2px] border flex items-center justify-center shrink-0 ${
+                  on ? "border-current bg-current" : "border-muted-foreground"
+                }`}
+              >
+                {on && (
+                  <svg className="w-2 h-2 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="2.5 6 5 8.5 9.5 3.5" />
+                  </svg>
+                )}
+              </div>
+            )}
             {v}
           </button>
         );
@@ -1577,13 +1597,13 @@ function relationshipChipColor(v: string): { selected: string; idle: string } {
   switch (v) {
     case "Variant":
       return {
-        selected: "bg-amber-500/15 text-amber-500 border-amber-500/40",
-        idle: "hover:bg-amber-500/10",
+        selected: "bg-warning/15 text-warning border-warning/40",
+        idle: "hover:bg-warning/10",
       };
     case "Complementary":
       return {
-        selected: "bg-blue-500/15 text-blue-400 border-blue-500/40",
-        idle: "hover:bg-blue-500/10",
+        selected: "bg-info/15 text-info border-info/40",
+        idle: "hover:bg-info/10",
       };
     case "Equivalent":
       return {
@@ -1597,8 +1617,8 @@ function relationshipChipColor(v: string): { selected: string; idle: string } {
       };
     case "Conflict":
       return {
-        selected: "bg-red-500/15 text-red-400 border-red-500/40",
-        idle: "hover:bg-red-500/10",
+        selected: "bg-error/15 text-error border-error/40",
+        idle: "hover:bg-error/10",
       };
     default:
       return {
@@ -1617,18 +1637,18 @@ function normativeChipColor(v: string): { selected: string; idle: string } {
       };
     case "standard":
       return {
-        selected: "bg-red-500/15 text-red-400 border-red-500/40",
-        idle: "hover:bg-red-500/10",
+        selected: "bg-error/15 text-error border-error/40",
+        idle: "hover:bg-error/10",
       };
     case "procedure":
       return {
-        selected: "bg-blue-500/15 text-blue-400 border-blue-500/40",
-        idle: "hover:bg-blue-500/10",
+        selected: "bg-info/15 text-info border-info/40",
+        idle: "hover:bg-info/10",
       };
     case "guideline":
       return {
-        selected: "bg-green-500/15 text-green-400 border-green-500/40",
-        idle: "hover:bg-green-500/10",
+        selected: "bg-success/15 text-success border-success/40",
+        idle: "hover:bg-success/10",
       };
     case "informational":
       return {
@@ -1734,7 +1754,7 @@ function AppendicesPanel({
   return (
     <div className="mt-4 pt-3 border-t border-border">
       <div className="text-xs font-semibold text-muted-foreground uppercase px-2 mb-2 flex items-center gap-1.5">
-        <span>Appendices</span>
+        <span>Supporting Content</span>
         <span className="text-[10px] text-muted-foreground/60">· {appendices.length}</span>
       </div>
       <div className="space-y-1.5 px-1">
@@ -2285,13 +2305,12 @@ function ExcludedContent({
                   onSelectBlock(isSelected ? null : b.id);
                 }
               }}
-              className={`rounded border px-3 py-2 text-xs transition-colors ${
-                isSelected
+              className={`rounded border px-3 py-2 text-xs transition-colors ${isSelected
                   ? "border-primary/60 bg-primary/10"
                   : clickable
                     ? "border-border bg-muted/20 hover:border-border/60 hover:bg-muted/40 cursor-pointer"
                     : "border-border bg-muted/20"
-              }`}
+                }`}
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-muted-foreground">
@@ -2406,11 +2425,11 @@ function relationshipStyles(block: ConsolidatedBlock): {
   switch (block.relationship) {
     case "Complementary":
       return {
-        border: "border-blue-500",
-        ring: "ring-blue-500/40 bg-blue-50/60 dark:bg-blue-950/30",
-        resting: "bg-blue-50/30 dark:bg-blue-950/15",
-        hover: "hover:bg-blue-50/50 dark:hover:bg-blue-950/25",
-        labelColor: "text-blue-600 dark:text-blue-400",
+        border: "border-info",
+        ring: "ring-info/40 bg-info/10",
+        resting: "bg-info/5",
+        hover: "hover:bg-info/15",
+        labelColor: "text-info",
         softenIdle: false,
       };
     case "Equivalent":
@@ -2425,11 +2444,11 @@ function relationshipStyles(block: ConsolidatedBlock): {
     case "Variant":
     default:
       return {
-        border: "border-amber-500",
-        ring: "ring-amber-500/40 bg-amber-50/60 dark:bg-amber-950/30",
-        resting: "bg-amber-50/30 dark:bg-amber-950/15",
-        hover: "hover:bg-amber-50/50 dark:hover:bg-amber-950/25",
-        labelColor: "text-amber-600 dark:text-amber-400",
+        border: "border-warning",
+        ring: "ring-warning/40 bg-warning/10",
+        resting: "bg-warning/5",
+        hover: "hover:bg-warning/15",
+        labelColor: "text-warning",
         softenIdle: false,
       };
   }
@@ -2457,9 +2476,9 @@ function KcadAdditionCard({
   const translation = useChunkTranslation(block.text, block.language);
   const styles = relationshipStyles(block);
   const statusColors: Record<string, string> = {
-    accepted: "bg-green-500/15 text-green-400 border-green-500/30",
+    accepted: "bg-success/15 text-success border-success/30",
     dismissed: "bg-muted/50 text-muted-foreground border-border",
-    edited: "bg-blue-500/15 text-blue-400 border-blue-500/30",
+    edited: "bg-info/15 text-info border-info/30",
     pending: "bg-muted/30 text-muted-foreground border-border",
   };
 
@@ -2470,33 +2489,28 @@ function KcadAdditionCard({
     <div
       id={`block-${block.id}`}
       onClick={onClick}
-      className={`group relative my-2 rounded-lg border-l-4 ${styles.border} cursor-pointer transition-all ${
-        isSelected ? `ring-2 ${styles.ring}` : `${styles.resting} ${styles.hover}`
-      } ${dimmed ? "opacity-60" : ""}`}
+      className={`group relative my-2 rounded-lg border-l-4 ${styles.border} cursor-pointer transition-all ${isSelected ? `ring-2 ${styles.ring}` : `${styles.resting} ${styles.hover}`
+        } ${dimmed ? "opacity-60" : ""}`}
     >
       <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
       {/* Header — region shows up in DetailPanel only (keeps card header compact) */}
       <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
-        <span className={`font-medium ${styles.labelColor} truncate`}>
-          {block.source.document?.replace(/\.pdf$/i, "")}
-        </span>
         <LanguageBadge language={block.language} className="shrink-0" />
         <NormativeModeBadge mode={block.normative_mode} />
         <FormatBadge format={block.format} />
         {showSources && (
           <span
-            className={`px-1.5 py-0.5 rounded text-[10px] border shrink-0 ${
-              block.edited_text
+            className={`px-1.5 py-0.5 rounded text-[10px] border shrink-0 ${block.edited_text
                 ? "border-zinc-500/30 bg-zinc-500/10 text-zinc-400"
-                : "border-blue-500/30 bg-blue-500/10 text-blue-400"
-            }`}
+                : "border-info/30 bg-info/10 text-info"
+              }`}
             title={block.edited_text ? "Reviewer-edited content" : "Content sourced from KCAD"}
           >
             {block.edited_text ? "Edited" : "KCAD"}
           </span>
         )}
         {block.edited_text && !showSources && (
-          <span className="px-1.5 py-0.5 rounded text-[10px] border border-blue-500/30 bg-blue-500/10 text-blue-400 shrink-0">
+          <span className="px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info shrink-0">
             Edited
           </span>
         )}
@@ -2518,10 +2532,7 @@ function KcadAdditionCard({
           {block.status}
         </span>
       </div>
-      {/* Relationship label */}
-      <div className="px-3 pb-1 text-xs text-muted-foreground">
-        {relationshipLabel(block)}
-      </div>
+      {/* Relationship label removed per request */}
       {/* Content. When the reviewer has edited this block, render their
           edited text directly (translation doesn't apply — they wrote it in
           whatever language they wanted). Otherwise show the original text
@@ -2567,29 +2578,24 @@ function ConflictCard({
     <div
       id={`block-${block.id}`}
       onClick={onClick}
-      className={`group relative my-2 rounded-lg border-l-4 border-red-500 cursor-pointer transition-all ${
-        isSelected ? "ring-2 ring-red-500/40 bg-red-50/60 dark:bg-red-950/30" : "bg-red-50/30 dark:bg-red-950/15 hover:bg-red-50/50 dark:hover:bg-red-950/25"
-      }`}
+      className={`group relative my-2 rounded-lg border-l-4 border-error cursor-pointer transition-all ${isSelected ? "ring-2 ring-error/40 bg-error/10" : "bg-error/5 hover:bg-error/15"
+        }`}
     >
       <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
       <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
-        <span className="font-medium text-red-500">&#9888; Conflict</span>
+        <span className="font-medium text-error">&#9888; Conflict</span>
         {block.conflict?.severity && (
           <span
-            className={`px-1.5 py-0.5 rounded text-[10px] border ${
-              block.conflict.severity === "critical"
-                ? "bg-red-500/15 text-red-400 border-red-500/30"
+            className={`px-1.5 py-0.5 rounded text-[10px] border ${block.conflict.severity === "critical"
+                ? "bg-error/15 text-error border-error/30"
                 : block.conflict.severity === "material"
-                  ? "bg-orange-500/15 text-orange-400 border-orange-500/30"
-                  : "bg-yellow-500/15 text-yellow-400 border-yellow-500/30"
-            }`}
+                  ? "bg-warning/15 text-warning border-warning/30"
+                  : "bg-warning/15 text-warning border-warning/30"
+              }`}
           >
             {block.conflict.severity}
           </span>
         )}
-        <span className="text-muted-foreground truncate">
-          {block.source.document?.replace(/\.pdf$/i, "")}
-        </span>
         <LanguageBadge language={block.language} className="shrink-0" />
         <span className="flex-1" />
         {translation.canTranslate && (
@@ -2600,29 +2606,28 @@ function ConflictCard({
             size="xs"
           />
         )}
-        <span className={`px-1.5 py-0.5 rounded text-[10px] border ${
-          block.status === "resolved"
-            ? "bg-green-500/15 text-green-400 border-green-500/30"
+        <span className={`px-1.5 py-0.5 rounded text-[10px] border ${block.status === "resolved"
+            ? "bg-success/15 text-success border-success/30"
             : "bg-muted/30 text-muted-foreground border-border"
-        }`}>
+          }`}>
           {block.status === "resolved" ? "resolved" : "open"}
         </span>
       </div>
 
       {block.conflict?.description && (
-        <div className="px-3 pb-1 text-xs text-red-400/80">{block.conflict.description}</div>
+        <div className="px-3 pb-1 text-xs text-error">{block.conflict.description}</div>
       )}
 
       {/* Show both statements when possible */}
       <div className="px-3 pb-3 space-y-1.5 text-sm">
         {block.hp_original_text && (
           <div className="text-xs">
-            <span className="font-medium text-blue-400">H&P: </span>
+            <span className="font-medium text-info">H&P: </span>
             <span className="text-foreground/70">{block.hp_original_text.slice(0, 200)}{block.hp_original_text.length > 200 ? "..." : ""}</span>
           </div>
         )}
         <div className="text-xs" dir={translation.dir}>
-          <span className="font-medium text-amber-400">KCAD: </span>
+          <span className="font-medium text-warning">KCAD: </span>
           <span className="text-foreground/70">{kcadSnippet}</span>
         </div>
         {translation.error && <TranslationError message={translation.error} />}
@@ -2656,16 +2661,12 @@ function GapCard({
     <div
       id={`block-${block.id}`}
       onClick={onClick}
-      className={`group relative my-2 rounded-lg border-l-4 border-violet-500 cursor-pointer transition-all ${
-        isSelected ? "ring-2 ring-violet-500/40 bg-violet-50/60 dark:bg-violet-950/30" : "bg-violet-50/30 dark:bg-violet-950/15 hover:bg-violet-50/50 dark:hover:bg-violet-950/25"
-      } ${reviewed && block.status === "dismissed" ? "opacity-50" : ""}`}
+      className={`group relative my-2 rounded-lg border-l-4 border-violet-500 cursor-pointer transition-all ${isSelected ? "ring-2 ring-violet-500/40 bg-violet-50/60 dark:bg-violet-950/30" : "bg-violet-50/30 dark:bg-violet-950/15 hover:bg-violet-50/50 dark:hover:bg-violet-950/25"
+        } ${reviewed && block.status === "dismissed" ? "opacity-50" : ""}`}
     >
       <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
       <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
         <span className="font-medium text-violet-500">New content</span>
-        <span className="text-muted-foreground truncate">
-          {block.source.document?.replace(/\.pdf$/i, "")}
-        </span>
         <LanguageBadge language={block.language} className="shrink-0" />
         <span className="flex-1" />
         {translation.canTranslate && (
@@ -2676,9 +2677,8 @@ function GapCard({
             size="xs"
           />
         )}
-        <span className={`px-1.5 py-0.5 rounded text-[10px] border ${
-          reviewed ? "bg-green-500/15 text-green-400 border-green-500/30" : "bg-muted/30 text-muted-foreground border-border"
-        }`}>
+        <span className={`px-1.5 py-0.5 rounded text-[10px] border ${reviewed ? "bg-success/15 text-success border-success/30" : "bg-muted/30 text-muted-foreground border-border"
+          }`}>
           {block.status}
         </span>
       </div>

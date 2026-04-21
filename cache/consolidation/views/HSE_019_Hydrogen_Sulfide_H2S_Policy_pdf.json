@@ -167,11 +167,49 @@
           "user_name": "Dev User",
           "user_email": "dev@example.com",
           "at": "2026-04-21T15:46:52.413458+00:00"
+        },
+        {
+          "version": 7,
+          "action": "accepted",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T16:27:52.320009+00:00"
+        },
+        {
+          "version": 8,
+          "action": "accepted",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T16:27:56.644334+00:00"
         }
       ],
       "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
       "relationship": "Complementary",
-      "status": "pending"
+      "status": "accepted",
+      "resolution": "place_here"
     },
     {
       "id": "block_0002",
@@ -231,7 +269,6 @@
       "section_function": "objective",
       "normative_mode": "informational",
       "heading_path": "Hydrogen Sulfide (H2S) Policy > 1. Scope and Application",
-      "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
       "language": "en",
       "source": {
         "document": "K-KS-HS-PR-005.pdf",
@@ -240,7 +277,6 @@
         "rig": "All Rigs",
         "chunk_id": "K-KS-HS-PR-005::47b0db460bdb"
       },
-      "relationship": "Complementary",
       "tier": 1,
       "additive_detail": null,
       "conflict": null,
@@ -254,6 +290,9 @@
         "decision_evidence_logic": true
       },
       "hp_original_text": "1.1. Prevent all incidents associated with H2S.\n\n1.2. Provide proper evacuation procedures to cope with emergencies.\n\n1.3. Provide immediate and adequate medical attention should an injury occur.",
+      "history": [],
+      "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+      "relationship": "Complementary",
       "status": "pending"
     },
     {
@@ -307,43 +346,6 @@
       "status": "has_additions"
     },
     {
-      "id": "block_0007",
-      "type": "kcad_addition",
-      "text": "### 5.3. HEALTH EFFECTS\n\nIf H2S is in sufficient concentration, it is a highly toxic gas, the toxic effects of exposure to H2S can be very rapid and death can occur very quickly.\n\nThe major hazard of H2S is its ability to cause sudden death due to accidental exposure.\n\nThe H2S smells of rotten eggs and can be detected at concentrations as low as 0.02 ppm, but for relatively low concentrations (100 ppm) the sense of smell is lost 2-15 minutes of exposure, consequently at the higher concentration (the most dangerous) H2S is not detectable by smell, and reliance must be placed on detection equipment for alert (fixed and portable H2S detection equipment).",
-      "format": "prose",
-      "section_function": "context",
-      "normative_mode": "informational",
-      "heading_path": "Hydrogen Sulfide (H2S) Policy > 3. H2S Description and Hazards",
-      "source_heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.3. HEALTH EFFECTS",
-      "language": "en",
-      "source": {
-        "document": "K-KS-HS-PR-005.pdf",
-        "origin": "KCAD",
-        "region": "Saudi Arabia",
-        "rig": "All Rigs",
-        "chunk_id": "K-KS-HS-PR-005::c64b19ee904b"
-      },
-      "relationship": "Variant",
-      "tier": 1,
-      "additive_detail": "KCAD adds odor-detection at 0.02 ppm, smell-loss timing of 2-15 minutes at 100 ppm, and explicitly names fixed and portable H2S detection equipment for alert; these specifics are not stated in HP candidate 0.",
-      "conflict": {
-        "detected": false,
-        "description": null,
-        "severity": null
-      },
-      "ai_confidence": "high",
-      "ai_reasoning": "HP candidate 0 covers the same informational hazard context: H2S odor, loss of smell at hazardous concentrations, and the resulting unreliability of smell as a warning sign. KCAD is best treated as a Variant because it adds concrete numeric and equipment detail within a Saudi Arabia context rather than merely restating HP. HP candidate 2 is complementary because it converts the same hazard logic into a mandatory rule not to rely on smell.",
-      "dimension_matches": {
-        "document_function": true,
-        "operational_object": true,
-        "intent_type": true,
-        "applicability_context": false,
-        "decision_evidence_logic": true
-      },
-      "hp_original_text": "## 3. H2S Description and Hazards\n\nHydrogen sulfide is a colorless, flammable, extremely hazardous gas with a “rotten egg” smell at concentrations under 100 ppm. Some common names for the gas include sewer gas, stink damp, swamp gas and manure gas. It occurs naturally in crude petroleum, natural gas, and hot springs. In addition, hydrogen sulfide is produced by bacterial breakdown of organic materials and human and animal wastes (e.g., sewage).\n\nHydrogen sulfide is heavier than air and may travel along the ground. It collects in low-lying and enclosed, poorly ventilated areas such as pits, cellars, and reserve pits.\n\nThe primary route of exposure is inhalation, and the gas is rapidly absorbed by the lungs. Absorption through the skin is minimal. People can smell the “rotten egg” odor of hydrogen sulfide at low concentrations in air. However, with continuous low-level exposure, or at high concentrations, a person loses his/her ability to smell the gas even though it is still present. This can happen very rapidly and at high concentrations (over 100 ppm), the ability to smell the gas can be lost instantaneously.",
-      "status": "pending"
-    },
-    {
       "id": "block_0008",
       "type": "kcad_addition",
       "text": "Hydrogen Sulphide is denser than air and will accumulate in low-lying areas as well as cellars, tanks, pits, etc., and can poison somebody or explode many days after the gas escaped.\n\nAs Hydrogen Sulphide is soluble in both water and hydrocarbons, it may be encountered in oil and gas wells, water wells, stagnant water, sewers, etc., and in general in confined spaces.\n\nHydrogen Sulphide, in combination with water, forms a weak acid that will attack metals in the same manner as carbon dioxide or oxygen. Hydrogen Sulphide embitters steel and other materials.",
@@ -379,6 +381,64 @@
       },
       "hp_original_text": "## 3. H2S Description and Hazards\n\nHydrogen sulfide is a colorless, flammable, extremely hazardous gas with a “rotten egg” smell at concentrations under 100 ppm. Some common names for the gas include sewer gas, stink damp, swamp gas and manure gas. It occurs naturally in crude petroleum, natural gas, and hot springs. In addition, hydrogen sulfide is produced by bacterial breakdown of organic materials and human and animal wastes (e.g., sewage).\n\nHydrogen sulfide is heavier than air and may travel along the ground. It collects in low-lying and enclosed, poorly ventilated areas such as pits, cellars, and reserve pits.\n\nThe primary route of exposure is inhalation, and the gas is rapidly absorbed by the lungs. Absorption through the skin is minimal. People can smell the “rotten egg” odor of hydrogen sulfide at low concentrations in air. However, with continuous low-level exposure, or at high concentrations, a person loses his/her ability to smell the gas even though it is still present. This can happen very rapidly and at high concentrations (over 100 ppm), the ability to smell the gas can be lost instantaneously.",
       "status": "pending"
+    },
+    {
+      "id": "block_0007",
+      "type": "kcad_addition",
+      "text": "### 5.3. HEALTH EFFECTS\n\nIf H2S is in sufficient concentration, it is a highly toxic gas, the toxic effects of exposure to H2S can be very rapid and death can occur very quickly.\n\nThe major hazard of H2S is its ability to cause sudden death due to accidental exposure.\n\nThe H2S smells of rotten eggs and can be detected at concentrations as low as 0.02 ppm, but for relatively low concentrations (100 ppm) the sense of smell is lost 2-15 minutes of exposure, consequently at the higher concentration (the most dangerous) H2S is not detectable by smell, and reliance must be placed on detection equipment for alert (fixed and portable H2S detection equipment).",
+      "format": "prose",
+      "section_function": "context",
+      "normative_mode": "informational",
+      "heading_path": "Hydrogen Sulfide (H2S) Policy > 3. H2S Description and Hazards",
+      "source_heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.3. HEALTH EFFECTS",
+      "language": "en",
+      "source": {
+        "document": "K-KS-HS-PR-005.pdf",
+        "origin": "KCAD",
+        "region": "Saudi Arabia",
+        "rig": "All Rigs",
+        "chunk_id": "K-KS-HS-PR-005::c64b19ee904b"
+      },
+      "relationship": "Variant",
+      "tier": 1,
+      "additive_detail": "KCAD adds odor-detection at 0.02 ppm, smell-loss timing of 2-15 minutes at 100 ppm, and explicitly names fixed and portable H2S detection equipment for alert; these specifics are not stated in HP candidate 0.",
+      "conflict": {
+        "detected": false,
+        "description": null,
+        "severity": null
+      },
+      "ai_confidence": "high",
+      "ai_reasoning": "HP candidate 0 covers the same informational hazard context: H2S odor, loss of smell at hazardous concentrations, and the resulting unreliability of smell as a warning sign. KCAD is best treated as a Variant because it adds concrete numeric and equipment detail within a Saudi Arabia context rather than merely restating HP. HP candidate 2 is complementary because it converts the same hazard logic into a mandatory rule not to rely on smell.",
+      "dimension_matches": {
+        "document_function": true,
+        "operational_object": true,
+        "intent_type": true,
+        "applicability_context": false,
+        "decision_evidence_logic": true
+      },
+      "hp_original_text": "## 3. H2S Description and Hazards\n\nHydrogen sulfide is a colorless, flammable, extremely hazardous gas with a “rotten egg” smell at concentrations under 100 ppm. Some common names for the gas include sewer gas, stink damp, swamp gas and manure gas. It occurs naturally in crude petroleum, natural gas, and hot springs. In addition, hydrogen sulfide is produced by bacterial breakdown of organic materials and human and animal wastes (e.g., sewage).\n\nHydrogen sulfide is heavier than air and may travel along the ground. It collects in low-lying and enclosed, poorly ventilated areas such as pits, cellars, and reserve pits.\n\nThe primary route of exposure is inhalation, and the gas is rapidly absorbed by the lungs. Absorption through the skin is minimal. People can smell the “rotten egg” odor of hydrogen sulfide at low concentrations in air. However, with continuous low-level exposure, or at high concentrations, a person loses his/her ability to smell the gas even though it is still present. This can happen very rapidly and at high concentrations (over 100 ppm), the ability to smell the gas can be lost instantaneously.",
+      "status": "pending",
+      "history": [
+        {
+          "version": 1,
+          "action": "moved_to",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.3. HEALTH EFFECTS",
+            "relationship": "Variant",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 5. PROCEDURE > 5.3. HEALTH EFFECTS",
+            "relationship": "Variant",
+            "status": "pending"
+          },
+          "from_position": 7,
+          "to_position": 8,
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T16:18:49.427539+00:00"
+        }
+      ]
     },
     {
       "id": "block_0009",
@@ -3189,6 +3249,20 @@
       "user_name": "Dev User",
       "user_email": "dev@example.com",
       "at": "2026-04-21T16:04:33.261367+00:00"
+    },
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T16:13:04.637442+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T16:13:08.757161+00:00"
     }
   ]
 }

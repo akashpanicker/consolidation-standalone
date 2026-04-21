@@ -9,11 +9,11 @@ import type { ConsolidatedBlock } from "./types";
 // dark and light themes, not thematic meaning.
 
 const NORMATIVE_MODE_STYLES: Record<string, string> = {
-  policy: "bg-purple-500/15 text-purple-400 border-purple-500/30",
-  standard: "bg-red-500/15 text-red-400 border-red-500/30",
-  procedure: "bg-blue-500/15 text-blue-400 border-blue-500/30",
-  guideline: "bg-green-500/15 text-green-400 border-green-500/30",
-  informational: "bg-zinc-500/15 text-zinc-400 border-zinc-500/30",
+  policy: "bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30",
+  standard: "bg-error/15 text-error border-error/30",
+  procedure: "bg-info/15 text-info border-info/30",
+  guideline: "bg-success/15 text-success border-success/30",
+  informational: "bg-zinc-500/15 text-zinc-600 dark:text-zinc-400 border-zinc-500/30",
 };
 
 // Section function badge uses a neutral treatment — 14 categories is too
@@ -31,7 +31,7 @@ const FORMAT_STYLES: Record<string, string> = {
 };
 
 const PILL =
-  "inline-flex items-center px-1.5 py-0.5 rounded text-[11px] border font-medium whitespace-nowrap";
+  "inline-flex items-center px-1.5 py-0.5 rounded text-[11px] border font-medium whitespace-nowrap capitalize";
 
 export function NormativeModeBadge({ mode }: { mode: string | undefined | null }) {
   if (!mode) return null;
