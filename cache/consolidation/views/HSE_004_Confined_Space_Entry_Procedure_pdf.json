@@ -24,7 +24,60 @@
       "ai_reasoning": null,
       "dimension_matches": null,
       "hp_original_text": null,
-      "status": "unchanged"
+      "status": "edited",
+      "edited_text": "## 1. Purpose This document establishes procedures for classifying, preparing, and entering Confined Spaces to protect the health and safety of workers required to enter them.",
+      "history": [
+        {
+          "version": 1,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "unchanged"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 1. Purpose This document establishes procedures for classifying, preparing, and entering Confined Spaces to protect the health and safety of workers required to enter them."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T18:59:42.613923+00:00"
+        },
+        {
+          "version": 2,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 1. Purpose This document establishes procedures for classifying, preparing, and entering Confined Spaces to protect the health and safety of workers required to enter them."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 1. Purpose This document establishes procedures for classifying, preparing, and entering Confined Spaces to protect the health and safety of workers required to enter them."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:03:04.883912+00:00"
+        },
+        {
+          "version": 3,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 1. Purpose This document establishes procedures for classifying, preparing, and entering Confined Spaces to protect the health and safety of workers required to enter them."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 1. Purpose This document establishes procedures for classifying, preparing, and entering Confined Spaces to protect the health and safety of workers required to enter them."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:03:22.413360+00:00"
+        }
+      ]
     },
     {
       "id": "block_0001",
@@ -49,7 +102,26 @@
       "ai_reasoning": null,
       "dimension_matches": null,
       "hp_original_text": null,
-      "status": "has_additions"
+      "status": "edited",
+      "edited_text": "## 2. Definitions\n\n**2.1.** Confined Space – a space on the rig or yard that:\n\n- a. Has limited openings for entry and/or exit\n- b. May contain known or potential hazards\n- c. Is not intended for continuous occupancy\n- d. Has insufficient natural ventilation\n\n*Examples of confined spaces in H&P Drilling Operations include but are not limited to:*",
+      "history": [
+        {
+          "version": 1,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "has_additions"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 2. Definitions\n\n**2.1.** Confined Space – a space on the rig or yard that:\n\n- a. Has limited openings for entry and/or exit\n- b. May contain known or potential hazards\n- c. Is not intended for continuous occupancy\n- d. Has insufficient natural ventilation\n\n*Examples of confined spaces in H&P Drilling Operations include but are not limited to:*"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:04:06.875668+00:00"
+        }
+      ]
     },
     {
       "id": "block_0002",

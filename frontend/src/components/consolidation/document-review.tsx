@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useCallback, useEffect } from "react";
-import { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, Check, Lock, X, Eye, EyeOff } from "lucide-react";
+import { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, Check, Lock, X, Eye, EyeOff, Pencil } from "lucide-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -1083,9 +1083,9 @@ export function DocumentReview({
         />
 
         {/* Center: Document body */}
-        <div className="flex-1 overflow-auto">
-          <div className="max-w-4xl mx-auto px-6 py-6">
-
+        <div className="flex-1 overflow-auto bg-muted/30">
+          <div className="max-w-4xl mx-auto px-4 py-6">
+          <div className="bg-card rounded-xl shadow-sm px-6 py-6">
 
             {/* Sections */}
             {sections.map((section) => {
@@ -1141,6 +1141,7 @@ export function DocumentReview({
                           }}
                           onMove={(dir) => handleMoveBlock(block.id, dir)}
                           onRemove={() => handleAction(block.id, "removed")}
+                          onAction={(action, opts) => handleAction(block.id, action, opts)}
                           readOnly={isLocked}
                           showSources={showSources}
                         />
@@ -1180,6 +1181,7 @@ export function DocumentReview({
                 onSelectBlock={setSelectedBlockId}
               />
             )}
+          </div>
           </div>
         </div>
 
@@ -1289,8 +1291,8 @@ function ReviewHeader({
             key={f}
             onClick={() => onFilterChange(f)}
             className={`px-2 py-0.5 text-xs rounded transition-colors ${viewFilter === f
-                ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
+              ? "bg-background text-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
               }`}
           >
             {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -1366,18 +1368,18 @@ function ApprovalWorkflowBar({
               <div
                 title={stage.hint}
                 className={`flex items-center gap-1.5 text-[12px] px-2 py-0.5 rounded ${current
-                    ? "bg-primary/20 text-foreground font-medium"
-                    : reached
-                      ? "text-foreground"
-                      : "text-muted-foreground"
+                  ? "bg-primary/20 text-foreground font-medium"
+                  : reached
+                    ? "text-foreground"
+                    : "text-muted-foreground"
                   }`}
               >
                 <span
                   className={`w-1.5 h-1.5 rounded-full ${current
-                      ? "bg-primary"
-                      : reached
-                        ? "bg-foreground/60"
-                        : "bg-muted-foreground/40"
+                    ? "bg-primary"
+                    : reached
+                      ? "bg-foreground/60"
+                      : "bg-muted-foreground/40"
                     }`}
                 />
                 {stage.label}
@@ -1405,8 +1407,8 @@ function ApprovalWorkflowBar({
         <button
           onClick={() => onChange(forward.target)}
           className={`text-xs px-3 py-1 rounded border transition-colors flex items-center gap-1.5 ${forward.target === "published"
-              ? "bg-success text-white border-success hover:bg-success/90"
-              : "bg-primary text-primary-foreground border-primary hover:bg-primary/90"
+            ? "bg-success text-white border-success hover:bg-success/90"
+            : "bg-primary text-primary-foreground border-primary hover:bg-primary/90"
             }`}
         >
           {forward.label}
@@ -1508,8 +1510,8 @@ function FilterChipBar({
         onClick={() => onToggleSources(!showSources)}
         title="Color-code block text by provenance (HP / KCAD / Edited)"
         className={`px-2 py-0.5 rounded border text-[12px] transition-colors flex items-center gap-1.5 ${showSources
-            ? "bg-primary/10 text-primary border-primary/40"
-            : "border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
+          ? "bg-primary/10 text-primary border-primary/40"
+          : "border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
           }`}
       >
         {showSources ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
@@ -1519,8 +1521,8 @@ function FilterChipBar({
         onClick={() => onToggleChunks(!showChunks)}
         title={showChunks ? "Hide individual chunk cards" : "Show individual chunk cards"}
         className={`px-2 py-0.5 rounded border text-[12px] transition-colors flex items-center gap-1.5 ${showChunks
-            ? "bg-primary/10 text-primary border-primary/40"
-            : "border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
+          ? "bg-primary/10 text-primary border-primary/40"
+          : "border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
           }`}
       >
         {showChunks ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
@@ -1562,18 +1564,16 @@ function ChipGroup({
           >
             {radioMode && (
               <div
-                className={`w-3 h-3 rounded-full border flex items-center justify-center shrink-0 ${
-                  on ? "border-current" : "border-muted-foreground"
-                }`}
+                className={`w-3 h-3 rounded-full border flex items-center justify-center shrink-0 ${on ? "border-current" : "border-muted-foreground"
+                  }`}
               >
                 {on && <div className="w-1.5 h-1.5 rounded-full bg-current" />}
               </div>
             )}
             {checkboxMode && (
               <div
-                className={`w-3 h-3 rounded-[2px] border flex items-center justify-center shrink-0 ${
-                  on ? "border-current bg-current" : "border-muted-foreground"
-                }`}
+                className={`w-3 h-3 rounded-[2px] border flex items-center justify-center shrink-0 ${on ? "border-current bg-current" : "border-muted-foreground"
+                  }`}
               >
                 {on && (
                   <svg className="w-2 h-2 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -1839,6 +1839,7 @@ function ContentBlock({
   onClick,
   onMove,
   onRemove,
+  onAction,
   readOnly,
   showSources,
 }: {
@@ -1847,12 +1848,13 @@ function ContentBlock({
   onClick: () => void;
   onMove: (direction: "up" | "down") => void;
   onRemove: () => void;
+  onAction?: (action: string, opts?: { edited_text?: string }) => Promise<void>;
   readOnly: boolean;
   showSources: boolean;
 }) {
   switch (block.type) {
     case "hp_original":
-      return <HpBlock block={block} showSources={showSources} />;
+      return <HpBlock block={block} showSources={showSources} onAction={readOnly ? undefined : onAction} readOnly={readOnly} />;
     case "kcad_addition":
       return (
         <KcadAdditionCard
@@ -1861,6 +1863,7 @@ function ContentBlock({
           onClick={onClick}
           onMove={onMove}
           onRemove={onRemove}
+          onAction={readOnly ? undefined : onAction}
           readOnly={readOnly}
           showSources={showSources}
         />
@@ -2306,10 +2309,10 @@ function ExcludedContent({
                 }
               }}
               className={`rounded border px-3 py-2 text-xs transition-colors ${isSelected
-                  ? "border-primary/60 bg-primary/10"
-                  : clickable
-                    ? "border-border bg-muted/20 hover:border-border/60 hover:bg-muted/40 cursor-pointer"
-                    : "border-border bg-muted/20"
+                ? "border-primary/60 bg-primary/10"
+                : clickable
+                  ? "border-border bg-muted/20 hover:border-border/60 hover:bg-muted/40 cursor-pointer"
+                  : "border-border bg-muted/20"
                 }`}
             >
               <div className="flex items-center gap-2 mb-1">
@@ -2358,53 +2361,113 @@ function BlockToolbar({
   onRemove: () => void;
   readOnly: boolean;
 }) {
-  // When the document is locked the toolbar stays off entirely — users
-  // can't hover-to-discover a disabled button row, so there's no point
-  // rendering a greyed ghost. The header banner communicates why.
-  if (readOnly) return null;
-
-  const stop = (fn: () => void) => (e: React.MouseEvent) => {
-    e.stopPropagation();
-    fn();
-  };
-  const btn =
-    "w-6 h-6 flex items-center justify-center text-[11px] rounded border border-border bg-background/80 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors backdrop-blur-sm";
-
-  return (
-    <div
-      className="absolute top-1 right-1 flex gap-0.5 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto focus-within:opacity-100 focus-within:pointer-events-auto transition-opacity z-10"
-    >
-      <button onClick={stop(() => onMove("up"))} title="Move up" className={btn}><ArrowUp className="w-3 h-3" /></button>
-      <button onClick={stop(() => onMove("down"))} title="Move down" className={btn}><ArrowDown className="w-3 h-3" /></button>
-      <button
-        onClick={stop(onRemove)}
-        title="Remove (sends to Excluded Content)"
-        className={`${btn} hover:text-red-400 hover:border-red-500/30`}
-      >
-        <X className="w-3 h-3" />
-      </button>
-    </div>
-  );
+  // Move up/down removed — overlapped the Edit button in the chunk header.
+  // X (remove) is rendered outside the card by each chunk card's wrapper.
+  void onMove; void onRemove; void readOnly;
+  return null;
 }
 
 /** HP original content — the base document. Dimmed when no additions. */
-function HpBlock({ block, showSources }: { block: ConsolidatedBlock; showSources: boolean }) {
+function HpBlock({
+  block,
+  showSources,
+  onAction,
+  readOnly,
+}: {
+  block: ConsolidatedBlock;
+  showSources: boolean;
+  onAction?: (action: string, opts?: { edited_text?: string }) => Promise<void>;
+  readOnly?: boolean;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const editRef = useRef<HTMLDivElement>(null);
   const dimmed = block.status === "unchanged";
   const colorCls = sourceTextColor(block, showSources);
+  const originalDisplay = stripLeadingMarkdownHeadings(block.text);
+  // Strip leading headings from edited_text too (prevents prose rendering them as h2/h3).
+  // Fall back to originalDisplay if stripping the edit leaves nothing — prevents invisible blocks.
+  const displayText = block.edited_text
+    ? (stripLeadingMarkdownHeadings(block.edited_text) || originalDisplay)
+    : originalDisplay;
+
+  useEffect(() => {
+    if (editing && editRef.current) {
+      // Seed contenteditable with the displayed (heading-stripped) text so the user
+      // edits exactly what they see, and subsequent saves stay heading-free.
+      editRef.current.innerText = displayText;
+      editRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editing]);
+
+  const handleSave = async () => {
+    if (!editRef.current || !onAction) return;
+    setBusy(true);
+    try {
+      await onAction("edited", { edited_text: editRef.current.innerText });
+      setEditing(false);
+    } finally {
+      setBusy(false);
+    }
+  };
 
   return (
     <div
       id={`block-${block.id}`}
-      className={`py-1 transition-opacity ${dimmed ? "opacity-50" : "opacity-100"}`}
+      className={`group/hpblock relative py-1 transition-opacity ${dimmed ? "opacity-50" : "opacity-100"}`}
     >
       {showSources && (
         <span className="inline-block text-[9px] font-semibold tracking-wide px-1 rounded border border-border bg-background text-muted-foreground mb-1">
           HP
         </span>
       )}
-      <div className={`prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${colorCls}`}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{stripLeadingMarkdownHeadings(block.text)}</ReactMarkdown>
+      <div className="flex items-start gap-1">
+        <div className={`flex-1 prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${colorCls}`}>
+          {editing ? (
+            <div
+              ref={editRef}
+              contentEditable
+              suppressContentEditableWarning
+              className="outline-none whitespace-pre-wrap border-b border-primary/40 pb-1 not-prose text-sm text-foreground"
+            />
+          ) : (
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{displayText}</ReactMarkdown>
+          )}
+        </div>
+        {!readOnly && !editing && onAction && (
+          <button
+            onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+            className="opacity-0 group-hover/hpblock:opacity-100 transition-opacity shrink-0 mt-0.5 p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted/50"
+            title="Edit paragraph"
+          >
+            <Pencil className="w-3 h-3" />
+          </button>
+        )}
       </div>
+      {block.edited_text && !editing && (
+        <span className="inline-block mt-1 px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info">
+          Edited
+        </span>
+      )}
+      {editing && (
+        <div className="mt-2 flex items-center gap-3">
+          <button
+            disabled={busy}
+            onClick={handleSave}
+            className="text-xs px-3 py-1.5 rounded bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
+          >
+            Save
+          </button>
+          <button
+            disabled={busy}
+            onClick={() => setEditing(false)}
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Discard
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -2461,6 +2524,7 @@ function KcadAdditionCard({
   onClick,
   onMove,
   onRemove,
+  onAction,
   readOnly,
   showSources,
 }: {
@@ -2469,9 +2533,13 @@ function KcadAdditionCard({
   onClick: () => void;
   onMove: (direction: "up" | "down") => void;
   onRemove: () => void;
+  onAction?: (action: string, opts?: { edited_text?: string }) => Promise<void>;
   readOnly: boolean;
   showSources: boolean;
 }) {
+  const [inlineEditing, setInlineEditing] = useState(false);
+  const [inlineBusy, setInlineBusy] = useState(false);
+  const inlineEditRef = useRef<HTMLDivElement>(null);
   const reviewed = isReviewed(block);
   const translation = useChunkTranslation(block.text, block.language);
   const styles = relationshipStyles(block);
@@ -2485,11 +2553,41 @@ function KcadAdditionCard({
   const dimmed =
     (reviewed && block.status === "dismissed") || (styles.softenIdle && !isSelected);
 
+  useEffect(() => {
+    if (inlineEditing && inlineEditRef.current) {
+      inlineEditRef.current.innerText = block.edited_text ?? block.text;
+      inlineEditRef.current.focus();
+    }
+  }, [inlineEditing]);
+
+  const handleInlineSave = async () => {
+    if (!inlineEditRef.current || !onAction) return;
+    setInlineBusy(true);
+    try {
+      await onAction("edited", { edited_text: inlineEditRef.current.innerText });
+      setInlineEditing(false);
+    } finally {
+      setInlineBusy(false);
+    }
+  };
+
+  const stop = (fn: () => void) => (e: React.MouseEvent) => { e.stopPropagation(); fn(); };
+
   return (
+    <div className="group/chunk-outer relative my-2 pr-8">
+      {!readOnly && (
+        <button
+          onClick={stop(onRemove)}
+          title="Remove (sends to Excluded Content)"
+          className="absolute right-0 top-2 w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-red-400 hover:border-red-500/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm z-10"
+        >
+          <X className="w-3 h-3" />
+        </button>
+      )}
     <div
       id={`block-${block.id}`}
-      onClick={onClick}
-      className={`group relative my-2 rounded-lg border-l-4 ${styles.border} cursor-pointer transition-all ${isSelected ? `ring-2 ${styles.ring}` : `${styles.resting} ${styles.hover}`
+      onClick={inlineEditing ? undefined : onClick}
+      className={`group relative rounded-lg border-l-4 ${styles.border} cursor-pointer transition-all ${isSelected ? `ring-2 ${styles.ring}` : `${styles.resting} ${styles.hover}`
         } ${dimmed ? "opacity-60" : ""}`}
     >
       <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
@@ -2501,8 +2599,8 @@ function KcadAdditionCard({
         {showSources && (
           <span
             className={`px-1.5 py-0.5 rounded text-[10px] border shrink-0 ${block.edited_text
-                ? "border-zinc-500/30 bg-zinc-500/10 text-zinc-400"
-                : "border-info/30 bg-info/10 text-info"
+              ? "border-zinc-500/30 bg-zinc-500/10 text-zinc-400"
+              : "border-info/30 bg-info/10 text-info"
               }`}
             title={block.edited_text ? "Reviewer-edited content" : "Content sourced from KCAD"}
           >
@@ -2531,23 +2629,62 @@ function KcadAdditionCard({
         <span className={`px-1.5 py-0.5 rounded text-[10px] border ${statusColors[block.status] ?? statusColors.pending}`}>
           {block.status}
         </span>
+        {!readOnly && onAction && !inlineEditing && (
+          <button
+            onClick={(e) => { e.stopPropagation(); setInlineEditing(true); }}
+            className="px-1.5 py-0.5 rounded text-[10px] border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+            title={block.edited_text ? "Edit this block's text again" : "Edit before accepting"}
+          >
+            ✎ Edit
+          </button>
+        )}
       </div>
-      {/* Relationship label removed per request */}
       {/* Content. When the reviewer has edited this block, render their
           edited text directly (translation doesn't apply — they wrote it in
           whatever language they wanted). Otherwise show the original text
           with the translation toggle. */}
       <div className="px-3 pb-3">
-        <div
-          dir={block.edited_text ? "ltr" : translation.dir}
-          className={`prose prose-sm dark:prose-invert max-w-none text-sm [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${sourceTextColor(block, showSources)}`}
-        >
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {stripLeadingMarkdownHeadings(block.edited_text ?? translation.displayText)}
-          </ReactMarkdown>
-        </div>
-        {!block.edited_text && translation.error && <TranslationError message={translation.error} />}
+        {inlineEditing ? (
+          <>
+            <div
+              ref={inlineEditRef}
+              contentEditable
+              suppressContentEditableWarning
+              onClick={(e) => e.stopPropagation()}
+              className="outline-none whitespace-pre-wrap border border-primary/40 rounded p-2 text-sm text-foreground min-h-[4em]"
+            />
+            <div className="mt-2 flex items-center gap-3" onClick={(e) => e.stopPropagation()}>
+              <button
+                disabled={inlineBusy}
+                onClick={handleInlineSave}
+                className="text-xs px-3 py-1.5 rounded bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
+              >
+                Save
+              </button>
+              <button
+                disabled={inlineBusy}
+                onClick={() => setInlineEditing(false)}
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Discard
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div
+              dir={block.edited_text ? "ltr" : translation.dir}
+              className={`prose prose-sm dark:prose-invert max-w-none text-sm [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${sourceTextColor(block, showSources)}`}
+            >
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {stripLeadingMarkdownHeadings(block.edited_text ?? translation.displayText)}
+              </ReactMarkdown>
+            </div>
+            {!block.edited_text && translation.error && <TranslationError message={translation.error} />}
+          </>
+        )}
       </div>
+    </div>
     </div>
   );
 }
@@ -2574,11 +2711,23 @@ function ConflictCard({
   const kcadText = translation.displayText;
   const kcadSnippet = kcadText.slice(0, 200) + (kcadText.length > 200 ? "..." : "");
 
+  const stop = (fn: () => void) => (e: React.MouseEvent) => { e.stopPropagation(); fn(); };
+
   return (
+    <div className="group/chunk-outer relative my-2 pr-8">
+      {!readOnly && (
+        <button
+          onClick={stop(onRemove)}
+          title="Remove (sends to Excluded Content)"
+          className="absolute right-0 top-2 w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-red-400 hover:border-red-500/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm z-10"
+        >
+          <X className="w-3 h-3" />
+        </button>
+      )}
     <div
       id={`block-${block.id}`}
       onClick={onClick}
-      className={`group relative my-2 rounded-lg border-l-4 border-error cursor-pointer transition-all ${isSelected ? "ring-2 ring-error/40 bg-error/10" : "bg-error/5 hover:bg-error/15"
+      className={`group relative rounded-lg border-l-4 border-error cursor-pointer transition-all ${isSelected ? "ring-2 ring-error/40 bg-error/10" : "bg-error/5 hover:bg-error/15"
         }`}
     >
       <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
@@ -2587,10 +2736,10 @@ function ConflictCard({
         {block.conflict?.severity && (
           <span
             className={`px-1.5 py-0.5 rounded text-[10px] border ${block.conflict.severity === "critical"
-                ? "bg-error/15 text-error border-error/30"
-                : block.conflict.severity === "material"
-                  ? "bg-warning/15 text-warning border-warning/30"
-                  : "bg-warning/15 text-warning border-warning/30"
+              ? "bg-error/15 text-error border-error/30"
+              : block.conflict.severity === "material"
+                ? "bg-warning/15 text-warning border-warning/30"
+                : "bg-warning/15 text-warning border-warning/30"
               }`}
           >
             {block.conflict.severity}
@@ -2607,8 +2756,8 @@ function ConflictCard({
           />
         )}
         <span className={`px-1.5 py-0.5 rounded text-[10px] border ${block.status === "resolved"
-            ? "bg-success/15 text-success border-success/30"
-            : "bg-muted/30 text-muted-foreground border-border"
+          ? "bg-success/15 text-success border-success/30"
+          : "bg-muted/30 text-muted-foreground border-border"
           }`}>
           {block.status === "resolved" ? "resolved" : "open"}
         </span>
@@ -2633,6 +2782,7 @@ function ConflictCard({
         {translation.error && <TranslationError message={translation.error} />}
       </div>
     </div>
+    </div>
   );
 }
 
@@ -2656,12 +2806,23 @@ function GapCard({
 }) {
   const reviewed = isReviewed(block);
   const translation = useChunkTranslation(block.text, block.language);
+  const stop = (fn: () => void) => (e: React.MouseEvent) => { e.stopPropagation(); fn(); };
 
   return (
+    <div className="group/chunk-outer relative my-2 pr-8">
+      {!readOnly && (
+        <button
+          onClick={stop(onRemove)}
+          title="Remove (sends to Excluded Content)"
+          className="absolute right-0 top-2 w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-red-400 hover:border-red-500/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm z-10"
+        >
+          <X className="w-3 h-3" />
+        </button>
+      )}
     <div
       id={`block-${block.id}`}
       onClick={onClick}
-      className={`group relative my-2 rounded-lg border-l-4 border-violet-500 cursor-pointer transition-all ${isSelected ? "ring-2 ring-violet-500/40 bg-violet-50/60 dark:bg-violet-950/30" : "bg-violet-50/30 dark:bg-violet-950/15 hover:bg-violet-50/50 dark:hover:bg-violet-950/25"
+      className={`group relative rounded-lg border-l-4 border-violet-500 cursor-pointer transition-all ${isSelected ? "ring-2 ring-violet-500/40 bg-violet-50/60 dark:bg-violet-950/30" : "bg-violet-50/30 dark:bg-violet-950/15 hover:bg-violet-50/50 dark:hover:bg-violet-950/25"
         } ${reviewed && block.status === "dismissed" ? "opacity-50" : ""}`}
     >
       <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
@@ -2691,6 +2852,7 @@ function GapCard({
         </div>
         {translation.error && <TranslationError message={translation.error} />}
       </div>
+    </div>
     </div>
   );
 }

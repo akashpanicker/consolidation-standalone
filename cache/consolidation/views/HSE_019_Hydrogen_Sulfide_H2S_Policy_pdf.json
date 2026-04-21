@@ -24,7 +24,268 @@
       "ai_reasoning": null,
       "dimension_matches": null,
       "hp_original_text": null,
-      "status": "has_additions"
+      "status": "edited",
+      "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S).",
+      "history": [
+        {
+          "version": 1,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "has_additions"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T18:52:00.728954+00:00"
+        },
+        {
+          "version": 2,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T18:52:10.982677+00:00"
+        },
+        {
+          "version": 3,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T18:52:31.292437+00:00"
+        },
+        {
+          "version": 4,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:05:24.417263+00:00"
+        },
+        {
+          "version": 5,
+          "action": "moved_to",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "from_position": 0,
+          "to_position": 1,
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:05:35.365555+00:00"
+        },
+        {
+          "version": 6,
+          "action": "moved_to",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "from_position": 1,
+          "to_position": 0,
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:05:37.592265+00:00"
+        },
+        {
+          "version": 7,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:16:27.354486+00:00"
+        },
+        {
+          "version": 8,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:16:39.047703+00:00"
+        },
+        {
+          "version": 9,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:17:50.310882+00:00"
+        },
+        {
+          "version": 10,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:18:15.751594+00:00"
+        },
+        {
+          "version": 11,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "# Hydrogen Sulfide (H2S) Policy ## 1. Scope and Application This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:32:50.899902+00:00"
+        },
+        {
+          "version": 12,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:32:56.351985+00:00"
+        },
+        {
+          "version": 13,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S). "
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:21:11.970062+00:00"
+        },
+        {
+          "version": 14,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S). "
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:21:17.344932+00:00"
+        },
+        {
+          "version": 15,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "This document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S)."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:21:21.960587+00:00"
+        }
+      ]
     },
     {
       "id": "block_0001",
@@ -204,12 +465,212 @@
           "user_name": "Dev User",
           "user_email": "dev@example.com",
           "at": "2026-04-21T16:27:56.644334+00:00"
+        },
+        {
+          "version": 9,
+          "action": "edited",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T18:51:51.042987+00:00"
+        },
+        {
+          "version": 10,
+          "action": "edited",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:13:22.720032+00:00"
+        },
+        {
+          "version": 11,
+          "action": "reverted_to_v9",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:04:55.022667+00:00"
+        },
+        {
+          "version": 12,
+          "action": "reverted_to_v10",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:04:57.877534+00:00"
+        },
+        {
+          "version": 13,
+          "action": "reverted_to_v11",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:04:59.429647+00:00"
+        },
+        {
+          "version": 14,
+          "action": "reverted_to_v12",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:05:00.365861+00:00"
+        },
+        {
+          "version": 15,
+          "action": "reverted_to_v6",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "resolution": "place_here",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia. The procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:05:04.252009+00:00"
+        },
+        {
+          "version": 16,
+          "action": "edited",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia.\n\nThe procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:20:46.316121+00:00"
+        },
+        {
+          "version": 17,
+          "action": "edited",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia.\n\nThe procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia.\n\nThe procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:20:51.910056+00:00"
+        },
+        {
+          "version": 18,
+          "action": "edited",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia.\n\nThe procedure applies wherever it is expected to have potential H2S presence during drilling operations."
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "edited",
+            "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia.\n\nThe procedure applies wherever it is expected to have potential H2S presence during drilling operations. "
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:20:58.438013+00:00"
         }
       ],
       "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
       "relationship": "Complementary",
-      "status": "accepted",
-      "resolution": "place_here"
+      "status": "edited",
+      "edited_text": "The procedure will be implemented within KCA Deutag Saudi Arabia.\n\nThe procedure applies wherever it is expected to have potential H2S presence during drilling operations. "
     },
     {
       "id": "block_0002",
@@ -234,7 +695,60 @@
       "ai_reasoning": null,
       "dimension_matches": null,
       "hp_original_text": null,
-      "status": "unchanged"
+      "status": "edited",
+      "edited_text": "The plan establishes guidelines for all personnel whose work activity may involve exposure to Hydrogen Sulfide Gas (H2S) with the expectation that we:",
+      "history": [
+        {
+          "version": 1,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "unchanged"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "The plan establishes guidelines for all personnel whose work activity may involve exposure to Hydrogen Sulfide Gas (H2S) with the expectation that we:"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:10:34.407213+00:00"
+        },
+        {
+          "version": 2,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "The plan establishes guidelines for all personnel whose work activity may involve exposure to Hydrogen Sulfide Gas (H2S) with the expectation that we:"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "The plan establishes guidelines for all personnel whose work activity may involve exposure to Hydrogen Sulfide Gas (H2S) with the expectation that we:"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:11:00.010649+00:00"
+        },
+        {
+          "version": 3,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "The plan establishes guidelines for all personnel whose work activity may involve exposure to Hydrogen Sulfide Gas (H2S) with the expectation that we:"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "The plan establishes guidelines for all personnel whose work activity may involve exposure to Hydrogen Sulfide Gas (H2S) with the expectation that we:"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:12:53.613223+00:00"
+        }
+      ]
     },
     {
       "id": "block_0003",
@@ -259,7 +773,60 @@
       "ai_reasoning": null,
       "dimension_matches": null,
       "hp_original_text": null,
-      "status": "has_additions"
+      "status": "edited",
+      "edited_text": "1.1. Prevent all incidents associated with H2S. 1.2. Provide proper evacuation procedures to cope with emergencies. 1.3. Provide immediate and adequate medical attention should an injury occur.",
+      "history": [
+        {
+          "version": 1,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "has_additions"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "1.1. Prevent all incidents associated with H2S. 1.2. Provide proper evacuation procedures to cope with emergencies. 1.3. Provide immediate and adequate medical attention should an injury occur."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T18:52:17.198805+00:00"
+        },
+        {
+          "version": 2,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "1.1. Prevent all incidents associated with H2S. 1.2. Provide proper evacuation procedures to cope with emergencies. 1.3. Provide immediate and adequate medical attention should an injury occur."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "1.1. Prevent all incidents associated with H2S. 1.2. Provide proper evacuation procedures to cope with emergencies. 1.3. Provide immediate and adequate medical attention should an injury occur."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T18:52:35.414882+00:00"
+        },
+        {
+          "version": 3,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "1.1. Prevent all incidents associated with H2S. 1.2. Provide proper evacuation procedures to cope with emergencies. 1.3. Provide immediate and adequate medical attention should an injury occur."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "1.1. Prevent all incidents associated with H2S. 1.2. Provide proper evacuation procedures to cope with emergencies. 1.3. Provide immediate and adequate medical attention should an injury occur."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T19:05:31.338824+00:00"
+        }
+      ]
     },
     {
       "id": "block_0004",
@@ -335,7 +902,6 @@
         "rig": null,
         "chunk_id": "HSE 019 Hydrogen Sulfide H2S Policy::7c11ed133f84"
       },
-      "relationship": null,
       "tier": null,
       "additive_detail": null,
       "conflict": null,
@@ -343,7 +909,44 @@
       "ai_reasoning": null,
       "dimension_matches": null,
       "hp_original_text": null,
-      "status": "has_additions"
+      "history": [
+        {
+          "version": 1,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "has_additions"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 3. H2S Description and Hazards Hydrogen sulfide is a colorless, flammable, extremely hazardous gas with a “rotten egg” smell at concentrations under 100 ppm. Some common names for the gas include sewer gas, stink damp, swamp gas and manure gas. It occurs naturally in crude petroleum, natural gas, and hot springs. In addition, hydrogen sulfide is produced by bacterial breakdown of organic materials and human and animal wastes (e.g., sewage). Hydrogen sulfide is heavier than air and may travel along the ground. It collects in low-lying and enclosed, poorly ventilated areas such as pits, cellars, and reserve pits. The primary route of exposure is inhalation, and the gas is rapidly absorbed by the lungs. Absorption through the skin is minimal. People can smell the “rotten egg” odor of hydrogen sulfide at low concentrations in air. However, with continuous low-level exposure, or at high concentrations, a person loses his/her ability to smell the gas even though it is still present. This can happen very rapidly and at high concentrations (over 100 ppm), the ability to smell the gas can be lost instantaneously."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T18:53:08.085988+00:00"
+        },
+        {
+          "version": 2,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 3. H2S Description and Hazards Hydrogen sulfide is a colorless, flammable, extremely hazardous gas with a “rotten egg” smell at concentrations under 100 ppm. Some common names for the gas include sewer gas, stink damp, swamp gas and manure gas. It occurs naturally in crude petroleum, natural gas, and hot springs. In addition, hydrogen sulfide is produced by bacterial breakdown of organic materials and human and animal wastes (e.g., sewage). Hydrogen sulfide is heavier than air and may travel along the ground. It collects in low-lying and enclosed, poorly ventilated areas such as pits, cellars, and reserve pits. The primary route of exposure is inhalation, and the gas is rapidly absorbed by the lungs. Absorption through the skin is minimal. People can smell the “rotten egg” odor of hydrogen sulfide at low concentrations in air. However, with continuous low-level exposure, or at high concentrations, a person loses his/her ability to smell the gas even though it is still present. This can happen very rapidly and at high concentrations (over 100 ppm), the ability to smell the gas can be lost instantaneously."
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 3. H2S Description and Hazards Hydrogen sulfide is a colorless, flammable, extremely hazardous gas with a “rotten egg” smell at concentrations under 100 ppm. Some common names for the gas include sewer gas, stink damp, swamp gas and manure gas. It occurs naturally in crude petroleum, natural gas, and hot springs. In addition, hydrogen sulfide is produced by bacterial breakdown of organic materials and human and animal wastes (e.g., sewage). Hydrogen sulfide is heavier than air and may travel along the ground. It collects in low-lying and enclosed, poorly ventilated areas such as pits, cellars, and reserve pits. The primary route of exposure is inhalation, and the gas is rapidly absorbed by the lungs. Absorption through the skin is minimal. People can smell the “rotten egg” odor of hydrogen sulfide at low concentrations in air. However, with continuous low-level exposure, or at high concentrations, a person loses his/her ability to smell the gas even though it is still present. This can happen very rapidly and at high concentrations (over 100 ppm), the ability to smell the gas can be lost instantaneously."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T20:04:21.288837+00:00"
+        }
+      ],
+      "relationship": null,
+      "status": "edited",
+      "edited_text": "## 3. H2S Description and Hazards Hydrogen sulfide is a colorless, flammable, extremely hazardous gas with a “rotten egg” smell at concentrations under 100 ppm. Some common names for the gas include sewer gas, stink damp, swamp gas and manure gas. It occurs naturally in crude petroleum, natural gas, and hot springs. In addition, hydrogen sulfide is produced by bacterial breakdown of organic materials and human and animal wastes (e.g., sewage). Hydrogen sulfide is heavier than air and may travel along the ground. It collects in low-lying and enclosed, poorly ventilated areas such as pits, cellars, and reserve pits. The primary route of exposure is inhalation, and the gas is rapidly absorbed by the lungs. Absorption through the skin is minimal. People can smell the “rotten egg” odor of hydrogen sulfide at low concentrations in air. However, with continuous low-level exposure, or at high concentrations, a person loses his/her ability to smell the gas even though it is still present. This can happen very rapidly and at high concentrations (over 100 ppm), the ability to smell the gas can be lost instantaneously."
     },
     {
       "id": "block_0008",
@@ -480,7 +1083,6 @@
         "rig": null,
         "chunk_id": "HSE 019 Hydrogen Sulfide H2S Policy::0a2537fa732d"
       },
-      "relationship": null,
       "tier": null,
       "additive_detail": null,
       "conflict": null,
@@ -488,6 +1090,8 @@
       "ai_reasoning": null,
       "dimension_matches": null,
       "hp_original_text": null,
+      "history": [],
+      "relationship": null,
       "status": "unchanged"
     },
     {
@@ -513,7 +1117,26 @@
       "ai_reasoning": null,
       "dimension_matches": null,
       "hp_original_text": null,
-      "status": "unchanged"
+      "status": "edited",
+      "edited_text": "## 4. Response Procedure and Working in an H2S Environment ### 4.1. H2S Personal Monitor Sounds When an H2S Personal Monitor sounds, personnel will: 4.1.1. Alert other crew members and the driller who will sound the muster/evacuation alarm. 4.1.2. H&P personnel will secure well, evacuate rig and monitor for H2S in accordance with the agreed upon plan between H&P and the Operator, based upon well conditions. 4.1.3. Don an escape pack (if one is near) 4.1.4. Move cross wind or up wind to the designated muster area and await further instructions.",
+      "history": [
+        {
+          "version": 1,
+          "action": "edited",
+          "before": {
+            "relationship": null,
+            "status": "unchanged"
+          },
+          "after": {
+            "relationship": null,
+            "status": "edited",
+            "edited_text": "## 4. Response Procedure and Working in an H2S Environment ### 4.1. H2S Personal Monitor Sounds When an H2S Personal Monitor sounds, personnel will: 4.1.1. Alert other crew members and the driller who will sound the muster/evacuation alarm. 4.1.2. H&P personnel will secure well, evacuate rig and monitor for H2S in accordance with the agreed upon plan between H&P and the Operator, based upon well conditions. 4.1.3. Don an escape pack (if one is near) 4.1.4. Move cross wind or up wind to the designated muster area and await further instructions."
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T18:53:20.664684+00:00"
+        }
+      ]
     },
     {
       "id": "block_0012",
