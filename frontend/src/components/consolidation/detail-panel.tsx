@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import {
@@ -33,6 +33,7 @@ export function DetailPanel({
   unifiedUpdating,
   unifiedPolished,
   unifiedStale,
+  onRequestCardEdit,
 }: {
   block: ConsolidatedBlock | null;
   onAction: (blockId: string, action: string, opts?: { note?: string; edited_text?: string; resolution?: string }) => Promise<void>;
@@ -47,19 +48,11 @@ export function DetailPanel({
   currentUserEmail?: string | null;
   readOnly?: boolean;
   onReclassify?: (blockId: string, relationship: "Equivalent" | "Variant" | "Complementary" | "Related") => Promise<void>;
+  onRequestCardEdit?: () => void;
 }) {
   const [note, setNote] = useState("");
   const [busy, setBusy] = useState(false);
   const [aiExpanded, setAiExpanded] = useState(false);
-  const [editMode, setEditMode] = useState(false);
-  const [editDraft, setEditDraft] = useState("");
-
-  useEffect(() => {
-    if (block) {
-      setEditDraft(block.edited_text ?? block.text ?? "");
-      setEditMode(false);
-    }
-  }, [block?.id, block?.edited_text, block?.text]);
 
   const handleAction = async (action: string, resolution?: string) => {
     if (!block) return;
@@ -69,20 +62,6 @@ export function DetailPanel({
         note: note || undefined,
         resolution,
       });
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const handleSaveEdit = async () => {
-    if (!block) return;
-    setBusy(true);
-    try {
-      await onAction(block.id, "edited", {
-        edited_text: editDraft,
-        note: note || undefined,
-      });
-      setEditMode(false);
     } finally {
       setBusy(false);
     }
@@ -142,30 +121,16 @@ export function DetailPanel({
             <div className="px-4 py-4 space-y-4">
               <DifferenceSummary block={block} />
 
-              {editMode ? (
-                <EditDraftEditor
-                  value={editDraft}
-                  onChange={setEditDraft}
-                  onSave={handleSaveEdit}
-                  onCancel={() => {
-                    setEditMode(false);
-                    setEditDraft(block.edited_text ?? block.text ?? "");
-                  }}
-                  busy={busy}
-                  hasExistingEdit={!!block.edited_text}
-                />
-              ) : (
-                <ChunkView
-                  label={block.edited_text ? "KCAD Content · Edited" : "KCAD Content"}
-                  accentColor="amber"
-                  chunk={block.kcad_chunk}
-                  fallbackText={block.edited_text ?? block.text}
-                  language={block.language ?? block.kcad_chunk?.language}
-                  translatable
-                  onEdit={locked ? undefined : () => setEditMode(true)}
-                  hasEdit={!!block.edited_text}
-                />
-              )}
+              <ChunkView
+                label={block.edited_text ? "KCAD Content · Edited" : "KCAD Content"}
+                accentColor="amber"
+                chunk={block.kcad_chunk}
+                fallbackText={block.edited_text ?? block.text}
+                language={block.language ?? block.kcad_chunk?.language}
+                translatable
+                onEdit={locked ? undefined : onRequestCardEdit}
+                hasEdit={!!block.edited_text}
+              />
 
               <ProvenanceCard block={block} />
 
@@ -809,7 +774,7 @@ function ChunkView({
 /** In-place editor for the reviewer to rewrite a block's text before
  *  accepting. Writes to `edited_text` via a standard block action so the
  *  change participates in version history / concurrency / publish locks. */
-function EditDraftEditor({
+export function EditDraftEditor({
   value,
   onChange,
   onSave,
@@ -834,7 +799,7 @@ function EditDraftEditor({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         rows={10}
-        className="w-full text-xs p-2 font-mono rounded border border-border bg-muted/20 resize-y focus:outline-none focus:ring-1 focus:ring-primary"
+        className="w-full text-xs p-2 rounded border border-border bg-muted/20 resize-y focus:outline-none focus:ring-1 focus:ring-primary"
         autoFocus
       />
       <div className="flex gap-2">

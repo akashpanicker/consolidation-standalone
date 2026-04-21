@@ -37,7 +37,7 @@ import {
   isReviewed,
   relationshipLabel,
 } from "./types";
-import { DetailPanel } from "./detail-panel";
+import { DetailPanel, EditDraftEditor } from "./detail-panel";
 import {
   Dialog,
   DialogContent,
@@ -346,6 +346,7 @@ export function DocumentReview({
   const appendices = appendicesData?.appendices ?? [];
 
   const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null);
+  const [cardEditBlockId, setCardEditBlockId] = useState<string | null>(null);
   const [viewFilter, setViewFilter] = useState<ViewFilter>("all");
   const [normativeFilter, setNormativeFilter] = useUrlSetParam("nm");
   const [relationshipFilter, setRelationshipFilter] = useUrlSetParam("rel");
@@ -1087,103 +1088,107 @@ export function DocumentReview({
           <div className="max-w-4xl mx-auto px-4 py-6">
             <div className="bg-card rounded-xl border border-border px-6 py-6">
 
-            {/* Sections */}
-            {sections.map((section, idx) => {
-              const sectionVisible = section.blocks.some((b) => visibleIds.has(b.id));
-              if (!sectionVisible && filtersActive) return null;
+              {/* Sections */}
+              {sections.map((section, idx) => {
+                const sectionVisible = section.blocks.some((b) => visibleIds.has(b.id));
+                if (!sectionVisible && filtersActive) return null;
 
-              return (
-                <div
-                  key={section.anchorId}
-                  ref={(el) => {
-                    if (el) sectionRefs.current.set(section.anchorId, el);
-                  }}
-                  className="mb-8"
-                >
-                  {/* Section Heading rendered directly above the section's blocks */}
-                  {(function () {
-                    const label = section.heading.split(">").pop()?.trim() || "(Untitled)";
-                    const level = Math.min(4, Math.max(2, section.depth + 1));
-                    const mt = idx === 0 ? "mt-0" : level === 2 ? "mt-10" : level === 3 ? "mt-8" : "mt-6";
-                    
-                    if (level === 2) return <h2 className={`${mt} mb-3 text-2xl font-semibold text-foreground`}>{label}</h2>;
-                    if (level === 3) return <h3 className={`${mt} mb-2 text-xl font-semibold text-foreground`}>{label}</h3>;
-                    return <h4 className={`${mt} mb-2 text-lg font-semibold text-foreground`}>{label}</h4>;
-                  })()}
+                return (
+                  <div
+                    key={section.anchorId}
+                    ref={(el) => {
+                      if (el) sectionRefs.current.set(section.anchorId, el);
+                    }}
+                    className="mb-8"
+                  >
+                    {/* Section Heading rendered directly above the section's blocks */}
+                    {(function () {
+                      const label = section.heading.split(">").pop()?.trim() || "(Untitled)";
+                      const level = Math.min(4, Math.max(2, section.depth + 1));
+                      const mt = idx === 0 ? "mt-0" : level === 2 ? "mt-10" : level === 3 ? "mt-8" : "mt-6";
 
-                  {section.blocks.map((block) => {
-                    if (!visibleIds.has(block.id) && filtersActive) return null;
-                    // Removed blocks live in the Excluded Content drawer at
-                    // the bottom — keep them out of the main document flow so
-                    // reviewers aren't distracted by content they've set aside.
-                    if (block.status === "removed") return null;
-                    // Appendix-assigned blocks move to the dedicated appendix
-                    // section at the bottom — no longer appear inline.
-                    if (block.appendix_id) return null;
+                      if (level === 2) return <h2 className={`${mt} mb-3 text-2xl font-semibold text-foreground`}>{label}</h2>;
+                      if (level === 3) return <h3 className={`${mt} mb-2 text-xl font-semibold text-foreground`}>{label}</h3>;
+                      return <h4 className={`${mt} mb-2 text-lg font-semibold text-foreground`}>{label}</h4>;
+                    })()}
 
-                    const isChunk = block.type === "kcad_addition" || block.type === "conflict" || block.type === "gap";
-                    if (!showChunks && isChunk) return null;
+                    {section.blocks.map((block) => {
+                      if (!visibleIds.has(block.id) && filtersActive) return null;
+                      // Removed blocks live in the Excluded Content drawer at
+                      // the bottom — keep them out of the main document flow so
+                      // reviewers aren't distracted by content they've set aside.
+                      if (block.status === "removed") return null;
+                      // Appendix-assigned blocks move to the dedicated appendix
+                      // section at the bottom — no longer appear inline.
+                      if (block.appendix_id) return null;
 
-                    const isSelected = block.id === selectedBlockId;
+                      const isChunk = block.type === "kcad_addition" || block.type === "conflict" || block.type === "gap";
+                      if (!showChunks && isChunk) return null;
 
-                    return (
-                      <DraggableBlock
-                        key={block.id}
-                        blockId={block.id}
-                        onDrop={handleDropBlock}
-                        readOnly={isLocked}
-                      >
-                        <ContentBlock
-                          block={block}
-                          isSelected={isSelected}
-                          onClick={() => {
-                            if (isActionable(block)) {
-                              setSelectedBlockId(isSelected ? null : block.id);
-                            }
-                          }}
-                          onMove={(dir) => handleMoveBlock(block.id, dir)}
-                          onRemove={() => handleAction(block.id, "removed")}
-                          onAction={(action, opts) => handleAction(block.id, action, opts)}
+                      const isSelected = block.id === selectedBlockId;
+
+                      return (
+                        <DraggableBlock
+                          key={block.id}
+                          blockId={block.id}
+                          onDrop={handleDropBlock}
                           readOnly={isLocked}
-                          showSources={showSources}
-                        />
-                      </DraggableBlock>
-                    );
-                  })}
-                </div>
-              );
-            })}
+                        >
+                          <ContentBlock
+                            block={block}
+                            isSelected={isSelected}
+                            onClick={() => {
+                              if (isActionable(block)) {
+                                setSelectedBlockId(isSelected ? null : block.id);
+                                setCardEditBlockId(null);
+                              }
+                            }}
+                            onMove={(dir) => handleMoveBlock(block.id, dir)}
+                            onRemove={() => handleAction(block.id, "removed")}
+                            onAction={(action, opts) => handleAction(block.id, action, opts)}
+                            cardEditOpen={block.id === cardEditBlockId}
+                            onCardEditOpen={() => setCardEditBlockId(block.id)}
+                            onCardEditClose={() => setCardEditBlockId(null)}
+                            readOnly={isLocked}
+                            showSources={showSources}
+                          />
+                        </DraggableBlock>
+                      );
+                    })}
+                  </div>
+                );
+              })}
 
-            {/* Appendix sections — one section per appendix, rendered below
+              {/* Appendix sections — one section per appendix, rendered below
                 the main document. Each block assigned to an appendix has been
                 filtered out of the inline flow above; here's where they land. */}
-            {showChunks && (
-              <AppendixSectionsBlock
-                blocks={data.blocks}
-                appendices={appendices}
-                selectedBlockId={selectedBlockId}
-                onSelectBlock={setSelectedBlockId}
-                onMove={handleMoveBlock}
-                onRemove={(bid) => handleAction(bid, "removed")}
-                readOnly={isLocked}
-                showSources={showSources}
-                sectionRefs={sectionRefs}
-              />
-            )}
+              {showChunks && (
+                <AppendixSectionsBlock
+                  blocks={data.blocks}
+                  appendices={appendices}
+                  selectedBlockId={selectedBlockId}
+                  onSelectBlock={setSelectedBlockId}
+                  onMove={handleMoveBlock}
+                  onRemove={(bid) => handleAction(bid, "removed")}
+                  readOnly={isLocked}
+                  showSources={showSources}
+                  sectionRefs={sectionRefs}
+                />
+              )}
 
-            {/* Excluded content drawer — collapsed list of soft-deleted blocks
+              {/* Excluded content drawer — collapsed list of soft-deleted blocks
                 with a Restore button that returns each to 'pending' status.
                 Clicking an entry opens the DetailPanel so reviewers can audit
                 why a block was excluded + restore with full context. */}
-            {showChunks && (
-              <ExcludedContent
-                blocks={data.blocks}
-                onRestore={handleRestoreBlock}
-                selectedBlockId={selectedBlockId}
-                onSelectBlock={setSelectedBlockId}
-              />
-            )}
-          </div>
+              {showChunks && (
+                <ExcludedContent
+                  blocks={data.blocks}
+                  onRestore={handleRestoreBlock}
+                  selectedBlockId={selectedBlockId}
+                  onSelectBlock={setSelectedBlockId}
+                />
+              )}
+            </div>
           </div>
         </div>
 
@@ -1219,6 +1224,7 @@ export function DocumentReview({
               unifiedUpdating={selectedBlock ? polishingSections.has(sectionHeading) : false}
               unifiedPolished={!!override}
               unifiedStale={stale}
+              onRequestCardEdit={selectedBlock ? () => setCardEditBlockId(selectedBlock.id) : undefined}
             />
           );
         })()}
@@ -1517,7 +1523,7 @@ function FilterChipBar({
           }`}
       >
         {showSources ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-        {showSources ? "Clean View" : "Show Sources"}
+        {showSources ? "Hide Sources" : "Show Sources"}
       </button>
       <button
         onClick={() => onToggleChunks(!showChunks)}
@@ -1842,6 +1848,9 @@ function ContentBlock({
   onMove,
   onRemove,
   onAction,
+  cardEditOpen,
+  onCardEditOpen,
+  onCardEditClose,
   readOnly,
   showSources,
 }: {
@@ -1851,6 +1860,9 @@ function ContentBlock({
   onMove: (direction: "up" | "down") => void;
   onRemove: () => void;
   onAction?: (action: string, opts?: { edited_text?: string }) => Promise<void>;
+  cardEditOpen?: boolean;
+  onCardEditOpen?: () => void;
+  onCardEditClose?: () => void;
   readOnly: boolean;
   showSources: boolean;
 }) {
@@ -1866,6 +1878,9 @@ function ContentBlock({
           onMove={onMove}
           onRemove={onRemove}
           onAction={readOnly ? undefined : onAction}
+          cardEditOpen={!!cardEditOpen}
+          onCardEditOpen={onCardEditOpen ?? (() => {})}
+          onCardEditClose={onCardEditClose ?? (() => {})}
           readOnly={readOnly}
           showSources={showSources}
         />
@@ -2382,32 +2397,27 @@ function HpBlock({
   readOnly?: boolean;
 }) {
   const [editing, setEditing] = useState(false);
+  const [editDraft, setEditDraft] = useState("");
   const [busy, setBusy] = useState(false);
-  const editRef = useRef<HTMLDivElement>(null);
   const dimmed = block.status === "unchanged";
   const colorCls = sourceTextColor(block, showSources);
   const originalDisplay = stripLeadingMarkdownHeadings(block.text);
-  // Strip leading headings from edited_text too (prevents prose rendering them as h2/h3).
-  // Fall back to originalDisplay if stripping the edit leaves nothing — prevents invisible blocks.
   const displayText = block.edited_text
     ? (stripLeadingMarkdownHeadings(block.edited_text) || originalDisplay)
     : originalDisplay;
 
   useEffect(() => {
-    if (editing && editRef.current) {
-      // Seed contenteditable with the displayed (heading-stripped) text so the user
-      // edits exactly what they see, and subsequent saves stay heading-free.
-      editRef.current.innerText = displayText;
-      editRef.current.focus();
+    if (editing) {
+      setEditDraft(block.edited_text ?? block.text ?? "");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editing]);
 
   const handleSave = async () => {
-    if (!editRef.current || !onAction) return;
+    if (!onAction) return;
     setBusy(true);
     try {
-      await onAction("edited", { edited_text: editRef.current.innerText });
+      await onAction("edited", { edited_text: editDraft });
       setEditing(false);
     } finally {
       setBusy(false);
@@ -2419,55 +2429,41 @@ function HpBlock({
       id={`block-${block.id}`}
       className={`group/hpblock relative py-1 transition-opacity ${dimmed ? "opacity-50" : "opacity-100"}`}
     >
-      {showSources && (
-        <span className="inline-block text-[9px] font-semibold tracking-wide px-1 rounded border border-border bg-background text-muted-foreground mb-1">
-          HP
-        </span>
-      )}
-      <div className="flex items-start gap-1">
-        <div className={`flex-1 prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${colorCls}`}>
-          {editing ? (
-            <div
-              ref={editRef}
-              contentEditable
-              suppressContentEditableWarning
-              className="outline-none whitespace-pre-wrap border-b border-primary/40 pb-1 not-prose text-sm text-foreground"
-            />
-          ) : (
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{displayText}</ReactMarkdown>
-          )}
-        </div>
-        {!readOnly && !editing && onAction && (
-          <button
-            onClick={(e) => { e.stopPropagation(); setEditing(true); }}
-            className="opacity-0 group-hover/hpblock:opacity-100 transition-opacity shrink-0 mt-0.5 p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted/50"
-            title="Edit paragraph"
-          >
-            <Pencil className="w-3 h-3" />
-          </button>
+      <div className="flex items-center gap-2 mb-1">
+        {showSources && (
+          <span className="inline-block text-[9px] font-semibold tracking-wide px-1 rounded border border-border bg-background text-muted-foreground">
+            HP
+          </span>
+        )}
+        {block.edited_text && !editing && (
+          <span className="inline-block px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info">
+            Edited
+          </span>
         )}
       </div>
-      {block.edited_text && !editing && (
-        <span className="inline-block mt-1 px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info">
-          Edited
-        </span>
-      )}
-      {editing && (
-        <div className="mt-2 flex items-center gap-3">
-          <button
-            disabled={busy}
-            onClick={handleSave}
-            className="text-xs px-3 py-1.5 rounded bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
-          >
-            Save
-          </button>
-          <button
-            disabled={busy}
-            onClick={() => setEditing(false)}
-            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Discard
-          </button>
+      {editing ? (
+        <EditDraftEditor
+          value={editDraft}
+          onChange={setEditDraft}
+          onSave={handleSave}
+          onCancel={() => setEditing(false)}
+          busy={busy}
+          hasExistingEdit={!!block.edited_text}
+        />
+      ) : (
+        <div className="flex items-start gap-1">
+          <div className={`flex-1 prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${colorCls}`}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{displayText}</ReactMarkdown>
+          </div>
+          {!readOnly && onAction && (
+            <button
+              onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+              className="opacity-0 group-hover/hpblock:opacity-100 transition-opacity shrink-0 mt-0.5 p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted/50"
+              title="Edit paragraph"
+            >
+              <Pencil className="w-3 h-3" />
+            </button>
+          )}
         </div>
       )}
     </div>
@@ -2527,6 +2523,9 @@ function KcadAdditionCard({
   onMove,
   onRemove,
   onAction,
+  cardEditOpen,
+  onCardEditOpen,
+  onCardEditClose,
   readOnly,
   showSources,
 }: {
@@ -2536,12 +2535,14 @@ function KcadAdditionCard({
   onMove: (direction: "up" | "down") => void;
   onRemove: () => void;
   onAction?: (action: string, opts?: { edited_text?: string }) => Promise<void>;
+  cardEditOpen: boolean;
+  onCardEditOpen: () => void;
+  onCardEditClose: () => void;
   readOnly: boolean;
   showSources: boolean;
 }) {
-  const [inlineEditing, setInlineEditing] = useState(false);
-  const [inlineBusy, setInlineBusy] = useState(false);
-  const inlineEditRef = useRef<HTMLDivElement>(null);
+  const [editDraft, setEditDraft] = useState("");
+  const [editBusy, setEditBusy] = useState(false);
   const reviewed = isReviewed(block);
   const translation = useChunkTranslation(block.text, block.language);
   const styles = relationshipStyles(block);
@@ -2556,20 +2557,19 @@ function KcadAdditionCard({
     (reviewed && block.status === "dismissed") || (styles.softenIdle && !isSelected);
 
   useEffect(() => {
-    if (inlineEditing && inlineEditRef.current) {
-      inlineEditRef.current.innerText = block.edited_text ?? block.text;
-      inlineEditRef.current.focus();
+    if (cardEditOpen) {
+      setEditDraft(block.edited_text ?? block.text ?? "");
     }
-  }, [inlineEditing]);
+  }, [cardEditOpen, block.id]);
 
-  const handleInlineSave = async () => {
-    if (!inlineEditRef.current || !onAction) return;
-    setInlineBusy(true);
+  const handleSave = async () => {
+    if (!onAction) return;
+    setEditBusy(true);
     try {
-      await onAction("edited", { edited_text: inlineEditRef.current.innerText });
-      setInlineEditing(false);
+      await onAction("edited", { edited_text: editDraft });
+      onCardEditClose();
     } finally {
-      setInlineBusy(false);
+      setEditBusy(false);
     }
   };
 
@@ -2586,107 +2586,89 @@ function KcadAdditionCard({
           <X className="w-3 h-3" />
         </button>
       )}
-    <div
-      id={`block-${block.id}`}
-      onClick={inlineEditing ? undefined : onClick}
-      className={`group relative rounded-lg border-l-4 ${styles.border} cursor-pointer transition-all ${isSelected ? `ring-2 ${styles.ring}` : `${styles.resting} ${styles.hover}`
-        } ${dimmed ? "opacity-60" : ""}`}
-    >
-      <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
-      {/* Header — region shows up in DetailPanel only (keeps card header compact) */}
-      <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
-        <LanguageBadge language={block.language} className="shrink-0" />
-        <NormativeModeBadge mode={block.normative_mode} />
-        <FormatBadge format={block.format} />
-        {showSources && (
-          <span
-            className={`px-1.5 py-0.5 rounded text-[10px] border shrink-0 ${block.edited_text
-              ? "border-zinc-500/30 bg-zinc-500/10 text-zinc-400"
-              : "border-info/30 bg-info/10 text-info"
-              }`}
-            title={block.edited_text ? "Reviewer-edited content" : "Content sourced from KCAD"}
-          >
-            {block.edited_text ? "Edited" : "KCAD"}
-          </span>
-        )}
-        {block.edited_text && !showSources && (
-          <span className="px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info shrink-0">
-            Edited
-          </span>
-        )}
-        {block.appendix_id && (
-          <span className="px-1.5 py-0.5 rounded text-[10px] border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 shrink-0">
-            App: {block.appendix_name ?? "…"}
-          </span>
-        )}
-        <span className="flex-1" />
-        {translation.canTranslate && (
-          <TranslateToggle
-            mode={translation.mode}
-            isLoading={translation.isLoading}
-            onClick={translation.toggle}
-            size="xs"
-          />
-        )}
-        <span className={`px-1.5 py-0.5 rounded text-[10px] border ${statusColors[block.status] ?? statusColors.pending}`}>
-          {block.status}
-        </span>
-        {!readOnly && onAction && !inlineEditing && (
-          <button
-            onClick={(e) => { e.stopPropagation(); setInlineEditing(true); }}
-            className="px-1.5 py-0.5 rounded text-[10px] border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-            title={block.edited_text ? "Edit this block's text again" : "Edit before accepting"}
-          >
-            ✎ Edit
-          </button>
-        )}
-      </div>
-      {/* Content. When the reviewer has edited this block, render their
-          edited text directly (translation doesn't apply — they wrote it in
-          whatever language they wanted). Otherwise show the original text
-          with the translation toggle. */}
-      <div className="px-3 pb-3">
-        {inlineEditing ? (
-          <>
-            <div
-              ref={inlineEditRef}
-              contentEditable
-              suppressContentEditableWarning
-              onClick={(e) => e.stopPropagation()}
-              className="outline-none whitespace-pre-wrap border border-primary/40 rounded p-2 text-sm text-foreground min-h-[4em]"
-            />
-            <div className="mt-2 flex items-center gap-3" onClick={(e) => e.stopPropagation()}>
-              <button
-                disabled={inlineBusy}
-                onClick={handleInlineSave}
-                className="text-xs px-3 py-1.5 rounded bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
-              >
-                Save
-              </button>
-              <button
-                disabled={inlineBusy}
-                onClick={() => setInlineEditing(false)}
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Discard
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <div
-              dir={block.edited_text ? "ltr" : translation.dir}
-              className={`prose prose-sm dark:prose-invert max-w-none text-sm [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${sourceTextColor(block, showSources)}`}
+      <div
+        id={`block-${block.id}`}
+        onClick={cardEditOpen ? undefined : onClick}
+        className={`group relative rounded-lg border-l-4 ${styles.border} cursor-pointer transition-all ${isSelected ? `ring-2 ${styles.ring}` : `${styles.resting} ${styles.hover}`
+          } ${dimmed ? "opacity-60" : ""}`}
+      >
+        <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
+        {/* Header */}
+        <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
+          <LanguageBadge language={block.language} className="shrink-0" />
+          <NormativeModeBadge mode={block.normative_mode} />
+          <FormatBadge format={block.format} />
+          {showSources && (
+            <span
+              className={`px-1.5 py-0.5 rounded text-[10px] border shrink-0 ${block.edited_text
+                ? "border-zinc-500/30 bg-zinc-500/10 text-zinc-400"
+                : "border-info/30 bg-info/10 text-info"
+                }`}
+              title={block.edited_text ? "Reviewer-edited content" : "Content sourced from KCAD"}
             >
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {stripLeadingMarkdownHeadings(block.edited_text ?? translation.displayText)}
-              </ReactMarkdown>
-            </div>
-            {!block.edited_text && translation.error && <TranslationError message={translation.error} />}
-          </>
-        )}
+              {block.edited_text ? "Edited" : "KCAD"}
+            </span>
+          )}
+          {block.edited_text && !showSources && (
+            <span className="px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info shrink-0">
+              Edited
+            </span>
+          )}
+          {block.appendix_id && (
+            <span className="px-1.5 py-0.5 rounded text-[10px] border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 shrink-0">
+              App: {block.appendix_name ?? "…"}
+            </span>
+          )}
+          <span className="flex-1" />
+          {translation.canTranslate && (
+            <TranslateToggle
+              mode={translation.mode}
+              isLoading={translation.isLoading}
+              onClick={translation.toggle}
+              size="xs"
+            />
+          )}
+          {block.status !== "edited" && (
+            <span className={`px-1.5 py-0.5 rounded text-[10px] border ${statusColors[block.status] ?? statusColors.pending}`}>
+              {block.status}
+            </span>
+          )}
+          {!readOnly && onAction && !cardEditOpen && (
+            <button
+              onClick={(e) => { e.stopPropagation(); onCardEditOpen(); }}
+              className="px-1.5 py-0.5 rounded text-[10px] border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+              title={block.edited_text ? "Edit this block's text again" : "Edit before accepting"}
+            >
+              ✎ Edit
+            </button>
+          )}
+        </div>
+        {/* Content */}
+        <div className="px-3 pb-3" onClick={cardEditOpen ? (e) => e.stopPropagation() : undefined}>
+          {cardEditOpen ? (
+            <EditDraftEditor
+              value={editDraft}
+              onChange={setEditDraft}
+              onSave={handleSave}
+              onCancel={onCardEditClose}
+              busy={editBusy}
+              hasExistingEdit={!!block.edited_text}
+            />
+          ) : (
+            <>
+              <div
+                dir={block.edited_text ? "ltr" : translation.dir}
+                className={`prose prose-sm dark:prose-invert max-w-none text-sm [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${sourceTextColor(block, showSources)}`}
+              >
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {stripLeadingMarkdownHeadings(block.edited_text ?? translation.displayText)}
+                </ReactMarkdown>
+              </div>
+              {!block.edited_text && translation.error && <TranslationError message={translation.error} />}
+            </>
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
@@ -2726,64 +2708,69 @@ function ConflictCard({
           <X className="w-3 h-3" />
         </button>
       )}
-    <div
-      id={`block-${block.id}`}
-      onClick={onClick}
-      className={`group relative rounded-lg border-l-4 border-error cursor-pointer transition-all ${isSelected ? "ring-2 ring-error/40 bg-error/10" : "bg-error/5 hover:bg-error/15"
-        }`}
-    >
-      <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
-      <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
-        <span className="font-medium text-error">&#9888; Conflict</span>
-        {block.conflict?.severity && (
-          <span
-            className={`px-1.5 py-0.5 rounded text-[10px] border ${block.conflict.severity === "critical"
-              ? "bg-error/15 text-error border-error/30"
-              : block.conflict.severity === "material"
-                ? "bg-warning/15 text-warning border-warning/30"
-                : "bg-warning/15 text-warning border-warning/30"
-              }`}
-          >
-            {block.conflict.severity}
+      <div
+        id={`block-${block.id}`}
+        onClick={onClick}
+        className={`group relative rounded-lg border-l-4 border-error cursor-pointer transition-all ${isSelected ? "ring-2 ring-error/40 bg-error/10" : "bg-error/5 hover:bg-error/15"
+          }`}
+      >
+        <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
+        <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
+          <span className="font-medium text-error">&#9888; Conflict</span>
+          {block.conflict?.severity && (
+            <span
+              className={`px-1.5 py-0.5 rounded text-[10px] border ${block.conflict.severity === "critical"
+                ? "bg-error/15 text-error border-error/30"
+                : block.conflict.severity === "material"
+                  ? "bg-warning/15 text-warning border-warning/30"
+                  : "bg-warning/15 text-warning border-warning/30"
+                }`}
+            >
+              {block.conflict.severity}
+            </span>
+          )}
+          {block.edited_text && (
+            <span className="px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info shrink-0">
+              Edited
+            </span>
+          )}
+          <LanguageBadge language={block.language} className="shrink-0" />
+          <span className="flex-1" />
+          {translation.canTranslate && (
+            <TranslateToggle
+              mode={translation.mode}
+              isLoading={translation.isLoading}
+              onClick={translation.toggle}
+              size="xs"
+            />
+          )}
+          <span className={`px-1.5 py-0.5 rounded text-[10px] border ${block.status === "resolved"
+            ? "bg-success/15 text-success border-success/30"
+            : "bg-muted/30 text-muted-foreground border-border"
+            }`}>
+            {block.status === "resolved" ? "resolved" : "open"}
           </span>
-        )}
-        <LanguageBadge language={block.language} className="shrink-0" />
-        <span className="flex-1" />
-        {translation.canTranslate && (
-          <TranslateToggle
-            mode={translation.mode}
-            isLoading={translation.isLoading}
-            onClick={translation.toggle}
-            size="xs"
-          />
-        )}
-        <span className={`px-1.5 py-0.5 rounded text-[10px] border ${block.status === "resolved"
-          ? "bg-success/15 text-success border-success/30"
-          : "bg-muted/30 text-muted-foreground border-border"
-          }`}>
-          {block.status === "resolved" ? "resolved" : "open"}
-        </span>
-      </div>
-
-      {block.conflict?.description && (
-        <div className="px-3 pb-1 text-xs text-error">{block.conflict.description}</div>
-      )}
-
-      {/* Show both statements when possible */}
-      <div className="px-3 pb-3 space-y-1.5 text-sm">
-        {block.hp_original_text && (
-          <div className="text-xs">
-            <span className="font-medium text-info">H&P: </span>
-            <span className="text-foreground/70">{block.hp_original_text.slice(0, 200)}{block.hp_original_text.length > 200 ? "..." : ""}</span>
-          </div>
-        )}
-        <div className="text-xs" dir={translation.dir}>
-          <span className="font-medium text-warning">KCAD: </span>
-          <span className="text-foreground/70">{kcadSnippet}</span>
         </div>
-        {translation.error && <TranslationError message={translation.error} />}
+
+        {block.conflict?.description && (
+          <div className="px-3 pb-1 text-xs text-error">{block.conflict.description}</div>
+        )}
+
+        {/* Show both statements when possible */}
+        <div className="px-3 pb-3 space-y-1.5 text-sm">
+          {block.hp_original_text && (
+            <div className="text-xs">
+              <span className="font-medium text-info">H&P: </span>
+              <span className="text-foreground/70">{block.hp_original_text.slice(0, 200)}{block.hp_original_text.length > 200 ? "..." : ""}</span>
+            </div>
+          )}
+          <div className="text-xs" dir={translation.dir}>
+            <span className="font-medium text-warning">KCAD: </span>
+            <span className="text-foreground/70">{kcadSnippet}</span>
+          </div>
+          {translation.error && <TranslationError message={translation.error} />}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
@@ -2821,40 +2808,47 @@ function GapCard({
           <X className="w-3 h-3" />
         </button>
       )}
-    <div
-      id={`block-${block.id}`}
-      onClick={onClick}
-      className={`group relative rounded-lg border-l-4 border-violet-500 cursor-pointer transition-all ${isSelected ? "ring-2 ring-violet-500/40 bg-violet-50/60 dark:bg-violet-950/30" : "bg-violet-50/30 dark:bg-violet-950/15 hover:bg-violet-50/50 dark:hover:bg-violet-950/25"
-        } ${reviewed && block.status === "dismissed" ? "opacity-50" : ""}`}
-    >
-      <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
-      <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
-        <span className="font-medium text-violet-500">New content</span>
-        <LanguageBadge language={block.language} className="shrink-0" />
-        <span className="flex-1" />
-        {translation.canTranslate && (
-          <TranslateToggle
-            mode={translation.mode}
-            isLoading={translation.isLoading}
-            onClick={translation.toggle}
-            size="xs"
-          />
-        )}
-        <span className={`px-1.5 py-0.5 rounded text-[10px] border ${reviewed ? "bg-success/15 text-success border-success/30" : "bg-muted/30 text-muted-foreground border-border"
-          }`}>
-          {block.status}
-        </span>
-      </div>
-      <div className="px-3 pb-3">
-        <div
-          dir={translation.dir}
-          className={`prose prose-sm dark:prose-invert max-w-none text-sm [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${sourceTextColor(block, showSources)}`}
-        >
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{stripLeadingMarkdownHeadings(translation.displayText)}</ReactMarkdown>
+      <div
+        id={`block-${block.id}`}
+        onClick={onClick}
+        className={`group relative rounded-lg border-l-4 border-violet-500 cursor-pointer transition-all ${isSelected ? "ring-2 ring-violet-500/40 bg-violet-50/60 dark:bg-violet-950/30" : "bg-violet-50/30 dark:bg-violet-950/15 hover:bg-violet-50/50 dark:hover:bg-violet-950/25"
+          } ${reviewed && block.status === "dismissed" ? "opacity-50" : ""}`}
+      >
+        <BlockToolbar onMove={onMove} onRemove={onRemove} readOnly={readOnly} />
+        <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
+          <span className="font-medium text-violet-500">New content</span>
+          {block.edited_text && (
+            <span className="px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info shrink-0">
+              Edited
+            </span>
+          )}
+          <LanguageBadge language={block.language} className="shrink-0" />
+          <span className="flex-1" />
+          {translation.canTranslate && (
+            <TranslateToggle
+              mode={translation.mode}
+              isLoading={translation.isLoading}
+              onClick={translation.toggle}
+              size="xs"
+            />
+          )}
+          {block.status !== "edited" && (
+            <span className={`px-1.5 py-0.5 rounded text-[10px] border ${reviewed ? "bg-success/15 text-success border-success/30" : "bg-muted/30 text-muted-foreground border-border"
+              }`}>
+              {block.status}
+            </span>
+          )}
         </div>
-        {translation.error && <TranslationError message={translation.error} />}
+        <div className="px-3 pb-3">
+          <div
+            dir={translation.dir}
+            className={`prose prose-sm dark:prose-invert max-w-none text-sm [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${sourceTextColor(block, showSources)}`}
+          >
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{stripLeadingMarkdownHeadings(translation.displayText)}</ReactMarkdown>
+          </div>
+          {translation.error && <TranslationError message={translation.error} />}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
