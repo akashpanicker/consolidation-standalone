@@ -66,21 +66,21 @@ export function AppHeader({
         </div>
 
         {/* Title & Breadcrumb */}
-        <div className="flex flex-col h-full items-start justify-center pb-1 relative shrink-0">
-          <div className="flex gap-2 items-center -mb-1 relative shrink-0">
-            <h1 className="flex flex-col font-semibold justify-end leading-none relative shrink-0 text-foreground text-base">
+        <div className="flex flex-col h-full items-start justify-center relative shrink-0 gap-1">
+          <div className="flex gap-2 items-center relative shrink-0">
+            <h1 className="flex flex-col font-semibold justify-end leading-none relative shrink-0 text-foreground text-sm">
               {title}
             </h1>
           </div>
 
           {breadcrumb && (
-            <div className="flex items-start -mb-1 relative shrink-0">
-              <p className="font-normal leading-normal text-sm whitespace-nowrap text-muted-foreground mt-1 gap-2 flex items-center">
+            <div className="flex items-start relative shrink-0">
+              <p className="font-normal leading-normal text-xs whitespace-nowrap text-muted-foreground gap-2 flex items-center">
                 {typeof breadcrumb === "string" ? breadcrumb : (
                   Array.isArray(breadcrumb) && breadcrumb.map((item, idx) => (
                     <span key={idx} className="inline-flex items-center">
                       <span
-                        className={`transition-colors ${(item.path || item.onClick) ? 'cursor-pointer hover:text-foreground hover:underline' : 'cursor-default'}`}
+                        className={`transition-colors ${(item.path || item.onClick) ? 'cursor-pointer text-primary underline hover:text-primary/80' : 'cursor-default'}`}
                         onClick={() => {
                           if (item.onClick) item.onClick();
                           else if (item.path) window.location.href = item.path;

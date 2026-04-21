@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef, useCallback, useEffect } from "react";
+import { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, Check, Lock, X, Eye, EyeOff } from "lucide-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -119,7 +120,6 @@ const RELATIONSHIP_CHIPS = ["Equivalent", "Variant", "Complementary", "Gap", "Co
 type RelationshipChip = (typeof RELATIONSHIP_CHIPS)[number];
 
 const NORMATIVE_CHIPS = ["policy", "standard", "procedure", "guideline", "informational"] as const;
-type NormativeChip = (typeof NORMATIVE_CHIPS)[number];
 
 /** Map a block to its relationship-chip identity. Conflict and Gap are
  *  driven by `type` (the pipeline doesn't set relationship on those); the
@@ -270,6 +270,24 @@ function useUrlSetParam(key: string): [Set<string>, (next: Set<string>) => void]
   return [value, update];
 }
 
+/** Hook for localStorage boolean flag so it persists across reloads */
+function useLocalStorageFlag(key: string, defaultValue: boolean): [boolean, (val: boolean) => void] {
+  const [value, setValue] = useState<boolean>(() => {
+    if (typeof window === "undefined") return defaultValue;
+    const stored = window.localStorage.getItem(key);
+    return stored !== null ? stored === "true" : defaultValue;
+  });
+
+  const updateValue = useCallback((next: boolean) => {
+    setValue(next);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(key, String(next));
+    }
+  }, [key]);
+
+  return [value, updateValue];
+}
+
 // ── Appendix assign dialog state ───────────────────────────────────────
 
 /** In-flight state while the user picks / creates an appendix for a block.
@@ -287,12 +305,10 @@ interface AppendixDialogState {
 export function DocumentReview({
   slug,
   onBack,
-  onSwitchMode,
   embedded = false,
 }: {
   slug: string;
   onBack: () => void;
-  onSwitchMode?: () => void;
   /** When true, suppress this component's own top bar (ReviewHeader).
    *  The parent (ConsolidationPage in split mode) owns chrome. */
   embedded?: boolean;
@@ -334,11 +350,20 @@ export function DocumentReview({
   const [normativeFilter, setNormativeFilter] = useUrlSetParam("nm");
   const [relationshipFilter, setRelationshipFilter] = useUrlSetParam("rel");
   const [showSources, setShowSources] = useUrlFlag("sources");
+  const [showChunks, setShowChunks] = useLocalStorageFlag("showChunks", true);
+
+  // If showChunks becomes disabled, clear out any selected chunk since it's hidden now
+  useEffect(() => {
+    if (!showChunks) {
+      setSelectedBlockId(null);
+    }
+  }, [showChunks]);
+
   /** State for the Add-to-Appendix dialog. null = closed; populated object
    *  = dialog is open with the given block + scope + any matching existing
    *  appendix surfaced from matchAppendix(). */
   const [appendixDialog, setAppendixDialog] = useState<AppendixDialogState | null>(null);
-  const sectionRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
 
   // One-shot migration: if any KCAD block lacks a `language` field (legacy views
   // built before language detection was part of reconstruction), hit the batch
@@ -1020,7 +1045,6 @@ export function DocumentReview({
           viewFilter={viewFilter}
           onFilterChange={setViewFilter}
           onBack={onBack}
-          onSwitchMode={onSwitchMode}
         />
       )}
 
@@ -1040,6 +1064,8 @@ export function DocumentReview({
         totalCount={data.blocks.length}
         showSources={showSources}
         onToggleSources={setShowSources}
+        showChunks={showChunks}
+        onToggleChunks={setShowChunks}
       />
 
       {/* ── Three-panel layout ── */}
@@ -1073,8 +1099,17 @@ export function DocumentReview({
                   ref={(el) => {
                     if (el) sectionRefs.current.set(section.anchorId, el);
                   }}
-                  className="mb-2"
+                  className="mb-8"
                 >
+                  {/* Section Heading rendered directly above the section's blocks */}
+                  {(function () {
+                    const label = section.heading.split(">").pop()?.trim() || "(Untitled)";
+                    const level = Math.min(4, Math.max(2, section.depth + 1));
+                    if (level === 2) return <h2 className="mt-10 mb-3 text-2xl font-semibold text-foreground">{label}</h2>;
+                    if (level === 3) return <h3 className="mt-8 mb-2 text-xl font-semibold text-foreground">{label}</h3>;
+                    return <h4 className="mt-6 mb-2 text-lg font-semibold text-foreground">{label}</h4>;
+                  })()}
+
                   {section.blocks.map((block) => {
                     if (!visibleIds.has(block.id) && filtersActive) return null;
                     // Removed blocks live in the Excluded Content drawer at
@@ -1084,6 +1119,10 @@ export function DocumentReview({
                     // Appendix-assigned blocks move to the dedicated appendix
                     // section at the bottom — no longer appear inline.
                     if (block.appendix_id) return null;
+                    
+                    const isChunk = block.type === "kcad_addition" || block.type === "conflict" || block.type === "gap";
+                    if (!showChunks && isChunk) return null;
+
                     const isSelected = block.id === selectedBlockId;
 
                     return (
@@ -1116,33 +1155,37 @@ export function DocumentReview({
             {/* Appendix sections — one section per appendix, rendered below
                 the main document. Each block assigned to an appendix has been
                 filtered out of the inline flow above; here's where they land. */}
-            <AppendixSectionsBlock
-              blocks={data.blocks}
-              appendices={appendices}
-              selectedBlockId={selectedBlockId}
-              onSelectBlock={setSelectedBlockId}
-              onMove={handleMoveBlock}
-              onRemove={(bid) => handleAction(bid, "removed")}
-              readOnly={isLocked}
-              showSources={showSources}
-              sectionRefs={sectionRefs}
-            />
+            {showChunks && (
+              <AppendixSectionsBlock
+                blocks={data.blocks}
+                appendices={appendices}
+                selectedBlockId={selectedBlockId}
+                onSelectBlock={setSelectedBlockId}
+                onMove={handleMoveBlock}
+                onRemove={(bid) => handleAction(bid, "removed")}
+                readOnly={isLocked}
+                showSources={showSources}
+                sectionRefs={sectionRefs}
+              />
+            )}
 
             {/* Excluded content drawer — collapsed list of soft-deleted blocks
                 with a Restore button that returns each to 'pending' status.
                 Clicking an entry opens the DetailPanel so reviewers can audit
                 why a block was excluded + restore with full context. */}
-            <ExcludedContent
-              blocks={data.blocks}
-              onRestore={handleRestoreBlock}
-              selectedBlockId={selectedBlockId}
-              onSelectBlock={setSelectedBlockId}
-            />
+            {showChunks && (
+              <ExcludedContent
+                blocks={data.blocks}
+                onRestore={handleRestoreBlock}
+                selectedBlockId={selectedBlockId}
+                onSelectBlock={setSelectedBlockId}
+              />
+            )}
           </div>
         </div>
 
         {/* Right: Detail panel (conditional) */}
-        {selectedBlock && (() => {
+        {showChunks && selectedBlock && (() => {
           // Resolve the unified-polish state for the selected block's section.
           // `polished` = an override exists; `stale` = a block in the same
           // heading_path has a history entry newer than the override's
@@ -1212,38 +1255,24 @@ function ReviewHeader({
   viewFilter,
   onFilterChange,
   onBack,
-  onSwitchMode,
 }: {
   displayName: string;
   summary: ConsolidatedView["summary"];
   viewFilter: ViewFilter;
   onFilterChange: (f: ViewFilter) => void;
   onBack: () => void;
-  onSwitchMode?: () => void;
 }) {
   return (
     <div className="px-4 py-2.5 border-b border-border flex items-center gap-4 shrink-0 bg-background">
       <button
         onClick={onBack}
-        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+        className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
       >
-        &larr; Back
+        <ArrowLeft className="w-4 h-4" />
+        Back
       </button>
-      {onSwitchMode && (
-        <div className="inline-flex items-center rounded-md border border-border p-0.5">
-          <button
-            onClick={onSwitchMode}
-            className="px-2 py-0.5 text-xs text-muted-foreground hover:text-foreground"
-          >
-            Unified View
-          </button>
-          <span className="rounded bg-foreground px-2 py-0.5 text-xs font-medium text-background">
-            Reviewer View
-          </span>
-        </div>
-      )}
       <div className="flex-1 min-w-0">
-        <h2 className="text-sm font-semibold truncate">{displayName}</h2>
+        <h2 className="text-sm font-semibold truncate ml-4">{displayName}</h2>
       </div>
 
       {/* Stats badges */}
@@ -1298,23 +1327,23 @@ function transitionsFrom(status: ReviewStatus): { forward: Transition | null; ba
   switch (status) {
     case "ai_consolidated":
       return {
-        forward: { target: "in_review", label: "Start Review →" },
+        forward: { target: "in_review", label: "Start Review" },
         back: null,
       };
     case "in_review":
       return {
-        forward: { target: "approved", label: "Approve →" },
-        back: { target: "ai_consolidated", label: "← Back to AI Draft" },
+        forward: { target: "approved", label: "Approve" },
+        back: { target: "ai_consolidated", label: "Back to AI Draft" },
       };
     case "approved":
       return {
-        forward: { target: "published", label: "Publish →" },
-        back: { target: "in_review", label: "← Back to Review" },
+        forward: { target: "published", label: "Publish" },
+        back: { target: "in_review", label: "Back to Review" },
       };
     case "published":
       return {
         forward: null,
-        back: { target: "in_review", label: "← Unpublish" },
+        back: { target: "in_review", label: "Unpublish" },
       };
   }
 }
@@ -1344,7 +1373,7 @@ function ApprovalWorkflowBar({
             <div key={stage.key} className="flex items-center gap-1">
               <div
                 title={stage.hint}
-                className={`flex items-center gap-1.5 text-[11px] px-2 py-0.5 rounded ${
+                className={`flex items-center gap-1.5 text-[12px] px-2 py-0.5 rounded ${
                   current
                     ? "bg-primary/20 text-foreground font-medium"
                     : reached
@@ -1364,8 +1393,8 @@ function ApprovalWorkflowBar({
                 {stage.label}
               </div>
               {i < REVIEW_STAGES.length - 1 && (
-                <span className={`text-[10px] ${reached && i + 1 <= currentIdx ? "text-foreground/60" : "text-muted-foreground/40"}`}>
-                  →
+                <span className={`flex items-center text-[10px] ${reached && i + 1 <= currentIdx ? "text-foreground/60" : "text-muted-foreground/40"}`}>
+                  <ArrowRight className="w-3 h-3" />
                 </span>
               )}
             </div>
@@ -1376,26 +1405,28 @@ function ApprovalWorkflowBar({
       {back && (
         <button
           onClick={() => onChange(back.target)}
-          className="text-xs px-2.5 py-1 rounded border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+          className="text-xs px-2.5 py-1 rounded border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors flex items-center gap-1.5"
         >
+          <ArrowLeft className="w-3.5 h-3.5" />
           {back.label}
         </button>
       )}
       {forward && (
         <button
           onClick={() => onChange(forward.target)}
-          className={`text-xs px-3 py-1 rounded border transition-colors ${
+          className={`text-xs px-3 py-1 rounded border transition-colors flex items-center gap-1.5 ${
             forward.target === "published"
-              ? "border-green-500/40 text-green-400 hover:bg-green-500/10"
-              : "border-primary/40 text-primary hover:bg-primary/10"
+              ? "bg-green-600 text-white border-green-700 hover:bg-green-700"
+              : "bg-primary text-primary-foreground border-primary hover:bg-primary/90"
           }`}
         >
           {forward.label}
+          <ArrowRight className="w-3.5 h-3.5" />
         </button>
       )}
       {isPublished && (
-        <span className="text-xs text-green-400 font-medium px-2 py-1 rounded border border-green-500/30 bg-green-500/10">
-          🔒 Published
+        <span className="text-xs text-green-400 font-medium px-2 py-1 rounded border border-green-500/30 bg-green-500/10 flex items-center gap-1.5">
+          <Lock className="w-3 h-3" /> Published
         </span>
       )}
     </div>
@@ -1416,6 +1447,8 @@ function FilterChipBar({
   totalCount,
   showSources,
   onToggleSources,
+  showChunks,
+  onToggleChunks,
 }: {
   normativeFilter: Set<string>;
   relationshipFilter: Set<string>;
@@ -1425,6 +1458,8 @@ function FilterChipBar({
   totalCount: number;
   showSources: boolean;
   onToggleSources: (next: boolean) => void;
+  showChunks: boolean;
+  onToggleChunks: (next: boolean) => void;
 }) {
   const anyActive = normativeFilter.size > 0 || relationshipFilter.size > 0;
 
@@ -1475,13 +1510,26 @@ function FilterChipBar({
       <button
         onClick={() => onToggleSources(!showSources)}
         title="Color-code block text by provenance (HP / KCAD / Edited)"
-        className={`px-2 py-0.5 rounded border text-[11px] transition-colors ${
+        className={`px-2 py-0.5 rounded border text-[11px] transition-colors flex items-center gap-1.5 ${
           showSources
-            ? "bg-foreground/10 text-foreground border-border"
+            ? "bg-primary/10 text-primary border-primary/40"
             : "border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
         }`}
       >
-        {showSources ? "◐ Clean View" : "◑ Show Sources"}
+        {showSources ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+        {showSources ? "Clean View" : "Show Sources"}
+      </button>
+      <button
+        onClick={() => onToggleChunks(!showChunks)}
+        title={showChunks ? "Hide individual chunk cards" : "Show individual chunk cards"}
+        className={`px-2 py-0.5 rounded border text-[11px] transition-colors flex items-center gap-1.5 ${
+          showChunks
+            ? "bg-primary/10 text-primary border-primary/40"
+            : "border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
+        }`}
+      >
+        {showChunks ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+        {showChunks ? "Hide Chunks" : "Show Chunks"}
       </button>
     </div>
   );
@@ -1502,7 +1550,7 @@ function ChipGroup({
 }) {
   return (
     <div className="flex items-center gap-1.5">
-      <span className="text-[10px] uppercase tracking-wide text-muted-foreground">{label}</span>
+      <span className="text-[11px] uppercase tracking-wide text-muted-foreground">{label}</span>
       {values.map((v) => {
         const { selected, idle } = colorFor(v);
         const on = active.has(v);
@@ -1647,7 +1695,7 @@ function SectionOutline({
             style={{ paddingLeft: `${8 + entry.depth * 10}px` }}
           >
             <span className="truncate flex-1">{label}</span>
-            {entry.allReviewed && <span className="text-green-500 shrink-0">&#x2713;</span>}
+            {entry.allReviewed && <Check className="w-3 h-3 text-green-500 shrink-0" />}
             {entry.additions > 0 && (
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
             )}
@@ -1709,7 +1757,7 @@ function AppendicesPanel({
                     title="Delete appendix (unassigns all blocks)"
                     className="text-muted-foreground hover:text-red-400 transition-colors shrink-0"
                   >
-                    ✕
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 )}
               </div>
@@ -2031,7 +2079,7 @@ function AppendixSectionsBlock({
   onRemove: (id: string) => void;
   readOnly: boolean;
   showSources: boolean;
-  sectionRefs: React.MutableRefObject<Map<string, HTMLDivElement>>;
+  sectionRefs: React.MutableRefObject<Map<string, HTMLElement>>;
 }) {
   // Group blocks by appendix_id, preserving view array order.
   const byAppendix = new Map<string, ConsolidatedBlock[]>();
@@ -2136,7 +2184,7 @@ function AppendixSection({
   onRemove: (id: string) => void;
   readOnly: boolean;
   showSources: boolean;
-  sectionRefs: React.MutableRefObject<Map<string, HTMLDivElement>>;
+  sectionRefs: React.MutableRefObject<Map<string, HTMLElement>>;
 }) {
   const anchorId = `appendix-${appendix.id}`;
   const scope = appendix.scope || { region: null, rig: null, customer: null, environment: null };
@@ -2307,14 +2355,14 @@ function BlockToolbar({
     <div
       className="absolute top-1 right-1 flex gap-0.5 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto focus-within:opacity-100 focus-within:pointer-events-auto transition-opacity z-10"
     >
-      <button onClick={stop(() => onMove("up"))} title="Move up" className={btn}>↑</button>
-      <button onClick={stop(() => onMove("down"))} title="Move down" className={btn}>↓</button>
+      <button onClick={stop(() => onMove("up"))} title="Move up" className={btn}><ArrowUp className="w-3 h-3" /></button>
+      <button onClick={stop(() => onMove("down"))} title="Move down" className={btn}><ArrowDown className="w-3 h-3" /></button>
       <button
         onClick={stop(onRemove)}
         title="Remove (sends to Excluded Content)"
         className={`${btn} hover:text-red-400 hover:border-red-500/30`}
       >
-        ✕
+        <X className="w-3 h-3" />
       </button>
     </div>
   );
@@ -2501,7 +2549,7 @@ function ConflictCard({
   onMove,
   onRemove,
   readOnly,
-  showSources,
+  showSources: _showSources, // Ignore unused
 }: {
   block: ConsolidatedBlock;
   isSelected: boolean;

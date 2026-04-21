@@ -31,7 +31,7 @@ const FORMAT_STYLES: Record<string, string> = {
 };
 
 const PILL =
-  "inline-flex items-center px-1.5 py-0.5 rounded text-[10px] border font-medium whitespace-nowrap";
+  "inline-flex items-center px-1.5 py-0.5 rounded text-[11px] border font-medium whitespace-nowrap";
 
 export function NormativeModeBadge({ mode }: { mode: string | undefined | null }) {
   if (!mode) return null;

@@ -60,11 +60,7 @@ function parseHeading(headingPath: string): { title: string; depth: number } {
   return { title, depth };
 }
 
-function kcadLeafHeading(headingPath: string): string {
-  const parts = headingPath.split(">").map((s) => s.trim()).filter(Boolean);
-  if (parts.length <= 1) return headingPath;
-  return parts.slice(1).join(" › ");
-}
+
 
 /** Strip every leading markdown heading line (and blank-line separators).
  *  HP chunks frequently start with their doc title (`# Hydrogen Sulfide

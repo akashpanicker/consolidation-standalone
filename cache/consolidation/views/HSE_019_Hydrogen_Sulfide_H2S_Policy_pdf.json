@@ -34,7 +34,6 @@
       "section_function": "applicability",
       "normative_mode": "informational",
       "heading_path": "Hydrogen Sulfide (H2S) Policy > 1. Scope and Application",
-      "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
       "language": "en",
       "source": {
         "document": "K-KS-HS-PR-005.pdf",
@@ -43,7 +42,6 @@
         "rig": "All Rigs",
         "chunk_id": "K-KS-HS-PR-005::c38e858e85fc"
       },
-      "relationship": "Complementary",
       "tier": 1,
       "additive_detail": null,
       "conflict": null,
@@ -57,6 +55,122 @@
         "decision_evidence_logic": true
       },
       "hp_original_text": "# Hydrogen Sulfide (H2S) Policy\n\n## 1. Scope and Application\n\nThis document establishes a structured method for establishing the safe working conditions necessary for operations in which H&P employees may encounter Hydrogen Sulfide (H2S).",
+      "history": [
+        {
+          "version": 1,
+          "action": "accepted",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T15:43:01.836220+00:00"
+        },
+        {
+          "version": 2,
+          "action": "accepted",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T15:43:07.718826+00:00"
+        },
+        {
+          "version": 3,
+          "action": "accepted",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T15:43:08.523312+00:00"
+        },
+        {
+          "version": 4,
+          "action": "pending",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "accepted",
+            "resolution": "place_here"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T15:43:10.346478+00:00"
+        },
+        {
+          "version": 5,
+          "action": "moved_to",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "from_position": 1,
+          "to_position": 0,
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T15:46:50.859012+00:00"
+        },
+        {
+          "version": 6,
+          "action": "moved_to",
+          "before": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "after": {
+            "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+            "relationship": "Complementary",
+            "status": "pending"
+          },
+          "from_position": 0,
+          "to_position": 1,
+          "user_name": "Dev User",
+          "user_email": "dev@example.com",
+          "at": "2026-04-21T15:46:52.413458+00:00"
+        }
+      ],
+      "source_heading_path": "HYDROGEN SULPHIDE > 1. PURPOSE",
+      "relationship": "Complementary",
       "status": "pending"
     },
     {
@@ -2921,6 +3035,160 @@
       "user_name": "Dev User",
       "user_email": "dev@example.com",
       "at": "2026-04-21T15:06:36.872337+00:00"
+    },
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:50:11.929638+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:50:12.917339+00:00"
+    },
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:50:21.009762+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:50:23.364580+00:00"
+    },
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:50:37.314113+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:53:42.037897+00:00"
+    },
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:53:43.677549+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "approved",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:53:44.924120+00:00"
+    },
+    {
+      "from": "approved",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:53:47.897482+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:53:48.475900+00:00"
+    },
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:56:53.911400+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "approved",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:56:54.978969+00:00"
+    },
+    {
+      "from": "approved",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:56:56.886275+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:56:57.535994+00:00"
+    },
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:56:58.925447+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:57:07.992514+00:00"
+    },
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T15:57:09.155024+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "approved",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T16:00:02.740158+00:00"
+    },
+    {
+      "from": "approved",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T16:00:04.292520+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T16:00:05.266856+00:00"
+    },
+    {
+      "from": "ai_consolidated",
+      "to": "in_review",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T16:04:31.753474+00:00"
+    },
+    {
+      "from": "in_review",
+      "to": "ai_consolidated",
+      "user_name": "Dev User",
+      "user_email": "dev@example.com",
+      "at": "2026-04-21T16:04:33.261367+00:00"
     }
   ]
 }

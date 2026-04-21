@@ -14,6 +14,7 @@ import {
   useChunkTranslation,
 } from "./translation-toggle";
 import { ClassificationBadges } from "./classification-badges";
+import { ArrowRight, X, Lock, ChevronDown, ChevronRight } from "lucide-react";
 
 const PROSE_CLASSES =
   "prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50";
@@ -120,7 +121,7 @@ export function DetailPanel({
     }
   };
 
-  const isGap = block.type === "gap";
+
   const locked = !!readOnly;
 
   return (
@@ -131,9 +132,9 @@ export function DetailPanel({
           <RelationshipBadge block={block} />
           <button
             onClick={onClose}
-            className="text-muted-foreground hover:text-foreground text-lg leading-none"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            &times;
+            <X className="w-5 h-5" />
           </button>
         </div>
         <ClassificationBadges block={block} />
@@ -147,7 +148,7 @@ export function DetailPanel({
 
       {locked && (
         <div className="px-4 py-2 text-xs border-b border-green-500/30 bg-green-500/10 text-green-400 flex items-center gap-2 shrink-0">
-          <span>🔒</span>
+          <Lock className="w-3 h-3" />
           <span>Document is published. Unpublish to edit.</span>
         </div>
       )}
@@ -204,9 +205,10 @@ export function DetailPanel({
             <div className="border border-border rounded-md">
               <button
                 onClick={() => setAiExpanded(!aiExpanded)}
-                className="w-full text-left px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="w-full text-left px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
               >
-                {aiExpanded ? "▾" : "▸"} AI details
+                {aiExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+                AI details
               </button>
               {aiExpanded && (
                 <div className="px-3 pb-3 space-y-2">
@@ -413,8 +415,9 @@ function VersionHistorySection({
         onClick={() => setExpanded((v) => !v)}
         className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
       >
-        <span>
-          {expanded ? "▾" : "▸"} Version history · {history.length} entr
+        <span className="flex items-center gap-1.5">
+          {expanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+          Version history · {history.length} entr
           {history.length === 1 ? "y" : "ies"}
         </span>
         {!expanded && currentVersion > 0 && (
@@ -478,7 +481,7 @@ function HistoryEntryRow({
           </span>
         )}
       </div>
-      {summary && <p className="text-[11px] text-muted-foreground">{summary}</p>}
+      <div className="text-[11px] text-muted-foreground">{summary}</div>
       <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
         <span>{who}</span>
         <span>·</span>
@@ -492,16 +495,20 @@ function HistoryEntryRow({
 
 /** Compact before→after summary for a history entry. Returns null when the
  *  action name alone is self-explanatory (user_added, reverted_to_vN). */
-function summariseEntry(entry: HistoryEntry): string | null {
+function summariseEntry(entry: HistoryEntry): React.ReactNode | null {
   const before = entry.before as Record<string, unknown>;
   const after = entry.after as Record<string, unknown>;
-  const parts: string[] = [];
+  const parts: React.ReactNode[] = [];
 
   // Status transitions are the headline for most entries.
   if (before.status !== after.status) {
     const from = (before.status as string | undefined) ?? "—";
     const to = (after.status as string | undefined) ?? "—";
-    parts.push(`${from} → ${to}`);
+    parts.push(
+      <span className="flex items-center gap-1 inline-flex">
+        {from} <ArrowRight className="w-2.5 h-2.5 mx-0.5 mt-0.5 inline" strokeWidth={2} /> {to}
+      </span>
+    );
   }
 
   // Edit — flag text change without rendering the full diff.
@@ -529,7 +536,16 @@ function summariseEntry(entry: HistoryEntry): string | null {
     }
   }
 
-  return parts.length ? parts.join(" · ") : null;
+  return parts.length ? (
+    <span className="inline-flex items-center flex-wrap gap-1">
+      {parts.map((part, i) => (
+        <span key={i} className="inline-flex items-center">
+          {i > 0 && <span className="mx-1">·</span>}
+          {part}
+        </span>
+      ))}
+    </span>
+  ) : null;
 }
 
 const HUMAN_ACTIONS: Record<string, string> = {
@@ -688,7 +704,7 @@ function CommentRow({
             title="Delete your comment"
             className="text-muted-foreground hover:text-red-400 transition-colors disabled:opacity-50"
           >
-            ✕
+            <X className="w-3.5 h-3.5" />
           </button>
         )}
       </div>
