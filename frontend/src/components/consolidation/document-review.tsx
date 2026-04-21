@@ -1085,10 +1085,10 @@ export function DocumentReview({
         {/* Center: Document body */}
         <div className="flex-1 overflow-auto bg-muted/30">
           <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="bg-card rounded-xl shadow-sm px-6 py-6">
+            <div className="bg-card rounded-xl border border-border px-6 py-6">
 
             {/* Sections */}
-            {sections.map((section) => {
+            {sections.map((section, idx) => {
               const sectionVisible = section.blocks.some((b) => visibleIds.has(b.id));
               if (!sectionVisible && filtersActive) return null;
 
@@ -1104,9 +1104,11 @@ export function DocumentReview({
                   {(function () {
                     const label = section.heading.split(">").pop()?.trim() || "(Untitled)";
                     const level = Math.min(4, Math.max(2, section.depth + 1));
-                    if (level === 2) return <h2 className="mt-10 mb-3 text-2xl font-semibold text-foreground">{label}</h2>;
-                    if (level === 3) return <h3 className="mt-8 mb-2 text-xl font-semibold text-foreground">{label}</h3>;
-                    return <h4 className="mt-6 mb-2 text-lg font-semibold text-foreground">{label}</h4>;
+                    const mt = idx === 0 ? "mt-0" : level === 2 ? "mt-10" : level === 3 ? "mt-8" : "mt-6";
+                    
+                    if (level === 2) return <h2 className={`${mt} mb-3 text-2xl font-semibold text-foreground`}>{label}</h2>;
+                    if (level === 3) return <h3 className={`${mt} mb-2 text-xl font-semibold text-foreground`}>{label}</h3>;
+                    return <h4 className={`${mt} mb-2 text-lg font-semibold text-foreground`}>{label}</h4>;
                   })()}
 
                   {section.blocks.map((block) => {
