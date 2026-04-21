@@ -456,7 +456,7 @@ function RegionalCallout({
       aria-label={`Regional addition from ${regionLabel}`}
     >
       {lang && (
-        <header className="mb-1 text-[10px] italic text-zinc-500 dark:text-zinc-400">
+        <header className="mb-1 text-[11px] italic text-zinc-500 dark:text-zinc-400">
           translated from {lang}
         </header>
       )}
@@ -534,7 +534,7 @@ function ConflictCallout({ block }: { block: ConsolidatedBlock }) {
     <aside className="my-4 overflow-hidden rounded-md border border-red-300 dark:border-red-900" role="alert">
       <header className={`flex flex-wrap items-center gap-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide ${headerColor}`}>
         <span>{severity} conflict</span>
-        <span className="ml-auto rounded bg-white/60 px-1.5 py-0.5 text-[10px] font-medium text-zinc-700 dark:bg-zinc-900/50 dark:text-zinc-200">
+        <span className="ml-auto rounded bg-white/60 px-1.5 py-0.5 text-[11px] font-medium text-zinc-700 dark:bg-zinc-900/50 dark:text-zinc-200">
           {escalated ? "Escalated — pending QHSE decision" : "Awaiting reviewer decision"}
         </span>
       </header>
@@ -775,7 +775,7 @@ function SectionPolishControls({
     <div className="shrink-0 flex items-center gap-1.5">
       {hasOverride && isStale && (
         <span
-          className="inline-flex items-center gap-1 rounded border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-medium text-amber-800 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-200"
+          className="inline-flex items-center gap-1 rounded border border-amber-300 bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-800 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-200"
           title="Blocks in this section were edited after the last polish — re-polish to apply."
         >
           Stale
@@ -783,7 +783,7 @@ function SectionPolishControls({
       )}
       {hasOverride && !isStale && (
         <span
-          className="inline-flex items-center gap-1 rounded border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-200"
+          className="inline-flex items-center gap-1 rounded border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-200"
           title={`Polished at ${override?.generated_at ?? "—"}`}
         >
           Polished
@@ -874,7 +874,7 @@ function AppendixGroup({
               key={label}
               className="inline-flex items-center gap-1 rounded bg-zinc-100 px-2 py-0.5 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
             >
-              <span className="text-[10px] uppercase tracking-wide text-zinc-500">
+              <span className="text-[11px] uppercase tracking-wide text-zinc-500">
                 {label}
               </span>
               <span>·</span>

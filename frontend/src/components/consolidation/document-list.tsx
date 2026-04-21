@@ -174,20 +174,20 @@ function DocCard({ doc, onClick }: { doc: ConsolidationDocSummary; onClick: () =
       {/* KCAD source list — natural-language titles with region tag */}
       {kcadList.length > 0 && (
         <div className="mb-2 rounded border border-border/60 bg-muted/20 p-2 text-xs">
-          <div className="mb-1 text-[10px] uppercase tracking-wide text-muted-foreground">
+          <div className="mb-1 text-[11px] uppercase tracking-wide text-muted-foreground">
             KCAD sources ({kcadList.length})
           </div>
           <ul className="space-y-0.5">
             {kcadList.map((k) => (
               <li key={k.filename} className="flex items-start gap-1.5">
                 {k.region && (
-                  <span className="shrink-0 mt-0.5 rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium uppercase text-muted-foreground">
+                  <span className="shrink-0 mt-0.5 rounded bg-muted px-1.5 py-0.5 text-[11px] font-medium uppercase text-muted-foreground">
                     {k.region}
                   </span>
                 )}
                 <span className="flex-1 text-foreground leading-snug">
                   {k.title}
-                  <span className="ml-1.5 font-mono text-[10px] text-muted-foreground">
+                  <span className="ml-1.5 font-mono text-[11px] text-muted-foreground">
                     {k.filename.replace(/\.pdf$/i, "")}
                   </span>
                 </span>

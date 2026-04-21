@@ -268,7 +268,7 @@ export function LanguageBadge({
   if (!isForeignLanguage(language)) return null;
   return (
     <span
-      className={`inline-flex items-center text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/30 ${className}`}
+      className={`inline-flex items-center text-[11px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/30 ${className}`}
       title={languageLabel(language)}
     >
       {languageBadge(language)}
@@ -292,7 +292,7 @@ export function TranslateToggle({
 }) {
   const sizeClasses =
     size === "xs"
-      ? "text-[10px] px-1.5 py-0.5 gap-1"
+      ? "text-[11px] px-1.5 py-0.5 gap-1"
       : "text-xs px-2 py-1 gap-1.5";
 
   const handleClick = (e: React.MouseEvent) => {
@@ -330,7 +330,7 @@ export function TranslateToggle({
 /** Inline error line for translation failures. */
 export function TranslationError({ message }: { message: string }) {
   return (
-    <div className="text-[10px] text-red-400 mt-1 italic">
+    <div className="text-[11px] text-red-400 mt-1 italic">
       {message}
     </div>
   );

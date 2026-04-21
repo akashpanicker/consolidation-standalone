@@ -1,8 +1,26 @@
 import { useState, useMemo, useRef, useCallback, useEffect } from "react";
-import { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, Check, Lock, X, Eye, EyeOff, Pencil } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Lock, X, Eye, EyeOff, Pencil, GripVertical } from "lucide-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import {
+  DndContext,
+  DragOverlay,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  closestCenter,
+  type DragStartEvent,
+  type DragOverEvent,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  useSortable,
+  arrayMove,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import {
   type Actor,
   ConcurrencyError,
@@ -35,7 +53,6 @@ import {
   type ReviewStatus,
   isActionable,
   isReviewed,
-  relationshipLabel,
 } from "./types";
 import { DetailPanel, EditDraftEditor } from "./detail-panel";
 import {
@@ -538,23 +555,61 @@ export function DocumentReview({
     [slug, etag, actor, queryClient],
   );
 
-  /** Drag-and-drop reorder. Takes source + target block IDs and resolves
-   *  their current array positions, then issues a single `move_to` call —
-   *  replaces what would otherwise be N iterative up/down calls for a
-   *  long drop. */
-  const handleDropBlock = useCallback(
-    async (sourceBlockId: string, targetBlockId: string) => {
-      if (isLocked) return;
-      if (sourceBlockId === targetBlockId) return;
+  // ── Drag and drop state ──
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 6 },
+    })
+  );
+
+  const handleDragStart = useCallback((event: DragStartEvent) => {
+    setDraggingId(event.active.id as string);
+  }, []);
+
+  const handleDragOver = useCallback((_event: DragOverEvent) => {
+    // Visual feedback is handled by SortableWrapper's isOver state
+  }, []);
+
+  const handleDragEnd = useCallback(
+    async (event: DragEndEvent) => {
+      const { active, over } = event;
+      setDraggingId(null);
+
+      if (isLocked || !over || active.id === over.id) return;
+
+      const sourceBlockId = active.id as string;
+      const targetBlockId = over.id as string;
+
       const cached = queryClient.getQueryData<{ view: ConsolidatedView; etag: string }>(
         ["consolidated-view", slug],
       );
       if (!cached) return;
+
       const blocks = cached.view.blocks;
-      const targetIdx = blocks.findIndex((b) => b.id === targetBlockId);
-      if (targetIdx < 0) return;
+      const oldIndex = blocks.findIndex((b) => b.id === sourceBlockId);
+      const newIndex = blocks.findIndex((b) => b.id === targetBlockId);
+
+      if (oldIndex === -1 || newIndex === -1) return;
+
+      // Optimistic update
+      queryClient.setQueryData<{ view: ConsolidatedView; etag: string }>(
+        ["consolidated-view", slug],
+        (old) => {
+          if (!old) return old;
+          return {
+            ...old,
+            view: {
+              ...old.view,
+              blocks: arrayMove(old.view.blocks, oldIndex, newIndex),
+            },
+          };
+        }
+      );
+
       try {
-        await moveBlockTo(slug, cached.etag, actor, sourceBlockId, targetIdx);
+        await moveBlockTo(slug, cached.etag, actor, sourceBlockId, newIndex);
         await queryClient.invalidateQueries({ queryKey: ["consolidated-view", slug] });
       } catch (err) {
         if (err instanceof ConcurrencyError) {
@@ -564,6 +619,7 @@ export function DocumentReview({
           });
         } else {
           console.warn("Drop move failed:", err);
+          await queryClient.invalidateQueries({ queryKey: ["consolidated-view", slug] });
         }
       }
     },
@@ -1084,9 +1140,20 @@ export function DocumentReview({
         />
 
         {/* Center: Document body */}
-        <div className="flex-1 overflow-auto bg-muted/30">
-          <div className="max-w-4xl mx-auto px-4 py-6">
-            <div className="bg-card rounded-xl border border-border px-6 py-6">
+        <div className="flex-1 overflow-auto bg-[#F0F4FA]">
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragStart={handleDragStart}
+            onDragOver={handleDragOver}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={data.blocks.map(b => b.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              <div className="max-w-4xl mx-auto px-4 py-6">
+                <div className="bg-card rounded-xl border border-border px-6 py-6">
 
               {/* Sections */}
               {sections.map((section, idx) => {
@@ -1128,11 +1195,11 @@ export function DocumentReview({
                       const isSelected = block.id === selectedBlockId;
 
                       return (
-                        <DraggableBlock
+                        <SortableWrapper
                           key={block.id}
-                          blockId={block.id}
-                          onDrop={handleDropBlock}
-                          readOnly={isLocked}
+                          id={block.id}
+                          isDragEnabled={!isLocked}
+                          isDraggingMe={draggingId === block.id}
                         >
                           <ContentBlock
                             block={block}
@@ -1152,7 +1219,7 @@ export function DocumentReview({
                             readOnly={isLocked}
                             showSources={showSources}
                           />
-                        </DraggableBlock>
+                        </SortableWrapper>
                       );
                     })}
                   </div>
@@ -1173,6 +1240,7 @@ export function DocumentReview({
                   readOnly={isLocked}
                   showSources={showSources}
                   sectionRefs={sectionRefs}
+                  draggingId={draggingId}
                 />
               )}
 
@@ -1190,9 +1258,17 @@ export function DocumentReview({
               )}
             </div>
           </div>
-        </div>
+        </SortableContext>
 
-        {/* Right: Detail panel (persistent when showChunks is on) */}
+        <DragOverlay dropAnimation={{ duration: 200, easing: "ease-out" }}>
+          {draggingId ? (
+            <BlockClone block={data.blocks.find((b) => b.id === draggingId)!} />
+          ) : null}
+        </DragOverlay>
+      </DndContext>
+    </div>
+
+    {/* Right: Detail panel (persistent when showChunks is on) */}
         {showChunks && (() => {
           const overrides = data.unified_overrides ?? {};
           const sectionHeading = selectedBlock?.heading_path || "";
@@ -1224,7 +1300,6 @@ export function DocumentReview({
               unifiedUpdating={selectedBlock ? polishingSections.has(sectionHeading) : false}
               unifiedPolished={!!override}
               unifiedStale={stale}
-              onRequestCardEdit={selectedBlock ? () => setCardEditBlockId(selectedBlock.id) : undefined}
             />
           );
         })()}
@@ -1268,16 +1343,17 @@ function ReviewHeader({
 }) {
   return (
     <div className="px-4 py-2.5 border-b border-border flex items-center gap-4 shrink-0 bg-background">
-      <button
-        onClick={onBack}
-        className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        Back
-      </button>
-      <div className="flex-1 min-w-0">
-        <h2 className="text-sm font-semibold truncate ml-4">{displayName}</h2>
+      <div className="flex items-center gap-2 min-w-0">
+        <button
+          onClick={onBack}
+          className="p-1 -ml-1 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded transition-colors flex items-center justify-center shrink-0"
+          title="Back to list"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+        <h2 className="text-sm font-semibold truncate">{displayName}</h2>
       </div>
+      <div className="flex-1" />
 
       {/* Stats badges */}
       <div className="flex items-center gap-3 text-xs shrink-0">
@@ -1393,7 +1469,7 @@ function ApprovalWorkflowBar({
                 {stage.label}
               </div>
               {i < REVIEW_STAGES.length - 1 && (
-                <span className={`flex items-center text-[10px] ${reached && i + 1 <= currentIdx ? "text-foreground/60" : "text-muted-foreground/40"}`}>
+                <span className={`flex items-center text-[11px] ${reached && i + 1 <= currentIdx ? "text-foreground/60" : "text-muted-foreground/40"}`}>
                   <ArrowRight className="w-3 h-3" />
                 </span>
               )}
@@ -1486,16 +1562,16 @@ function FilterChipBar({
       <div className="h-4 w-px bg-border" />
       <ChipGroup
         label="Mode"
-        values={["none", ...NORMATIVE_CHIPS] as readonly string[]}
-        active={normativeFilter.size === 0 ? new Set(["none"]) : normativeFilter}
+        values={["all", ...NORMATIVE_CHIPS] as readonly string[]}
+        active={normativeFilter.size === 0 ? new Set(["all"]) : normativeFilter}
         onToggle={(v) => {
-          if (v === "none") {
+          if (v === "all") {
             onNormativeChange(new Set());
           } else {
             onNormativeChange(new Set([v]));
           }
         }}
-        colorFor={(v) => v === "none" ? { selected: "bg-muted text-foreground border-border", idle: "hover:bg-muted/50" } : normativeChipColor(v)}
+        colorFor={(v) => v === "all" ? { selected: "bg-muted text-foreground border-border", idle: "hover:bg-muted/50" } : normativeChipColor(v)}
         radioMode
       />
       <span className="flex-1" />
@@ -1723,7 +1799,7 @@ function SectionOutline({
             style={{ paddingLeft: `${8 + entry.depth * 10}px` }}
           >
             <span className="truncate flex-1">{label}</span>
-            {entry.allReviewed && <Check className="w-3 h-3 text-green-500 shrink-0" />}
+            {entry.allReviewed && <Check className="w-3 h-3 text-success shrink-0" />}
             {entry.additions > 0 && (
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
             )}
@@ -1763,7 +1839,7 @@ function AppendicesPanel({
     <div className="mt-4 pt-3 border-t border-border">
       <div className="text-xs font-semibold text-muted-foreground uppercase px-2 mb-2 flex items-center gap-1.5">
         <span>Supporting Content</span>
-        <span className="text-[10px] text-muted-foreground/60">· {appendices.length}</span>
+        <span className="text-[11px] text-muted-foreground/60">· {appendices.length}</span>
       </div>
       <div className="space-y-1.5 px-1">
         {appendices.map((a) => {
@@ -1797,7 +1873,7 @@ function AppendicesPanel({
                   {scopeChips.map((chip, i) => (
                     <span
                       key={i}
-                      className="px-1.5 py-0.5 rounded text-[10px] bg-background border border-border text-muted-foreground"
+                      className="px-1.5 py-0.5 rounded text-[11px] bg-background border border-border text-muted-foreground"
                     >
                       {chip}
                     </span>
@@ -1812,32 +1888,7 @@ function AppendicesPanel({
   );
 }
 
-function DocumentBanner({ summary }: { summary: ConsolidatedView["summary"] }) {
-  if (summary.total_additions === 0) {
-    return (
-      <div className="mb-6 p-4 rounded-lg border border-border bg-muted/20 text-sm text-muted-foreground">
-        No KCAD additions found for this document.
-      </div>
-    );
-  }
 
-  return (
-    <div className="mb-6 p-4 rounded-lg border border-border bg-muted/20 text-sm space-y-1">
-      <div>
-        <strong>{summary.total_additions}</strong> suggested change{summary.total_additions !== 1 ? "s" : ""} from{" "}
-        <strong>{summary.kcad_source_count}</strong> KCAD source{summary.kcad_source_count !== 1 ? "s" : ""}
-      </div>
-      {summary.regions.length > 0 && (
-        <div className="text-muted-foreground">Regions: {summary.regions.join(", ")}</div>
-      )}
-      {summary.total_conflicts > 0 && (
-        <div className="text-red-400">
-          {summary.total_conflicts} conflict{summary.total_conflicts !== 1 ? "s" : ""} require resolution
-        </div>
-      )}
-    </div>
-  );
-}
 
 // ── Block rendering ─────────────────────────────────────────────────────
 
@@ -1868,7 +1919,17 @@ function ContentBlock({
 }) {
   switch (block.type) {
     case "hp_original":
-      return <HpBlock block={block} showSources={showSources} onAction={readOnly ? undefined : onAction} readOnly={readOnly} />;
+    case "user_added":
+      return (
+        <HpBlock
+          block={block}
+          isSelected={isSelected}
+          onClick={onClick}
+          showSources={showSources}
+          onAction={readOnly ? undefined : onAction}
+          readOnly={readOnly}
+        />
+      );
     case "kcad_addition":
       return (
         <KcadAdditionCard
@@ -1893,6 +1954,10 @@ function ContentBlock({
           onClick={onClick}
           onMove={onMove}
           onRemove={onRemove}
+          onAction={readOnly ? undefined : onAction}
+          cardEditOpen={!!cardEditOpen}
+          onCardEditOpen={onCardEditOpen ?? (() => {})}
+          onCardEditClose={onCardEditClose ?? (() => {})}
           readOnly={readOnly}
           showSources={showSources}
         />
@@ -1905,6 +1970,10 @@ function ContentBlock({
           onClick={onClick}
           onMove={onMove}
           onRemove={onRemove}
+          onAction={readOnly ? undefined : onAction}
+          cardEditOpen={!!cardEditOpen}
+          onCardEditOpen={onCardEditOpen ?? (() => {})}
+          onCardEditClose={onCardEditClose ?? (() => {})}
           readOnly={readOnly}
           showSources={showSources}
         />
@@ -2027,7 +2096,7 @@ function AppendixAssignDialog({
                 onChange={(v) => setField("customer", v)}
               />
             </div>
-            <div className="mt-1 text-[10px] text-muted-foreground">
+            <div className="mt-1 text-[11px] text-muted-foreground">
               Blank = wildcard (applies to any value of that variant).
             </div>
           </div>
@@ -2110,6 +2179,7 @@ function AppendixSectionsBlock({
   readOnly,
   showSources,
   sectionRefs,
+  draggingId,
 }: {
   blocks: ConsolidatedBlock[];
   appendices: Appendix[];
@@ -2120,6 +2190,7 @@ function AppendixSectionsBlock({
   readOnly: boolean;
   showSources: boolean;
   sectionRefs: React.MutableRefObject<Map<string, HTMLElement>>;
+  draggingId: string | null;
 }) {
   // Group blocks by appendix_id, preserving view array order.
   const byAppendix = new Map<string, ConsolidatedBlock[]>();
@@ -2138,7 +2209,7 @@ function AppendixSectionsBlock({
 
   return (
     <div className="mt-10 border-t-2 border-border pt-6">
-      <div className="mb-3 text-[10px] uppercase tracking-wide text-muted-foreground">
+      <div className="mb-3 text-[11px] uppercase tracking-wide text-muted-foreground">
         Appendices — regional supplements moved out of canonical flow
       </div>
       {orderedAppendices.map((app, idx) => {
@@ -2169,6 +2240,7 @@ function AppendixSectionsBlock({
             readOnly={readOnly}
             showSources={showSources}
             sectionRefs={sectionRefs}
+            draggingId={draggingId}
           />
         );
       })}
@@ -2186,16 +2258,22 @@ function AppendixSectionsBlock({
               {orphanBlocks.length === 1 ? "" : "s"} still assigned)
             </div>
             {orphanBlocks.map((b) => (
-              <ContentBlock
+              <SortableWrapper
                 key={b.id}
-                block={b}
-                isSelected={b.id === selectedBlockId}
-                onClick={() => onSelectBlock(b.id === selectedBlockId ? null : b.id)}
-                onMove={(dir) => onMove(b.id, dir)}
-                onRemove={() => onRemove(b.id)}
-                readOnly={readOnly}
-                showSources={showSources}
-              />
+                id={b.id}
+                isDragEnabled={!readOnly}
+                isDraggingMe={draggingId === b.id}
+              >
+                <ContentBlock
+                  block={b}
+                  isSelected={b.id === selectedBlockId}
+                  onClick={() => onSelectBlock(b.id === selectedBlockId ? null : b.id)}
+                  onMove={(dir) => onMove(b.id, dir)}
+                  onRemove={() => onRemove(b.id)}
+                  readOnly={readOnly}
+                  showSources={showSources}
+                />
+              </SortableWrapper>
             ))}
           </div>
         ))}
@@ -2214,6 +2292,7 @@ function AppendixSection({
   readOnly,
   showSources,
   sectionRefs,
+  draggingId,
 }: {
   appendix: Appendix;
   letter: string;
@@ -2225,6 +2304,7 @@ function AppendixSection({
   readOnly: boolean;
   showSources: boolean;
   sectionRefs: React.MutableRefObject<Map<string, HTMLElement>>;
+  draggingId: string | null;
 }) {
   const anchorId = `appendix-${appendix.id}`;
   const scope = appendix.scope || { region: null, rig: null, customer: null, environment: null };
@@ -2252,7 +2332,7 @@ function AppendixSection({
               key={label}
               className="inline-flex items-center gap-1 rounded bg-muted/50 px-2 py-0.5 text-foreground"
             >
-              <span className="text-[10px] uppercase tracking-wide text-muted-foreground">
+              <span className="text-[11px] uppercase tracking-wide text-muted-foreground">
                 {label}
               </span>
               <span>·</span>
@@ -2262,16 +2342,22 @@ function AppendixSection({
         </div>
       )}
       {blocks.map((b) => (
-        <ContentBlock
+        <SortableWrapper
           key={b.id}
-          block={b}
-          isSelected={b.id === selectedBlockId}
-          onClick={() => onSelectBlock(b.id === selectedBlockId ? null : b.id)}
-          onMove={(dir) => onMove(b.id, dir)}
-          onRemove={() => onRemove(b.id)}
-          readOnly={readOnly}
-          showSources={showSources}
-        />
+          id={b.id}
+          isDragEnabled={!readOnly}
+          isDraggingMe={draggingId === b.id}
+        >
+          <ContentBlock
+            block={b}
+            isSelected={b.id === selectedBlockId}
+            onClick={() => onSelectBlock(b.id === selectedBlockId ? null : b.id)}
+            onMove={(dir) => onMove(b.id, dir)}
+            onRemove={() => onRemove(b.id)}
+            readOnly={readOnly}
+            showSources={showSources}
+          />
+        </SortableWrapper>
       ))}
     </section>
   );
@@ -2387,11 +2473,15 @@ function BlockToolbar({
 /** HP original content — the base document. Dimmed when no additions. */
 function HpBlock({
   block,
+  isSelected,
+  onClick,
   showSources,
   onAction,
   readOnly,
 }: {
   block: ConsolidatedBlock;
+  isSelected: boolean;
+  onClick: () => void;
   showSources: boolean;
   onAction?: (action: string, opts?: { edited_text?: string }) => Promise<void>;
   readOnly?: boolean;
@@ -2427,16 +2517,18 @@ function HpBlock({
   return (
     <div
       id={`block-${block.id}`}
-      className={`group/hpblock relative py-1 transition-opacity ${dimmed ? "opacity-50" : "opacity-100"}`}
+      onClick={onClick}
+      className={`group/hpblock relative py-2 pl-3 pr-8 rounded-lg transition-all cursor-pointer border-l-4 ${isSelected ? "border-primary bg-primary/5 ring-1 ring-primary/20" : "border-transparent hover:bg-[#F0F4FA]"
+        } ${dimmed ? "opacity-50" : "opacity-100"}`}
     >
       <div className="flex items-center gap-2 mb-1">
         {showSources && (
-          <span className="inline-block text-[9px] font-semibold tracking-wide px-1 rounded border border-border bg-background text-muted-foreground">
+          <span className="inline-block text-[11px] font-semibold tracking-wide px-1 rounded border border-border bg-background text-muted-foreground">
             HP
           </span>
         )}
         {block.edited_text && !editing && (
-          <span className="inline-block px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info">
+          <span className="inline-block px-1.5 py-0.5 rounded text-[11px] border border-info/30 bg-info/10 text-info">
             Edited
           </span>
         )}
@@ -2451,20 +2543,20 @@ function HpBlock({
           hasExistingEdit={!!block.edited_text}
         />
       ) : (
-        <div className="flex items-start gap-1">
-          <div className={`flex-1 prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${colorCls}`}>
+        <>
+          <div className={`prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${colorCls}`}>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{displayText}</ReactMarkdown>
           </div>
           {!readOnly && onAction && (
             <button
               onClick={(e) => { e.stopPropagation(); setEditing(true); }}
-              className="opacity-0 group-hover/hpblock:opacity-100 transition-opacity shrink-0 mt-0.5 p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted/50"
+              className="absolute right-0 top-6 opacity-0 group-hover/hpblock:opacity-100 transition-all shrink-0 p-1 rounded border border-border bg-background/80 text-muted-foreground hover:text-foreground hover:bg-muted/50 backdrop-blur-sm z-10"
               title="Edit paragraph"
             >
-              <Pencil className="w-3 h-3" />
+              <Pencil className="w-3.5 h-3.5" />
             </button>
           )}
-        </div>
+        </>
       )}
     </div>
   );
@@ -2550,7 +2642,7 @@ function KcadAdditionCard({
     accepted: "bg-success/15 text-success border-success/30",
     dismissed: "bg-muted/50 text-muted-foreground border-border",
     edited: "bg-info/15 text-info border-info/30",
-    pending: "bg-muted/30 text-muted-foreground border-border",
+    pending: "bg-[#F0F4FA] text-muted-foreground border-border",
   };
 
   const dimmed =
@@ -2577,15 +2669,26 @@ function KcadAdditionCard({
 
   return (
     <div className="group/chunk-outer relative my-2 pr-8">
-      {!readOnly && (
-        <button
-          onClick={stop(onRemove)}
-          title="Remove (sends to Excluded Content)"
-          className="absolute right-0 top-2 w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-red-400 hover:border-red-500/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm z-10"
-        >
-          <X className="w-3 h-3" />
-        </button>
-      )}
+      <div className="absolute right-0 top-2 flex flex-col gap-1 z-10">
+        {!readOnly && (
+          <button
+            onClick={stop(onRemove)}
+            title="Remove (sends to Excluded Content)"
+            className="w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-red-400 hover:border-red-500/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm shadow-sm"
+          >
+            <X className="w-3 h-3" />
+          </button>
+        )}
+        {!readOnly && onAction && !cardEditOpen && (
+          <button
+            onClick={stop(onCardEditOpen)}
+            title={block.edited_text ? "Edit this block's text again" : "Edit before accepting"}
+            className="w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-info hover:border-info/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm shadow-sm"
+          >
+            <Pencil className="w-3 h-3" />
+          </button>
+        )}
+      </div>
       <div
         id={`block-${block.id}`}
         onClick={cardEditOpen ? undefined : onClick}
@@ -2600,7 +2703,7 @@ function KcadAdditionCard({
           <FormatBadge format={block.format} />
           {showSources && (
             <span
-              className={`px-1.5 py-0.5 rounded text-[10px] border shrink-0 ${block.edited_text
+              className={`px-1.5 py-0.5 rounded text-[11px] border shrink-0 ${block.edited_text
                 ? "border-zinc-500/30 bg-zinc-500/10 text-zinc-400"
                 : "border-info/30 bg-info/10 text-info"
                 }`}
@@ -2610,12 +2713,12 @@ function KcadAdditionCard({
             </span>
           )}
           {block.edited_text && !showSources && (
-            <span className="px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info shrink-0">
+            <span className="px-1.5 py-0.5 rounded text-[11px] border border-info/30 bg-info/10 text-info shrink-0">
               Edited
             </span>
           )}
           {block.appendix_id && (
-            <span className="px-1.5 py-0.5 rounded text-[10px] border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 shrink-0">
+            <span className="px-1.5 py-0.5 rounded text-[11px] border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 shrink-0">
               App: {block.appendix_name ?? "…"}
             </span>
           )}
@@ -2629,18 +2732,9 @@ function KcadAdditionCard({
             />
           )}
           {block.status !== "edited" && (
-            <span className={`px-1.5 py-0.5 rounded text-[10px] border ${statusColors[block.status] ?? statusColors.pending}`}>
-              {block.status}
+            <span className={`px-1.5 py-0.5 rounded text-[11px] border ${statusColors[block.status] ?? statusColors.pending}`}>
+              {block.status.charAt(0).toUpperCase() + block.status.slice(1)}
             </span>
-          )}
-          {!readOnly && onAction && !cardEditOpen && (
-            <button
-              onClick={(e) => { e.stopPropagation(); onCardEditOpen(); }}
-              className="px-1.5 py-0.5 rounded text-[10px] border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-              title={block.edited_text ? "Edit this block's text again" : "Edit before accepting"}
-            >
-              ✎ Edit
-            </button>
           )}
         </div>
         {/* Content */}
@@ -2680,6 +2774,10 @@ function ConflictCard({
   onClick,
   onMove,
   onRemove,
+  onAction,
+  cardEditOpen,
+  onCardEditOpen,
+  onCardEditClose,
   readOnly,
   showSources: _showSources, // Ignore unused
 }: {
@@ -2688,29 +2786,63 @@ function ConflictCard({
   onClick: () => void;
   onMove: (direction: "up" | "down") => void;
   onRemove: () => void;
+  onAction?: (action: string, opts?: { edited_text?: string }) => Promise<void>;
+  cardEditOpen: boolean;
+  onCardEditOpen: () => void;
+  onCardEditClose: () => void;
   readOnly: boolean;
   showSources: boolean;
 }) {
+  const [editDraft, setEditDraft] = useState("");
+  const [editBusy, setEditBusy] = useState(false);
   const translation = useChunkTranslation(block.text, block.language);
   const kcadText = translation.displayText;
   const kcadSnippet = kcadText.slice(0, 200) + (kcadText.length > 200 ? "..." : "");
+
+  useEffect(() => {
+    if (cardEditOpen) {
+      setEditDraft(block.edited_text ?? block.text ?? "");
+    }
+  }, [cardEditOpen, block.id]);
+
+  const handleSave = async () => {
+    if (!onAction) return;
+    setEditBusy(true);
+    try {
+      await onAction("edited", { edited_text: editDraft });
+      onCardEditClose();
+    } finally {
+      setEditBusy(false);
+    }
+  };
 
   const stop = (fn: () => void) => (e: React.MouseEvent) => { e.stopPropagation(); fn(); };
 
   return (
     <div className="group/chunk-outer relative my-2 pr-8">
-      {!readOnly && (
-        <button
-          onClick={stop(onRemove)}
-          title="Remove (sends to Excluded Content)"
-          className="absolute right-0 top-2 w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-red-400 hover:border-red-500/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm z-10"
-        >
-          <X className="w-3 h-3" />
-        </button>
-      )}
+      <div className="absolute right-0 top-2 flex flex-col gap-1 z-10">
+        {!readOnly && (
+          <button
+            onClick={stop(onRemove)}
+            title="Remove (sends to Excluded Content)"
+            className="w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-red-400 hover:border-red-500/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm shadow-sm"
+          >
+            <X className="w-3 h-3" />
+          </button>
+        )}
+        {!readOnly && onAction && !cardEditOpen && (
+          <button
+            onClick={stop(onCardEditOpen)}
+            title="Edit before resolving"
+            className="w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-info hover:border-info/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm shadow-sm"
+          >
+            <Pencil className="w-3 h-3" />
+          </button>
+        )}
+      </div>
       <div
         id={`block-${block.id}`}
-        onClick={onClick}
+        onClick={cardEditOpen ? undefined : onClick}
         className={`group relative rounded-lg border-l-4 border-error cursor-pointer transition-all ${isSelected ? "ring-2 ring-error/40 bg-error/10" : "bg-error/5 hover:bg-error/15"
           }`}
       >
@@ -2719,7 +2851,7 @@ function ConflictCard({
           <span className="font-medium text-error">&#9888; Conflict</span>
           {block.conflict?.severity && (
             <span
-              className={`px-1.5 py-0.5 rounded text-[10px] border ${block.conflict.severity === "critical"
+              className={`px-1.5 py-0.5 rounded text-[11px] border ${block.conflict.severity === "critical"
                 ? "bg-error/15 text-error border-error/30"
                 : block.conflict.severity === "material"
                   ? "bg-warning/15 text-warning border-warning/30"
@@ -2730,7 +2862,7 @@ function ConflictCard({
             </span>
           )}
           {block.edited_text && (
-            <span className="px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info shrink-0">
+            <span className="px-1.5 py-0.5 rounded text-[11px] border border-info/30 bg-info/10 text-info shrink-0">
               Edited
             </span>
           )}
@@ -2744,11 +2876,11 @@ function ConflictCard({
               size="xs"
             />
           )}
-          <span className={`px-1.5 py-0.5 rounded text-[10px] border ${block.status === "resolved"
+          <span className={`px-1.5 py-0.5 rounded text-[11px] border ${block.status === "resolved"
             ? "bg-success/15 text-success border-success/30"
-            : "bg-muted/30 text-muted-foreground border-border"
+            : "bg-[#F0F4FA] text-muted-foreground border-border"
             }`}>
-            {block.status === "resolved" ? "resolved" : "open"}
+            {block.status === "resolved" ? "Resolved" : "Open"}
           </span>
         </div>
 
@@ -2756,19 +2888,32 @@ function ConflictCard({
           <div className="px-3 pb-1 text-xs text-error">{block.conflict.description}</div>
         )}
 
-        {/* Show both statements when possible */}
-        <div className="px-3 pb-3 space-y-1.5 text-sm">
-          {block.hp_original_text && (
-            <div className="text-xs">
-              <span className="font-medium text-info">H&P: </span>
-              <span className="text-foreground/70">{block.hp_original_text.slice(0, 200)}{block.hp_original_text.length > 200 ? "..." : ""}</span>
-            </div>
+        {/* Content */}
+        <div className="px-3 pb-3 space-y-1.5 text-sm" onClick={cardEditOpen ? (e) => e.stopPropagation() : undefined}>
+          {cardEditOpen ? (
+            <EditDraftEditor
+              value={editDraft}
+              onChange={setEditDraft}
+              onSave={handleSave}
+              onCancel={onCardEditClose}
+              busy={editBusy}
+              hasExistingEdit={!!block.edited_text}
+            />
+          ) : (
+            <>
+              {block.hp_original_text && (
+                <div className="text-xs">
+                  <span className="font-medium text-info">H&P: </span>
+                  <span className="text-foreground/70">{block.hp_original_text.slice(0, 200)}{block.hp_original_text.length > 200 ? "..." : ""}</span>
+                </div>
+              )}
+              <div className="text-xs" dir={translation.dir}>
+                <span className="font-medium text-warning">KCAD: </span>
+                <span className="text-foreground/70">{block.edited_text ?? kcadSnippet}</span>
+              </div>
+              {translation.error && <TranslationError message={translation.error} />}
+            </>
           )}
-          <div className="text-xs" dir={translation.dir}>
-            <span className="font-medium text-warning">KCAD: </span>
-            <span className="text-foreground/70">{kcadSnippet}</span>
-          </div>
-          {translation.error && <TranslationError message={translation.error} />}
         </div>
       </div>
     </div>
@@ -2782,6 +2927,10 @@ function GapCard({
   onClick,
   onMove,
   onRemove,
+  onAction,
+  cardEditOpen,
+  onCardEditOpen,
+  onCardEditClose,
   readOnly,
   showSources,
 }: {
@@ -2790,27 +2939,62 @@ function GapCard({
   onClick: () => void;
   onMove: (direction: "up" | "down") => void;
   onRemove: () => void;
+  onAction?: (action: string, opts?: { edited_text?: string }) => Promise<void>;
+  cardEditOpen: boolean;
+  onCardEditOpen: () => void;
+  onCardEditClose: () => void;
   readOnly: boolean;
   showSources: boolean;
 }) {
+  const [editDraft, setEditDraft] = useState("");
+  const [editBusy, setEditBusy] = useState(false);
   const reviewed = isReviewed(block);
   const translation = useChunkTranslation(block.text, block.language);
+
+  useEffect(() => {
+    if (cardEditOpen) {
+      setEditDraft(block.edited_text ?? block.text ?? "");
+    }
+  }, [cardEditOpen, block.id]);
+
+  const handleSave = async () => {
+    if (!onAction) return;
+    setEditBusy(true);
+    try {
+      await onAction("edited", { edited_text: editDraft });
+      onCardEditClose();
+    } finally {
+      setEditBusy(false);
+    }
+  };
+
   const stop = (fn: () => void) => (e: React.MouseEvent) => { e.stopPropagation(); fn(); };
 
   return (
     <div className="group/chunk-outer relative my-2 pr-8">
-      {!readOnly && (
-        <button
-          onClick={stop(onRemove)}
-          title="Remove (sends to Excluded Content)"
-          className="absolute right-0 top-2 w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-red-400 hover:border-red-500/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm z-10"
-        >
-          <X className="w-3 h-3" />
-        </button>
-      )}
+      <div className="absolute right-0 top-2 flex flex-col gap-1 z-10">
+        {!readOnly && (
+          <button
+            onClick={stop(onRemove)}
+            title="Remove (sends to Excluded Content)"
+            className="w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-red-400 hover:border-red-500/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm shadow-sm"
+          >
+            <X className="w-3 h-3" />
+          </button>
+        )}
+        {!readOnly && onAction && !cardEditOpen && (
+          <button
+            onClick={stop(onCardEditOpen)}
+            title="Edit before accepting"
+            className="w-6 h-6 flex items-center justify-center rounded border border-border bg-background/80 text-muted-foreground hover:text-info hover:border-info/30 opacity-0 group-hover/chunk-outer:opacity-100 transition-all backdrop-blur-sm shadow-sm"
+          >
+            <Pencil className="w-3 h-3" />
+          </button>
+        )}
+      </div>
       <div
         id={`block-${block.id}`}
-        onClick={onClick}
+        onClick={cardEditOpen ? undefined : onClick}
         className={`group relative rounded-lg border-l-4 border-violet-500 cursor-pointer transition-all ${isSelected ? "ring-2 ring-violet-500/40 bg-violet-50/60 dark:bg-violet-950/30" : "bg-violet-50/30 dark:bg-violet-950/15 hover:bg-violet-50/50 dark:hover:bg-violet-950/25"
           } ${reviewed && block.status === "dismissed" ? "opacity-50" : ""}`}
       >
@@ -2818,7 +3002,7 @@ function GapCard({
         <div className="px-3 pt-2 pb-1 flex items-center gap-2 text-xs">
           <span className="font-medium text-violet-500">New content</span>
           {block.edited_text && (
-            <span className="px-1.5 py-0.5 rounded text-[10px] border border-info/30 bg-info/10 text-info shrink-0">
+            <span className="px-1.5 py-0.5 rounded text-[11px] border border-info/30 bg-info/10 text-info shrink-0">
               Edited
             </span>
           )}
@@ -2833,20 +3017,36 @@ function GapCard({
             />
           )}
           {block.status !== "edited" && (
-            <span className={`px-1.5 py-0.5 rounded text-[10px] border ${reviewed ? "bg-success/15 text-success border-success/30" : "bg-muted/30 text-muted-foreground border-border"
+            <span className={`px-1.5 py-0.5 rounded text-[11px] border ${reviewed ? "bg-success/15 text-success border-success/30" : "bg-[#F0F4FA] text-muted-foreground border-border"
               }`}>
-              {block.status}
+              {block.status.charAt(0).toUpperCase() + block.status.slice(1)}
             </span>
           )}
         </div>
-        <div className="px-3 pb-3">
-          <div
-            dir={translation.dir}
-            className={`prose prose-sm dark:prose-invert max-w-none text-sm [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${sourceTextColor(block, showSources)}`}
-          >
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{stripLeadingMarkdownHeadings(translation.displayText)}</ReactMarkdown>
-          </div>
-          {translation.error && <TranslationError message={translation.error} />}
+        {/* Content */}
+        <div className="px-3 pb-3" onClick={cardEditOpen ? (e) => e.stopPropagation() : undefined}>
+          {cardEditOpen ? (
+            <EditDraftEditor
+              value={editDraft}
+              onChange={setEditDraft}
+              onSave={handleSave}
+              onCancel={onCardEditClose}
+              busy={editBusy}
+              hasExistingEdit={!!block.edited_text}
+            />
+          ) : (
+            <>
+              <div
+                dir={block.edited_text ? "ltr" : translation.dir}
+                className={`prose prose-sm dark:prose-invert max-w-none text-sm [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 ${sourceTextColor(block, showSources)}`}
+              >
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {stripLeadingMarkdownHeadings(block.edited_text ?? translation.displayText)}
+                </ReactMarkdown>
+              </div>
+              {!block.edited_text && translation.error && <TranslationError message={translation.error} />}
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -2934,7 +3134,7 @@ function ScopeField({
 }) {
   return (
     <label className="flex flex-col gap-0.5">
-      <span className="text-[10px] uppercase tracking-wide text-muted-foreground">
+      <span className="text-[11px] uppercase tracking-wide text-muted-foreground">
         {label}
       </span>
       <input
@@ -2948,63 +3148,96 @@ function ScopeField({
   );
 }
 
-// ── DraggableBlock — native HTML5 drag-and-drop wrapper ─────────────────
+// ── SortableWrapper — dnd-kit drag-and-drop wrapper ─────────────────
 
-/** Wraps a block render with HTML5 drag-source + drop-target handlers.
- *  Emits a single `onDrop(sourceId, targetId)` call on drop — parent is
- *  responsible for resolving the target position and issuing the mutation.
- *  Visual: slight opacity while dragging; dashed outline when a valid
- *  drop target is hovering. Respects `readOnly` (e.g., published docs). */
-function DraggableBlock({
-  blockId,
-  onDrop,
-  readOnly,
-  children,
-}: {
-  blockId: string;
-  onDrop: (sourceId: string, targetId: string) => void;
-  readOnly: boolean;
+interface SortableWrapperProps {
+  id: string;
+  isDragEnabled: boolean;
+  isDraggingMe: boolean;
   children: React.ReactNode;
-}) {
-  const [isDragging, setIsDragging] = useState(false);
-  const [isOver, setIsOver] = useState(false);
+}
 
-  if (readOnly) {
-    return <>{children}</>;
-  }
+/** Wraps a block render with dnd-kit sortable node ref and drag handlers.
+ *  Uses GripVertical as the drag handle. Includes visual feedback for drag over
+ *  (blue insertion line) and dragging state (opacity change). */
+function SortableWrapper({ id, isDragEnabled, isDraggingMe, children }: SortableWrapperProps) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging, isOver } = useSortable({
+    id,
+    disabled: !isDragEnabled,
+  });
 
   return (
     <div
-      draggable
-      onDragStart={(e) => {
-        e.dataTransfer.setData("text/x-consolidation-block-id", blockId);
-        e.dataTransfer.effectAllowed = "move";
-        setIsDragging(true);
+      ref={setNodeRef}
+      style={{
+        transform: CSS.Transform.toString(transform),
+        transition: isDragging ? undefined : (transition ?? "transform 150ms ease"),
+        position: "relative",
+        opacity: isDragging ? 0 : 1,
       }}
-      onDragEnd={() => setIsDragging(false)}
-      onDragOver={(e) => {
-        // preventDefault is REQUIRED to enable dropping.
-        e.preventDefault();
-        e.dataTransfer.dropEffect = "move";
-        if (!isOver) setIsOver(true);
-      }}
-      onDragLeave={() => setIsOver(false)}
-      onDrop={(e) => {
-        e.preventDefault();
-        setIsOver(false);
-        const sourceId = e.dataTransfer.getData("text/x-consolidation-block-id");
-        if (sourceId && sourceId !== blockId) {
-          onDrop(sourceId, blockId);
-        }
-      }}
-      className={
-        (isDragging ? "opacity-50 " : "") +
-        (isOver ? "ring-2 ring-primary/50 rounded-md " : "") +
-        "transition-opacity"
-      }
-      title="Drag to reorder"
+      className="group/drag relative"
     >
+      {/* Blue insertion line above target */}
+      {isOver && !isDragging && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 2,
+            backgroundColor: "hsl(var(--primary))",
+            zIndex: 20,
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
+      {/* Drag handle */}
+      {isDragEnabled && (
+        <div
+          {...attributes}
+          {...listeners}
+          className="absolute z-10 flex items-center justify-center opacity-0 group-hover/drag:opacity-100 transition-all duration-150 rounded"
+          style={{
+            left: -26,
+            top: "50%",
+            transform: "translateY(-50%)",
+            cursor: isDraggingMe ? "grabbing" : "grab",
+            color: "hsl(var(--muted-foreground))",
+            width: 20,
+            height: 24,
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <GripVertical className="w-4 h-4 hover:text-foreground transition-colors" />
+        </div>
+      )}
+
       {children}
+    </div>
+  );
+}
+
+/* ── Drag overlay clone (shown while dragging) ── */
+function BlockClone({ block }: { block: ConsolidatedBlock }) {
+  const text = (block.edited_text ?? block.text ?? "").slice(0, 140).trim();
+  return (
+    <div
+      style={{
+        padding: "16px 24px 16px 20px",
+        backgroundColor: "hsl(var(--card))",
+        borderLeft: "4px solid hsl(var(--primary))",
+        borderRadius: 4,
+        boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        opacity: 0.95,
+        cursor: "grabbing",
+      }}
+    >
+      <span className="text-[15px] leading-relaxed font-medium text-foreground">
+        {text}
+        {text.length >= 140 && "…"}
+      </span>
     </div>
   );
 }

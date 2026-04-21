@@ -1,23 +1,16 @@
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+
 import {
   type BlockComment,
   type ConsolidatedBlock,
   type HistoryEntry,
   relationshipLabel,
 } from "./types";
-import {
-  LanguageBadge,
-  TranslateToggle,
-  TranslationError,
-  useChunkTranslation,
-} from "./translation-toggle";
+
 import { ClassificationBadges } from "./classification-badges";
 import { ArrowRight, X, Lock, ChevronDown, ChevronRight } from "lucide-react";
 
-const PROSE_CLASSES =
-  "prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50";
+
 
 export function DetailPanel({
   block,
@@ -33,7 +26,6 @@ export function DetailPanel({
   unifiedUpdating,
   unifiedPolished,
   unifiedStale,
-  onRequestCardEdit,
 }: {
   block: ConsolidatedBlock | null;
   onAction: (blockId: string, action: string, opts?: { note?: string; edited_text?: string; resolution?: string }) => Promise<void>;
@@ -48,11 +40,10 @@ export function DetailPanel({
   currentUserEmail?: string | null;
   readOnly?: boolean;
   onReclassify?: (blockId: string, relationship: "Equivalent" | "Variant" | "Complementary" | "Related") => Promise<void>;
-  onRequestCardEdit?: () => void;
 }) {
   const [note, setNote] = useState("");
   const [busy, setBusy] = useState(false);
-  const [aiExpanded, setAiExpanded] = useState(false);
+  const [aiExpanded, setAiExpanded] = useState(true);
 
   const handleAction = async (action: string, resolution?: string) => {
     if (!block) return;
@@ -119,29 +110,14 @@ export function DetailPanel({
           {/* Scrollable content */}
           <div className="flex-1 overflow-auto">
             <div className="px-4 py-4 space-y-4">
-              <DifferenceSummary block={block} />
-
-              <ChunkView
-                label={block.edited_text ? "KCAD Content · Edited" : "KCAD Content"}
-                accentColor="amber"
-                chunk={block.kcad_chunk}
-                fallbackText={block.edited_text ?? block.text}
-                language={block.language ?? block.kcad_chunk?.language}
-                translatable
-                onEdit={locked ? undefined : onRequestCardEdit}
-                hasEdit={!!block.edited_text}
-              />
-
-              <ProvenanceCard block={block} />
-
               {block.ai_reasoning && (
-                <div className="border border-border rounded-md">
+                <div className="border border-border rounded-md bg-muted/10">
                   <button
                     onClick={() => setAiExpanded(!aiExpanded)}
-                    className="w-full text-left px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
+                    className="w-full text-left px-3 py-2 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
                   >
                     {aiExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
-                    AI details
+                    AI Details
                   </button>
                   {aiExpanded && (
                     <div className="px-3 pb-3 space-y-2">
@@ -151,6 +127,10 @@ export function DetailPanel({
                   )}
                 </div>
               )}
+
+              <DifferenceSummary block={block} />
+
+              <ProvenanceCard block={block} />
 
               {!locked && (
                 <div>
@@ -339,7 +319,7 @@ function VersionHistorySection({
           {history.length === 1 ? "y" : "ies"}
         </span>
         {!expanded && currentVersion > 0 && (
-          <span className="text-[10px] text-muted-foreground">v{currentVersion} current</span>
+          <span className="text-[11px] text-muted-foreground">v{currentVersion} Current</span>
         )}
       </button>
       {expanded && (
@@ -388,19 +368,19 @@ function HistoryEntryRow({
             disabled={busy}
             onClick={onRevert}
             title={`Restore block to the state after v${entry.version}`}
-            className="text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50"
+            className="text-[11px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50"
           >
             Revert
           </button>
         )}
         {isCurrent && (
-          <span className="text-[10px] px-1.5 py-0.5 rounded border border-green-500/30 bg-green-500/10 text-green-400">
-            current
+          <span className="text-[11px] px-1.5 py-0.5 rounded border border-success/30 bg-success/10 text-success">
+            Current
           </span>
         )}
       </div>
       <div className="text-[11px] text-muted-foreground">{summary}</div>
-      <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+      <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
         <span>{who}</span>
         <span>·</span>
         <time dateTime={entry.at} title={entry.at}>
@@ -608,7 +588,7 @@ function CommentRow({
 
   return (
     <div className="px-3 py-2 space-y-1">
-      <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+      <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
         <span className="text-foreground font-medium">{who}</span>
         <span>·</span>
         <time dateTime={comment.at} title={comment.at}>
@@ -683,7 +663,7 @@ function ConfidenceIndicator({ confidence }: { confidence: string | null }) {
   const l = levels[confidence] ?? levels.high;
 
   return (
-    <div className={`flex items-center gap-1 text-[10px] ${l.color}`}>
+    <div className={`flex items-center gap-1 text-[12px] ${l.color}`}>
       {Array.from({ length: 3 }, (_, i) => (
         <span key={i} className={i < l.dots ? "" : "opacity-20"}>&#9679;</span>
       ))}
@@ -692,84 +672,7 @@ function ConfidenceIndicator({ confidence }: { confidence: string | null }) {
   );
 }
 
-function ChunkView({
-  label,
-  accentColor,
-  chunk,
-  fallbackText,
-  language,
-  translatable = false,
-  onEdit,
-  hasEdit = false,
-}: {
-  label: string;
-  accentColor: "blue" | "amber";
-  chunk: ConsolidatedBlock["hp_chunk"] | null;
-  fallbackText: string | null;
-  language?: string;
-  translatable?: boolean;
-  /** Optional edit entry point. Rendered as a small header button. */
-  onEdit?: () => void;
-  hasEdit?: boolean;
-}) {
-  const text = chunk?.text ?? fallbackText ?? "";
-  const translation = useChunkTranslation(text, language);
 
-  if (!text) return null;
-
-  const borderColor = accentColor === "blue" ? "border-blue-500/50" : "border-amber-500/50";
-  const labelColor = accentColor === "blue" ? "text-blue-400" : "text-amber-400";
-
-  const displayText = translatable ? translation.displayText : text;
-  const dir = translatable ? translation.dir : "ltr";
-
-  return (
-    <div className={`border-l-2 ${borderColor} pl-3`}>
-      <div className="flex items-center gap-2 mb-1 flex-wrap">
-        <span className={`text-xs font-semibold ${labelColor}`}>{label}</span>
-        {hasEdit && (
-          <span className="text-[10px] px-1.5 py-0.5 rounded border border-blue-500/30 bg-blue-500/10 text-blue-400">
-            Edited
-          </span>
-        )}
-        {chunk?.document && (
-          <span className="text-[10px] text-muted-foreground">{chunk.document.replace(/\.pdf$/i, "")}</span>
-        )}
-        {translatable && <LanguageBadge language={language} />}
-        <span className="flex-1" />
-        {translatable && translation.canTranslate && (
-          <TranslateToggle
-            mode={translation.mode}
-            isLoading={translation.isLoading}
-            onClick={translation.toggle}
-            size="xs"
-          />
-        )}
-        {onEdit && (
-          <button
-            onClick={onEdit}
-            className="text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-            title={hasEdit ? "Edit this block's text again" : "Edit before accepting"}
-          >
-            ✎ Edit
-          </button>
-        )}
-      </div>
-      {chunk?.heading_path && (
-        <div className="text-[10px] text-muted-foreground mb-1 truncate">{chunk.heading_path}</div>
-      )}
-      {chunk?.context_preamble && (
-        <p className="text-[10px] text-muted-foreground italic mb-1 leading-relaxed">
-          {chunk.context_preamble}
-        </p>
-      )}
-      <div className={`${PROSE_CLASSES} max-h-60 overflow-auto`} dir={dir}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{displayText}</ReactMarkdown>
-      </div>
-      {translatable && translation.error && <TranslationError message={translation.error} />}
-    </div>
-  );
-}
 
 /** In-place editor for the reviewer to rewrite a block's text before
  *  accepting. Writes to `edited_text` via a standard block action so the
@@ -793,7 +696,7 @@ export function EditDraftEditor({
     <div className="border-l-2 border-blue-500/50 pl-3 space-y-2">
       <div className="flex items-center gap-2 text-xs">
         <span className="font-semibold text-blue-400">Editing block</span>
-        <span className="text-[10px] text-muted-foreground">Markdown supported</span>
+        <span className="text-[11px] text-muted-foreground">Markdown supported</span>
       </div>
       <textarea
         value={value}
@@ -938,7 +841,7 @@ function DimensionDots({ dims }: { dims: Record<string, boolean> }) {
       {Object.entries(labels).map(([key, label]) => {
         const match = dims[key];
         return (
-          <span key={key} className="text-[10px] flex items-center gap-0.5">
+          <span key={key} className="text-[11px] flex items-center gap-0.5">
             <span className={match ? "text-green-400" : "text-red-400"}>{match ? "✓" : "✗"}</span>
             <span className="text-muted-foreground">{label}</span>
           </span>
@@ -1053,12 +956,13 @@ function ReclassifyDropdown({
 const BTN_BASE =
   "text-xs py-1.5 rounded border transition-colors disabled:opacity-50 disabled:cursor-not-allowed";
 
-const BTN_ACCEPT_SELECTED = "bg-green-500/15 text-green-400 border-green-500/30";
+const BTN_ACCEPT_SELECTED = "bg-success/20 text-success border-success/50";
 const BTN_ACCEPT_IDLE =
-  "border-border hover:bg-green-500/10 hover:text-green-400 hover:border-green-500/30";
-const BTN_DISMISS_SELECTED = "bg-muted text-muted-foreground border-border";
-const BTN_DISMISS_IDLE = "border-border hover:bg-muted/50 hover:text-muted-foreground";
-const BTN_NEUTRAL = "border-border hover:bg-muted/50";
+  "border-success/30 text-success hover:bg-success/10";
+const BTN_DISMISS_SELECTED = "bg-error/20 text-error border-error/50";
+const BTN_DISMISS_IDLE = "border-error/30 text-error hover:bg-error/10";
+const BTN_RESET = "border-info/40 text-info hover:bg-info/10";
+const BTN_NEUTRAL = "border-border hover:bg-muted/50 text-muted-foreground";
 
 // ── Variant context card ────────────────────────────────────────────────
 
@@ -1072,7 +976,7 @@ function VariantContextCard({ block }: { block: ConsolidatedBlock }) {
   if (chips.length === 0) return null;
 
   return (
-    <div className="rounded border border-border bg-muted/20 px-2 py-1.5 flex flex-wrap gap-1.5 text-[10px]">
+    <div className="rounded border border-border bg-muted/20 px-2 py-1.5 flex flex-wrap gap-1.5 text-[11px]">
       <span className="text-muted-foreground">Scope:</span>
       {chips.map((c) => (
         <span key={c.label} className="px-1.5 py-0.5 rounded bg-background border border-border">
@@ -1103,14 +1007,14 @@ function EquivalentActions({
       </div>
       <div className="flex gap-2">
         <button
-          disabled={busy}
+          disabled={busy || status === "accepted"}
           onClick={() => onAction("accepted")}
           className={`${BTN_BASE} flex-1 ${status === "accepted" ? BTN_ACCEPT_SELECTED : BTN_ACCEPT_IDLE}`}
         >
           Approve
         </button>
         <button
-          disabled={busy}
+          disabled={busy || status === "dismissed"}
           onClick={() => onAction("dismissed")}
           className={`${BTN_BASE} flex-1 ${status === "dismissed" ? BTN_DISMISS_SELECTED : BTN_DISMISS_IDLE}`}
         >
@@ -1119,7 +1023,7 @@ function EquivalentActions({
         <button
           disabled={busy}
           onClick={() => onAction("pending")}
-          className={`${BTN_BASE} px-3 ${BTN_NEUTRAL}`}
+          className={`${BTN_BASE} px-3 ${BTN_RESET}`}
         >
           Reset
         </button>
@@ -1150,14 +1054,14 @@ function VariantActions({
       </div>
       <div className="flex gap-2">
         <button
-          disabled={busy}
+          disabled={busy || status === "accepted"}
           onClick={() => onAction("accepted")}
           className={`${BTN_BASE} flex-1 ${status === "accepted" ? BTN_ACCEPT_SELECTED : BTN_ACCEPT_IDLE}`}
         >
           Approve
         </button>
         <button
-          disabled={busy}
+          disabled={busy || status === "dismissed"}
           onClick={() => onAction("dismissed")}
           className={`${BTN_BASE} flex-1 ${status === "dismissed" ? BTN_DISMISS_SELECTED : BTN_DISMISS_IDLE}`}
         >
@@ -1166,7 +1070,7 @@ function VariantActions({
         <button
           disabled={busy}
           onClick={() => onAction("pending")}
-          className={`${BTN_BASE} px-3 ${BTN_NEUTRAL}`}
+          className={`${BTN_BASE} px-3 ${BTN_RESET}`}
         >
           Reset
         </button>
@@ -1205,7 +1109,7 @@ function ComplementaryActions({
         Supporting Content — AI Suggests Placing Here
       </div>
       <button
-        disabled={busy}
+        disabled={busy || status === "accepted"}
         onClick={() => onAction("accepted", "place_here")}
         className={`${BTN_BASE} w-full ${status === "accepted" ? BTN_ACCEPT_SELECTED : BTN_ACCEPT_IDLE}`}
       >
@@ -1229,7 +1133,7 @@ function ComplementaryActions({
           Merge
         </button>
         <button
-          disabled={busy}
+          disabled={busy || status === "dismissed"}
           onClick={() => onAction("dismissed")}
           className={`${BTN_BASE} ${status === "dismissed" ? BTN_DISMISS_SELECTED : BTN_DISMISS_IDLE}`}
         >
@@ -1266,7 +1170,7 @@ function GapActions({
         New Content · Not in this H&P Doc
       </div>
       <button
-        disabled={busy}
+        disabled={busy || status === "accepted"}
         onClick={() => onAction("accepted", "create_section")}
         className={`${BTN_BASE} w-full ${
           status === "accepted"
@@ -1278,7 +1182,7 @@ function GapActions({
       </button>
       <div className="flex gap-2">
         <button
-          disabled={busy || !hasJustification}
+          disabled={busy || !hasJustification || status === "dismissed"}
           onClick={() => onAction("dismissed")}
           title={hasJustification ? "" : "Justification required — type a reason above"}
           className={`${BTN_BASE} flex-1 ${status === "dismissed" ? BTN_DISMISS_SELECTED : BTN_DISMISS_IDLE}`}
@@ -1296,7 +1200,7 @@ function GapActions({
       <button
         disabled={busy}
         onClick={() => onAction("pending")}
-        className={`${BTN_BASE} w-full ${BTN_NEUTRAL}`}
+        className={`${BTN_BASE} w-full ${BTN_RESET}`}
       >
         Reset
       </button>
@@ -1316,14 +1220,14 @@ function StandardActions({
   return (
     <div className="flex gap-2">
       <button
-        disabled={busy}
+        disabled={busy || status === "accepted"}
         onClick={() => onAction("accepted")}
         className={`${BTN_BASE} flex-1 ${status === "accepted" ? BTN_ACCEPT_SELECTED : BTN_ACCEPT_IDLE}`}
       >
         Accept
       </button>
       <button
-        disabled={busy}
+        disabled={busy || status === "dismissed"}
         onClick={() => onAction("dismissed")}
         className={`${BTN_BASE} flex-1 ${status === "dismissed" ? BTN_DISMISS_SELECTED : BTN_DISMISS_IDLE}`}
       >
@@ -1332,7 +1236,7 @@ function StandardActions({
       <button
         disabled={busy}
         onClick={() => onAction("pending")}
-        className={`${BTN_BASE} px-3 ${BTN_NEUTRAL}`}
+        className={`${BTN_BASE} px-3 ${BTN_RESET}`}
       >
         Reset
       </button>
@@ -1353,7 +1257,7 @@ function ConflictActions({
   return (
     <div className="space-y-1.5">
       <div className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider px-0.5">
-        Resolution {isResolved && <span className="text-green-500 normal-case">· Resolved</span>}
+        Resolution {isResolved && <span className="text-success normal-case">· Resolved</span>}
       </div>
       <div className="grid grid-cols-2 gap-1.5">
         <button
@@ -1389,7 +1293,7 @@ function ConflictActions({
         <button
           disabled={busy}
           onClick={() => onAction("pending")}
-          className={`${BTN_BASE} w-full ${BTN_NEUTRAL}`}
+          className={`${BTN_BASE} w-full ${BTN_RESET}`}
         >
           Reset
         </button>

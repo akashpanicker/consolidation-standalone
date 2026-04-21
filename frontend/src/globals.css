@@ -269,10 +269,26 @@
   button {
     font-weight: var(--font-weight-medium);
   }
-  
+
   input {
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
+  }
+
+  /* Force pointer cursor on all interactive elements */
+  button,
+  a,
+  select,
+  label,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  input[type="checkbox"],
+  input[type="radio"],
+  [role="button"],
+  [onClick],
+  .cursor-pointer {
+    cursor: pointer !important;
   }
 }
